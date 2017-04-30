@@ -8,10 +8,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <title>$Title$</title>
+    <title>My App</title>
   </head>
   <body>
-  Stuff
-  $END$
+  <h1>Simple Java Web asdasdaApp Demo</h1>
+  <p>To invoke the java servlet click <a href="MyServlet">here</a></p>
   </body>
 </html>
