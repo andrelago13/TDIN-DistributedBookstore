@@ -20,7 +20,7 @@ public class MyServlet extends HttpServlet {
             writer.println("<!DOCTYPE html><html>");
             writer.println("<head>");
             writer.println("<meta charset=\"UTF-8\" />");
-            writer.println("<title>MyServlet.java:doGet(): Servlet code!</title>");
+            writer.println("<title>MyServlet.java:doGet(): Servlet code</title>");
             writer.println("</head>");
             writer.println("<body>");
 
