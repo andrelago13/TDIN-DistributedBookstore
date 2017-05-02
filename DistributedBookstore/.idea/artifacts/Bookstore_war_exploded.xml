@@ -7,6 +7,9 @@
         <element id="directory" name="classes">
           <element id="module-output" name="Bookstore" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="org.eclipse.jetty.orbit:javax.annotation:1.1.0.v201108011116" />
+        </element>
       </element>
     </root>
   </artifact>

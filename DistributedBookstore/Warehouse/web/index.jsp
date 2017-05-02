@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <title>My App</title>
+    <title>"${pageContext.request.contextPath}"</title>
   </head>
   <body>
   <h1>Simple Java Web asdasdaApp Demo</h1>
