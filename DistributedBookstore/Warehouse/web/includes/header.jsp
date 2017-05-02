@@ -1,22 +1,9 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: asl_m
-  Date: 02/05/2017
-  Time: 13:10
-  To change this template use File | Settings | File Templates.
---%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>${title}</title>
+    <title>Warehouse</title>
     <link rel="shortcut icon" type="image/png" href="images/icons/favicon.png" />
 
     <!-- Custom Fonts -->
@@ -39,16 +26,3 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-
-<body>
-<div>
-    <form action="login" method="post">
-        <input type="text" name="username" placeholder="Username"/>
-        <input type="password" name="password" placeholder="Password"/>
-        <input type="submit" text="Login"/>
-    </form>
-</div>
-<!--<c:forEach items="${list}" var="item">
-    <p>${item}</p><br/>
-</c:forEach>-->
-</body>

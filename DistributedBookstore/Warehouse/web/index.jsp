@@ -6,12 +6,20 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-  <head>
-    <title>"${pageContext.request.contextPath}"</title>
-  </head>
-  <body>
-  <h1>Simple Java Web asdasdaApp Demo</h1>
-  <p>To invoke the java servlet click -> <a href="MyServlet">here</a></p>
-  </body>
-</html>
+<!DOCTYPE html>
+<html lang="en">
+
+<jsp:include page="includes/header.jsp" />
+
+<body>
+<div>
+  <form action="login" method="post">
+    <input type="text" name="username" placeholder="Username"/>
+    <input type="password" name="password" placeholder="Password"/>
+    <input type="submit" text="Login"/>
+  </form>
+</div>
+<!--<c:forEach items="${list}" var="item">
+    <p>${item}</p><br/>
+</c:forEach>-->
+</body>
