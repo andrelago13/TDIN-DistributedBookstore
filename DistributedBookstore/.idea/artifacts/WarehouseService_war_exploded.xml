@@ -1,0 +1,18 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="WarehouseService:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/WarehouseService_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="WarehouseService/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="WarehouseService" />
+          <element id="module-output" name="Common" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Jersey-2.2 (2)" />
+          <element id="file-copy" path="$PROJECT_DIR$/Common/lib/json-20160810.jar" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
