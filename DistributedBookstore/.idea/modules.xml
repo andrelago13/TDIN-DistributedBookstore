@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/Bookstore/Bookstore.iml" filepath="$PROJECT_DIR$/Bookstore/Bookstore.iml" />
       <module fileurl="file://$PROJECT_DIR$/DistributedBookstore.iml" filepath="$PROJECT_DIR$/DistributedBookstore.iml" />
       <module fileurl="file://$PROJECT_DIR$/Warehouse/Warehouse.iml" filepath="$PROJECT_DIR$/Warehouse/Warehouse.iml" />
+      <module fileurl="file://$PROJECT_DIR$/WarehouseSystem/WarehouseSystem.iml" filepath="$PROJECT_DIR$/WarehouseSystem/WarehouseSystem.iml" />
       <module fileurl="file://$PROJECT_DIR$/Website/Website.iml" filepath="$PROJECT_DIR$/Website/Website.iml" />
     </modules>
   </component>
