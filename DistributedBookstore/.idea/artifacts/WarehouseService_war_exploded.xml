@@ -11,6 +11,7 @@
         <element id="directory" name="lib">
           <element id="library" level="project" name="Jersey-2.2 (2)" />
           <element id="file-copy" path="$PROJECT_DIR$/Common/lib/json-20160810.jar" />
+          <element id="file-copy" path="C:/Program Files (x86)/MySQL/Connector.J 5.1/mysql-connector-java-5.1.41-bin.jar" />
         </element>
       </element>
     </root>

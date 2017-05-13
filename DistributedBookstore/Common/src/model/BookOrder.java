@@ -1,5 +1,9 @@
+package model;
+
 import org.json.JSONObject;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 
 /**
@@ -22,6 +26,15 @@ public class BookOrder {
     public final static String STATE_KEY = "state";
     public final static String STATE_DATE_KEY = "stateDate";
 
+    private final static String ORDER_ID_COLUMN = "id";
+    public final static String BOOK_TITLE_COLUMN = "book_title";
+    public final static String QUANTITY_COLUMN = "quantity";
+    public final static String CLIENT_NAME_COLUMN = "client_name";
+    public final static String CLIENT_ADDRESS_COLUMN = "client_addr";
+    public final static String CLIENT_EMAIL_COLUMN = "client_email";
+    public final static String STATE_COLUMN = "state";
+    public final static String STATE_DATE_COLUMN = "state_date";
+
     private int orderID;
     private String bookTitle;
     private int quantity;
@@ -33,6 +46,10 @@ public class BookOrder {
     private Date stateDate;
 
     public BookOrder(int id, String title, int quantity, String client, String clAddr, String clEmail) {
+        this(id, title, quantity, client, clAddr, clEmail, State.WAITING_EXPEDITION, -1);
+    }
+
+    public BookOrder(int id, String title, int quantity, String client, String clAddr, String clEmail, State state, long dateTime) {
         this.orderID = id;
         this.bookTitle = title;
         this.quantity = quantity;
@@ -40,8 +57,33 @@ public class BookOrder {
         this.clientAddress = clAddr;
         this.clientEmail = clEmail;
 
-        state = State.WAITING_EXPEDITION;
-        stateDate = null;
+        this.state = state;
+        if(dateTime < 0) {
+            stateDate = null;
+        } else {
+            stateDate = new Date(dateTime);
+        }
+    }
+
+    public static BookOrder getOrderFromSQL(ResultSet r) throws SQLException {
+        BookOrder order = new BookOrder(r.getInt(ORDER_ID_COLUMN),
+                r.getString(BOOK_TITLE_COLUMN),
+                r.getInt(QUANTITY_COLUMN),
+                r.getString(CLIENT_NAME_COLUMN),
+                r.getString(CLIENT_ADDRESS_COLUMN),
+                r.getString(CLIENT_EMAIL_COLUMN));
+
+        State state = State.values()[r.getInt(STATE_COLUMN)];
+        switch (state) {
+            case DISPATCHED:
+                order.dispatched(new Date(r.getLong(STATE_DATE_COLUMN)));
+                break;
+            case WILL_DISPATCH:
+                order.willDispatch(new Date(r.getLong(STATE_DATE_COLUMN)));
+                break;
+        }
+
+        return order;
     }
 
     public BookOrder(String jsonString) {
@@ -63,7 +105,7 @@ public class BookOrder {
         }
     }
 
-    public void dispatch(Date date) {
+    public void dispatched(Date date) {
         state = State.DISPATCHED;
         stateDate = date;
     }
