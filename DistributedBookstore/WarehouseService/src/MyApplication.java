@@ -1,5 +1,5 @@
-import model.BookOrder;
 import model.ModelSetup;
+import services.Auth;
 import services.Orders;
 
 import javax.ws.rs.ApplicationPath;
@@ -12,9 +12,10 @@ public class MyApplication extends Application{
 
     @Override
     public Set<Class<?>> getClasses() {
+        ModelSetup.maybeSetup();
         HashSet h = new HashSet<Class<?>>();
         h.add( Orders.class );
-        ModelSetup.maybeSetup();
+        h.add( Auth.class );
         return h;
     }
 }

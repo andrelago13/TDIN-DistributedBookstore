@@ -105,6 +105,38 @@ public class BookOrder {
         }
     }
 
+    public int getOrderID() {
+        return orderID;
+    }
+
+    public String getBookTitle() {
+        return bookTitle;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public String getClientName() {
+        return clientName;
+    }
+
+    public String getClientAddress() {
+        return clientAddress;
+    }
+
+    public String getClientEmail() {
+        return clientEmail;
+    }
+
+    public int getStateNumber() {
+        return state.ordinal();
+    }
+
+    public State getState() {
+        return state;
+    }
+
     public void dispatched(Date date) {
         state = State.DISPATCHED;
         stateDate = date;
@@ -113,10 +145,6 @@ public class BookOrder {
     public void willDispatch(Date date) {
         state = State.WILL_DISPATCH;
         stateDate = date;
-    }
-
-    public State getState() {
-        return state;
     }
 
     public JSONObject toJSON() {
