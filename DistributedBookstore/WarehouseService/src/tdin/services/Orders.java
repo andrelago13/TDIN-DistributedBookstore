@@ -16,10 +16,10 @@ public class Orders {
 
     @POST
     @Produces("application/json")
-    public String postMessage(@FormParam("book_title") String title, @FormParam("quantity") int quantity,
+    public String postMessage(@FormParam("book_id") int book_id, @FormParam("quantity") int quantity,
                               @FormParam("client_name") String clientName, @FormParam("client_addr") String clientAddress,
                               @FormParam("client_email") String clientEmail) {
-        postOrder(new BookOrder(title, quantity, clientName, clientAddress, clientEmail));
+        postOrder(new BookOrder(book_id, quantity, clientName, clientAddress, clientEmail));
         return "{ hey }";
     }
 

@@ -55,7 +55,7 @@ public class DatabaseController {
 
         try {
             Statement statement = connection.createStatement();
-            ResultSet results = statement.executeQuery("SELECT * FROM warehouse_orders");
+            ResultSet results = statement.executeQuery("SELECT * FROM warehouse_orders ORDER BY created_at DESC");
             while(results.next()) {
                 list.addOrder(BookOrder.getOrderFromSQL(results));
             }
@@ -68,14 +68,15 @@ public class DatabaseController {
 
     public boolean postOrder(BookOrder order) {
         try {
-            String query = "INSERT INTO warehouse_orders (quantity, book_title, client_name, " +
-                    "client_address, client_email, state) VALUES (?, ?, ?, ?, ?, 0)";
+            String query = "INSERT INTO warehouse_orders (id, quantity, book_id, client_name, " +
+                    "client_address, client_email, state) VALUES (?, ?, ?, ?, ?, ?, 0)";
             PreparedStatement preparedStmt = connection.prepareStatement(query);
-            preparedStmt.setInt(1, order.getQuantity());
-            preparedStmt.setString(2, order.getBookTitle());
-            preparedStmt.setString(3, order.getClientName());
-            preparedStmt.setString(4, order.getClientAddress());
-            preparedStmt.setString(5, order.getClientEmail());
+            preparedStmt.setString(1, order.getOrderID().toString());
+            preparedStmt.setInt(2, order.getQuantity());
+            preparedStmt.setInt(3, order.getBookID());
+            preparedStmt.setString(4, order.getClientName());
+            preparedStmt.setString(5, order.getClientAddress());
+            preparedStmt.setString(6, order.getClientEmail());
 
             preparedStmt.execute();
         } catch (SQLException e) {
