@@ -1,0 +1,56 @@
+drop table if exists books;
+create table books (
+  isbn VARCHAR(50),
+  name VARCHAR(50),
+  author VARCHAR(50)
+);
+insert into books (isbn, name, author) values ('706085237-9', 'Leannon Group', 'Philly Stroban');
+insert into books (isbn, name, author) values ('509375455-2', 'Stoltenberg Inc', 'Wilhelmina Merrifield');
+insert into books (isbn, name, author) values ('580777612-7', 'Larkin-Mann', 'Jackelyn Evreux');
+insert into books (isbn, name, author) values ('820048606-0', 'Beer Group', 'Hastings Jarrad');
+insert into books (isbn, name, author) values ('672553729-4', 'Kohler, Toy and Von', 'Adriena Adriaan');
+insert into books (isbn, name, author) values ('486172055-9', 'Kunze Group', 'Ahmed Salvadori');
+insert into books (isbn, name, author) values ('318022733-8', 'Schowalter Group', 'Stormi Rudland');
+insert into books (isbn, name, author) values ('213988110-9', 'Braun-Ankunding', 'Horatio Castana');
+insert into books (isbn, name, author) values ('698113578-7', 'Rippin-Walker', 'Nichols Longea');
+insert into books (isbn, name, author) values ('169451021-2', 'Bartoletti-Aufderhar', 'Llywellyn Hoyt');
+insert into books (isbn, name, author) values ('434465239-8', 'Schoen Group', 'Orren Roo');
+insert into books (isbn, name, author) values ('293041655-6', 'Maggio Inc', 'Aura Tuffell');
+insert into books (isbn, name, author) values ('381771281-2', 'Durgan-Conroy', 'Borden Sizzey');
+insert into books (isbn, name, author) values ('120369723-6', 'Rau LLC', 'Anton Cockman');
+insert into books (isbn, name, author) values ('553401725-2', 'Adams, Weissnat and Kris', 'Shirley Reichelt');
+insert into books (isbn, name, author) values ('281571201-6', 'Walter-Doyle', 'Rhoda Fechnie');
+insert into books (isbn, name, author) values ('866323761-8', 'Schowalter-Hickle', 'Fayette Scammonden');
+insert into books (isbn, name, author) values ('424450130-4', 'Collier-Price', 'Lina Corfield');
+insert into books (isbn, name, author) values ('245271332-5', 'Green-Carter', 'Matt McKelloch');
+insert into books (isbn, name, author) values ('902488566-3', 'Heathcote, Powlowski and Denesik', 'Ferdy Nesfield');
+insert into books (isbn, name, author) values ('213803448-8', 'Rodriguez Inc', 'Shari Lampbrecht');
+insert into books (isbn, name, author) values ('747134351-6', 'Johnston-Mraz', 'Skip Pawley');
+insert into books (isbn, name, author) values ('703753446-3', 'Kuhn Group', 'Fransisco Lydden');
+insert into books (isbn, name, author) values ('486215868-4', 'Collins, Dare and Stehr', 'Averyl Blint');
+insert into books (isbn, name, author) values ('476511139-3', 'Rowe-Boehm', 'Garvey Forrest');
+insert into books (isbn, name, author) values ('664555078-2', 'Wintheiser and Sons', 'Griffie Ringwood');
+insert into books (isbn, name, author) values ('731227945-7', 'Romaguera Group', 'Rudolfo Adcock');
+insert into books (isbn, name, author) values ('453570189-X', 'Sawayn, Huel and Zemlak', 'Hamlen Jura');
+insert into books (isbn, name, author) values ('659309812-4', 'Von, Shields and Larkin', 'Calley Bailie');
+insert into books (isbn, name, author) values ('681871338-6', 'Bogan-O''Kon', 'Donn Skittrell');
+insert into books (isbn, name, author) values ('949326871-3', 'Murazik and Sons', 'Ravid Collen');
+insert into books (isbn, name, author) values ('602730781-1', 'Spencer-Rutherford', 'Adelaida Quarles');
+insert into books (isbn, name, author) values ('141050641-X', 'Roberts Group', 'Karry McLemon');
+insert into books (isbn, name, author) values ('065469358-7', 'Keebler-Wisoky', 'Kathleen Pendlebury');
+insert into books (isbn, name, author) values ('670623009-X', 'Heidenreich-Okuneva', 'Gwenneth Witter');
+insert into books (isbn, name, author) values ('486432216-3', 'Bauch and Sons', 'Nickola Moorwood');
+insert into books (isbn, name, author) values ('007724034-0', 'Williamson, Beer and Bailey', 'Marlene Matisoff');
+insert into books (isbn, name, author) values ('104261735-X', 'Purdy, Weimann and Beahan', 'Abraham Bliss');
+insert into books (isbn, name, author) values ('032553200-1', 'Kunze-Sauer', 'Chan Agius');
+insert into books (isbn, name, author) values ('298259119-7', 'Fisher, Heaney and Gerlach', 'Ferdie Westcot');
+insert into books (isbn, name, author) values ('480494825-2', 'Orn-Romaguera', 'Leeland Eveque');
+insert into books (isbn, name, author) values ('157098522-7', 'Luettgen-Stark', 'Sherry Hateley');
+insert into books (isbn, name, author) values ('624054988-6', 'Stroman, Ortiz and Berge', 'Ailbert McEntegart');
+insert into books (isbn, name, author) values ('206860501-5', 'Roob-Harris', 'Katha Glasner');
+insert into books (isbn, name, author) values ('821345781-1', 'Ratke and Sons', 'Celestyn Tomet');
+insert into books (isbn, name, author) values ('721051982-3', 'Watsica Inc', 'Nettie Capenor');
+insert into books (isbn, name, author) values ('562140148-4', 'Rempel-Johns', 'Christina Minchinden');
+insert into books (isbn, name, author) values ('490763655-5', 'Little and Sons', 'Hetti Kinkade');
+insert into books (isbn, name, author) values ('570536207-2', 'Hahn-Bayer', 'Ruthe Ricards');
+insert into books (isbn, name, author) values ('220414607-2', 'Grant-Fisher', 'Prisca Epgrave');

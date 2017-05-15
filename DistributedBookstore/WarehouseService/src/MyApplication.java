@@ -1,7 +1,7 @@
 import model.ModelSetup;
-import services.Auth;
-import services.OrderUpdater;
-import services.Orders;
+import tdin.services.Auth;
+import tdin.services.OrderUpdater;
+import tdin.services.Orders;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;

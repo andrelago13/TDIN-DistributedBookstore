@@ -1,3 +1,5 @@
+package tdin;
+
 import libs.database.Database;
 import libs.database.types.DatabaseType;
 
@@ -14,17 +16,20 @@ public class Core {
     private Core() {
         this.database = Database.createDatabase(DatabaseType.MYSQL, "localhost", 3306, "tdin", "user", "123456");
         try {
-            assert this.database != null;
             this.database.connect();
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
 
-    public Core getInstance() {
+    public static Core getInstance() {
         if(instance == null) {
             instance = new Core();
         }
         return instance;
+    }
+
+    public Database getDatabase() {
+        return database;
     }
 }

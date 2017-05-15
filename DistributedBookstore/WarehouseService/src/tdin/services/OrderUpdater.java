@@ -1,6 +1,5 @@
-package services;
+package tdin.services;
 
-import model.BookOrder;
 import model.DatabaseController;
 
 import javax.ws.rs.FormParam;

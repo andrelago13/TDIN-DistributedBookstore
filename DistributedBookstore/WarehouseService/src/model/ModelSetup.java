@@ -1,10 +1,5 @@
 package model;
 
-import services.Orders;
-
-import java.awt.print.Book;
-import java.sql.*;
-
 /**
  * Created by asl_m on 13/05/2017.
  */

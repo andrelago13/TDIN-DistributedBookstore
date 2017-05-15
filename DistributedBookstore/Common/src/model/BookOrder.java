@@ -27,11 +27,11 @@ public class BookOrder {
     public final static String STATE_KEY = "state";
     public final static String STATE_DATE_KEY = "stateDate";
 
-    private final static String ORDER_ID_COLUMN = "id";
+    public final static String ORDER_ID_COLUMN = "id";
     public final static String BOOK_TITLE_COLUMN = "book_title";
     public final static String QUANTITY_COLUMN = "quantity";
     public final static String CLIENT_NAME_COLUMN = "client_name";
-    public final static String CLIENT_ADDRESS_COLUMN = "client_addr";
+    public final static String CLIENT_ADDRESS_COLUMN = "client_address";
     public final static String CLIENT_EMAIL_COLUMN = "client_email";
     public final static String STATE_COLUMN = "state";
     public final static String STATE_DATE_COLUMN = "state_date";
