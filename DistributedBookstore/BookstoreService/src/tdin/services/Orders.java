@@ -1,11 +1,13 @@
 package tdin.services;
 
 import model.BookOrder;
+import org.json.JSONObject;
 import tdin.handlers.OrdersHandler;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.net.URI;
 import java.sql.SQLException;
 import java.util.UUID;
 
@@ -32,18 +34,19 @@ public class Orders {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String getOrders() throws SQLException {
-        return OrdersHandler.getInstance().getBookOrders().toJSON().toString();
+    public Response getOrders() throws SQLException {
+        return Response.ok(OrdersHandler.getInstance().getBookOrders().toJSON().toString()).build();
     }
 
 
     @POST
-    @Produces(MediaType.APPLICATION_JSON)
-    public String createOrder(@FormParam("bookID") int bookID, @FormParam("quantity") int quantity,
-                              @FormParam("clientName") String clientName, @FormParam("clientAddress") String clientAddress,
-                              @FormParam("clientEmail") String clientEmail) {
-        BookOrder bookOrder = new BookOrder(bookID, quantity, clientName, clientAddress, clientEmail);
-
-        return bookOrder.toJSON().toString();
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response createOrder(String jsonRequest) {
+        BookOrder bookOrder = new BookOrder(new JSONObject(jsonRequest));
+        if(OrdersHandler.getInstance().createOrder(bookOrder)) {
+            return Response.created(URI.create("orders/" + bookOrder.getOrderID().toString())).build();
+        } else {
+            return Response.serverError().build();
+        }
     }
 }

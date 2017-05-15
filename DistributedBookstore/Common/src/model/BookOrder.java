@@ -21,6 +21,7 @@ public class BookOrder {
     public final static String ORDER_ID_KEY = "orderID";
     public final static String BOOK_ID_KEY = "bookID";
     public final static String QUANTITY_KEY = "quantity";
+    public final static String TOTAL_PRICE_KEY= "totalPrice";
     public final static String CLIENT_NAME_KEY = "clientName";
     public final static String CLIENT_ADDRESS_KEY = "clientAddress";
     public final static String CLIENT_EMAIL_KEY = "clientEmail";
@@ -30,6 +31,7 @@ public class BookOrder {
     public final static String ORDER_ID_COLUMN = "id";
     public final static String BOOK_ID_COLUMN = "book_id";
     public final static String QUANTITY_COLUMN = "quantity";
+    public final static String TOTAL_PRICE_COLUMN = "total_price";
     public final static String CLIENT_NAME_COLUMN = "client_name";
     public final static String CLIENT_ADDRESS_COLUMN = "client_address";
     public final static String CLIENT_EMAIL_COLUMN = "client_email";
@@ -39,25 +41,26 @@ public class BookOrder {
     private UUID orderID;
     private int bookID;
     private int quantity;
+    private double totalPrice;
     private String clientName;
     private String clientAddress;
     private String clientEmail;
-
     private State state;
     private Date stateDate;
 
-    public BookOrder(int bookID, int quantity, String client, String clAddr, String clEmail) {
-        this(UUID.randomUUID(), bookID, quantity, client, clAddr, clEmail, State.WAITING_EXPEDITION, -1);
+    public BookOrder(int bookID, int quantity, double totalPrice, String client, String clAddr, String clEmail) {
+        this(UUID.randomUUID(), bookID, quantity, totalPrice, client, clAddr, clEmail, State.WAITING_EXPEDITION, -1);
     }
 
-    public BookOrder(UUID id, int bookID, int quantity, String client, String clAddr, String clEmail) {
-        this(id, bookID, quantity, client, clAddr, clEmail, State.WAITING_EXPEDITION, -1);
+    public BookOrder(UUID orderID, int bookID, int quantity, double totalPrice, String client, String clAddr, String clEmail) {
+        this(orderID, bookID, quantity, totalPrice, client, clAddr, clEmail, State.WAITING_EXPEDITION, -1);
     }
 
-    public BookOrder(UUID id, int bookID, int quantity, String client, String clAddr, String clEmail, State state, long dateTime) {
-        this.orderID = id;
+    public BookOrder(UUID orderID, int bookID, int quantity, double totalPrice, String client, String clAddr, String clEmail, State state, long dateTime) {
+        this.orderID = orderID;
         this.bookID = bookID;
         this.quantity = quantity;
+        this.totalPrice = totalPrice;
         this.clientName = client;
         this.clientAddress = clAddr;
         this.clientEmail = clEmail;
@@ -74,6 +77,7 @@ public class BookOrder {
         BookOrder order = new BookOrder(UUID.fromString(r.getString(ORDER_ID_COLUMN)),
                 r.getInt(BOOK_ID_COLUMN),
                 r.getInt(QUANTITY_COLUMN),
+                r.getInt(TOTAL_PRICE_COLUMN),
                 r.getString(CLIENT_NAME_COLUMN),
                 r.getString(CLIENT_ADDRESS_COLUMN),
                 r.getString(CLIENT_EMAIL_COLUMN));
@@ -96,15 +100,16 @@ public class BookOrder {
     }
 
     public BookOrder(JSONObject json) {
-        this.orderID = UUID.fromString(json.getString(ORDER_ID_KEY));
-        this.bookID = json.getInt(BOOK_ID_KEY);
-        this.quantity = json.getInt(QUANTITY_KEY);
-        this.clientName = json.getString(CLIENT_NAME_KEY);
-        this.clientAddress = json.getString(CLIENT_ADDRESS_KEY);
-        this.clientEmail = json.getString(CLIENT_EMAIL_KEY);
-        this.state = State.values()[json.getInt(STATE_KEY)];
+        this.orderID = json.has(ORDER_ID_KEY) ? UUID.fromString(json.getString(ORDER_ID_KEY)) : UUID.randomUUID();
+        this.bookID = json.has(BOOK_ID_KEY) ? json.getInt(BOOK_ID_KEY) : -1;
+        this.quantity = json.has(QUANTITY_KEY) ? json.getInt(QUANTITY_KEY) : -1;
+        this.totalPrice = json.has(TOTAL_PRICE_KEY) ? json.getInt(TOTAL_PRICE_KEY) : -1;
+        this.clientName = json.has(CLIENT_NAME_KEY) ? json.getString(CLIENT_NAME_KEY) : null;
+        this.clientAddress = json.has(CLIENT_ADDRESS_KEY) ? json.getString(CLIENT_ADDRESS_KEY) : null;
+        this.clientEmail = json.has(CLIENT_EMAIL_KEY) ? json.getString(CLIENT_EMAIL_KEY) : null;
+        this.state = json.has(STATE_KEY) ? State.values()[json.getInt(STATE_KEY)] : State.WAITING_EXPEDITION;
         if(this.state != State.WAITING_EXPEDITION) {
-            stateDate = new Date(json.getLong(STATE_DATE_KEY));
+            stateDate = json.has(STATE_DATE_KEY) ? new Date(json.getLong(STATE_DATE_KEY)) : null;
         } else {
             stateDate = null;
         }
@@ -120,6 +125,10 @@ public class BookOrder {
 
     public int getQuantity() {
         return quantity;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
     }
 
     public String getClientName() {
@@ -142,6 +151,10 @@ public class BookOrder {
         return state;
     }
 
+    public Date getStateDate() {
+        return stateDate;
+    }
+
     public void dispatched(Date date) {
         state = State.DISPATCHED;
         stateDate = date;
@@ -158,6 +171,7 @@ public class BookOrder {
         result.put(ORDER_ID_KEY, orderID);
         result.put(BOOK_ID_KEY, bookID);
         result.put(QUANTITY_KEY, quantity);
+        result.put(TOTAL_PRICE_KEY, totalPrice);
         result.put(CLIENT_NAME_KEY, clientName);
         result.put(CLIENT_ADDRESS_KEY, clientAddress);
         result.put(CLIENT_EMAIL_KEY, clientEmail);

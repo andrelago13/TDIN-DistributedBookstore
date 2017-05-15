@@ -9,8 +9,8 @@
           <element id="module-output" name="Common" />
         </element>
         <element id="directory" name="lib">
-          <element id="file-copy" path="$PROJECT_DIR$/Common/lib/json-20160810.jar" />
           <element id="library" level="project" name="MySQL Connector" />
+          <element id="library" level="project" name="JSON" />
         </element>
       </element>
     </root>
