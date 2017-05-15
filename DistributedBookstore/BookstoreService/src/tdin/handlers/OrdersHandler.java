@@ -75,6 +75,7 @@ public class OrdersHandler {
                     put(BookOrder.ORDER_ID_COLUMN, bookOrder.getOrderID().toString());
                     put(BookOrder.BOOK_ID_COLUMN, bookOrder.getBookID());
                     put(BookOrder.QUANTITY_COLUMN, bookOrder.getQuantity());
+                    put(BookOrder.TOTAL_PRICE_COLUMN, bookOrder.getTotalPrice());
                     put(BookOrder.CLIENT_NAME_COLUMN, bookOrder.getClientName());
                     put(BookOrder.CLIENT_ADDRESS_COLUMN, bookOrder.getClientAddress());
                     put(BookOrder.CLIENT_EMAIL_COLUMN, bookOrder.getClientEmail());
