@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS orders;
 DROP TABLE IF EXISTS users;
 
 CREATE TABLE orders (
-  id INTEGER PRIMARY KEY AUTO_INCREMENT,
+  id VARCHAR(36) PRIMARY KEY AUTO_INCREMENT,
   quantity INTEGER NOT NULL,
   book_title VARCHAR(60) NOT NULL,
   client_name VARCHAR(100) NOT NULL,
@@ -20,9 +20,9 @@ CREATE TABLE users (
 
 -- DUMMY DATA
 
-INSERT INTO orders (quantity, book_title, client_name, client_addr, client_email, state)
-VALUES (10, 'Titulo 1', 'Antonio', 'Rua X1', 'x@x.com', 0);
-INSERT INTO orders (quantity, book_title, client_name, client_addr, client_email, state, state_date)
-VALUES (15, 'Titulo 2', 'To', 'Rua Y2', 'y@y.com', 1, 20000);
+INSERT INTO orders (id, quantity, book_title, client_name, client_addr, client_email, state)
+VALUES ('3c759575-7d2f-495d-93c8-6c3e04418eb0', 10, 'Titulo 1', 'Antonio', 'Rua X1', 'x@x.com', 0);
+INSERT INTO orders (id, quantity, book_title, client_name, client_addr, client_email, state, state_date)
+VALUES ('cfe42f04-71e3-48b1-bb02-ce2b283c0aa9', 15, 'Titulo 2', 'To', 'Rua Y2', 'y@y.com', 1, 20000);
 
 INSERT INTO users (id, username, password) VALUES (1, 'user', '123456');
