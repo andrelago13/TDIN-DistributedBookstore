@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.6
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookstore", "Clients\Bookstore.csproj", "{B86F3C0A-FA4F-44DF-9835-1E7C2824F6CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Warehouse", "Warehouse\Warehouse.csproj", "{3D8290D6-E679-44A9-9613-72E9DA3978D1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B86F3C0A-FA4F-44DF-9835-1E7C2824F6CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B86F3C0A-FA4F-44DF-9835-1E7C2824F6CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B86F3C0A-FA4F-44DF-9835-1E7C2824F6CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B86F3C0A-FA4F-44DF-9835-1E7C2824F6CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D8290D6-E679-44A9-9613-72E9DA3978D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D8290D6-E679-44A9-9613-72E9DA3978D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D8290D6-E679-44A9-9613-72E9DA3978D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D8290D6-E679-44A9-9613-72E9DA3978D1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
