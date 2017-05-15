@@ -1,4 +1,5 @@
-﻿using MaterialSkin;
+﻿using Common.model;
+using MaterialSkin;
 using MaterialSkin.Controls;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace Warehouse
         public MainForm()
         {
             InitializeComponent();
-            WarehouseConnection.getOrders();
+            Setup();
 
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
@@ -26,9 +27,46 @@ namespace Warehouse
             materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void Setup()
         {
+            UpdateOrders();
+        }
 
+        private async void button1_ClickAsync(object sender, EventArgs e)
+        {
+            DataGridViewSelectedRowCollection r = pending_grid.SelectedRows;
+            for (int i = 0; i < r.Count; ++i)
+            {
+                string orderID = r[i].Cells[0].Value.ToString();
+                await WarehouseConnection.UpdateOrderAsync(orderID);
+                UpdateOrders();
+            }
+        }
+
+        private void UpdateOrders()
+        {
+            pending_grid.Rows.Clear();
+            processed_grid.Rows.Clear();
+            completed_grid.Rows.Clear();
+
+            List<BookOrder> orders = WarehouseConnection.GetOrders();
+            foreach (BookOrder order in orders)
+            {
+                switch (order.OrderState)
+                {
+                    case State.AWAITING_EXPEDITION:
+                        pending_grid.Rows.Add(order.OrderID, order.BookID, order.Quantity, order.ClientName, order.ClientAddress, order.ClientEmail);
+                        break;
+                    case State.WILL_BE_DISPATCHED:
+                        DateTime d = new DateTime(order.StateDate);
+                        processed_grid.Rows.Add(order.OrderID, order.BookID, order.Quantity, order.ClientName, order.ClientAddress, order.ClientEmail, d.Date.ToString("dd/mm/yyyy"));
+                        break;
+                    case State.DISPATCHED:
+                        DateTime date = new DateTime(order.StateDate);
+                        completed_grid.Rows.Add(order.OrderID, order.BookID, order.Quantity, order.ClientName, order.ClientAddress, order.ClientEmail, date.Date.ToString("dd/mm/yyyy"));
+                        break;
+                }
+            }
         }
     }
 }

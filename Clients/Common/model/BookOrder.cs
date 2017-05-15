@@ -9,54 +9,73 @@ namespace Common.model
 {
     public class BookOrder
     {
-        public int orderID { get; set; }
+        public string OrderID { get; set; }
 
-        public string bookTitle { get; set; }
+        public string BookID { get; set; }
 
-        public int quantity { get; set; }
+        public int Quantity { get; set; }
 
-        public string clientName { get; set; }
+        public string ClientName { get; set; }
 
-        public string clientAddress { get; set; }
+        public string ClientAddress { get; set; }
 
-        public string clientEmail { get; set; }
+        public string ClientEmail { get; set; }
         
-        public State state { get; set; }
+        public State OrderState { get; set; }
 
-        public long stateDate { get; set; }
+        public long StateDate { get; set; }
 
         public BookOrder() { }
 
-        public BookOrder(int id, string title, int quantity, string client_name, string client_addr, string client_email, int state, long state_date)
+        public BookOrder(string id, string title, int quantity, string client_name, string client_addr, string client_email, int state, long state_date)
         {
-            orderID = id;
-            bookTitle = title;
-            this.quantity = quantity;
-            clientName = client_name;
-            clientAddress = client_addr;
-            clientEmail = client_email;
+            OrderID = id;
+            BookID = title;
+            Quantity = quantity;
+            ClientName = client_name;
+            ClientAddress = client_addr;
+            ClientEmail = client_email;
             switch (state)
             {
                 case 0:
-                    this.state = State.AWAITING_EXPEDITION;
+                    OrderState = State.AWAITING_EXPEDITION;
                     break;
                 case 1:
-                    this.state = State.WILL_BE_DISPATCHED;
-                    stateDate = state_date;
+                    OrderState = State.WILL_BE_DISPATCHED;
+                    StateDate = state_date;
                     break;
                 case 2:
-                    this.state = State.DISPATCHED;
-                    stateDate = state_date;
+                    OrderState = State.DISPATCHED;
+                    StateDate = state_date;
                     break;
             }
         }
 
-        public BookOrder(int id, string title, int quantity, string client_name, string client_addr, string client_email) : 
+        public BookOrder(string id, string title, int quantity, string client_name, string client_addr, string client_email) : 
             this(id, title, quantity, client_name, client_addr, client_email, 0, -1) { }
 
         public BookOrder(JObject json)
         {
-
+            OrderID = (string) json.GetValue("orderID");
+            BookID = (string) json.GetValue("bookID");
+            Quantity = (int) json.GetValue("quantity");
+            ClientName = (string) json.GetValue("clientName");
+            ClientAddress = (string) json.GetValue("clientAddress");
+            ClientEmail = (string) json.GetValue("clientEmail");
+            switch ((int) json.GetValue("state"))
+            {
+                case 0:
+                    OrderState = State.AWAITING_EXPEDITION;
+                    break;
+                case 1:
+                    OrderState = State.WILL_BE_DISPATCHED;
+                    StateDate = (long) json.GetValue("stateDate");
+                    break;
+                case 2:
+                    OrderState = State.DISPATCHED;
+                    StateDate = (long) json.GetValue("stateDate");
+                    break;
+            }
         }
     }
 
