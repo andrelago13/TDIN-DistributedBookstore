@@ -55,7 +55,7 @@ public class DatabaseController {
 
         try {
             Statement statement = connection.createStatement();
-            ResultSet results = statement.executeQuery("SELECT * FROM orders");
+            ResultSet results = statement.executeQuery("SELECT * FROM warehouse_orders");
             while(results.next()) {
                 list.addOrder(BookOrder.getOrderFromSQL(results));
             }
@@ -68,8 +68,8 @@ public class DatabaseController {
 
     public boolean postOrder(BookOrder order) {
         try {
-            String query = "INSERT INTO orders (quantity, book_title, client_name, " +
-                    "client_addr, client_email, state) VALUES (?, ?, ?, ?, ?, 0)";
+            String query = "INSERT INTO warehouse_orders (quantity, book_title, client_name, " +
+                    "client_address, client_email, state) VALUES (?, ?, ?, ?, ?, 0)";
             PreparedStatement preparedStmt = connection.prepareStatement(query);
             preparedStmt.setInt(1, order.getQuantity());
             preparedStmt.setString(2, order.getBookTitle());
@@ -93,7 +93,7 @@ public class DatabaseController {
     public boolean updateOrderState(UUID id) {
         try {
             Statement statement = connection.createStatement();
-            ResultSet results = statement.executeQuery("SELECT state FROM orders WHERE id = " + id);
+            ResultSet results = statement.executeQuery("SELECT state FROM warehouse_orders WHERE id = " + id);
             if(!results.next()) {
                 return false;
             }
@@ -122,7 +122,7 @@ public class DatabaseController {
 
     public boolean setOrderDispatchDate(UUID id) {
         try {
-            String query = "UPDATE orders SET state = 1, state_date = ? WHERE id = ?";
+            String query = "UPDATE warehouse_orders SET state = 1, state_date = ? WHERE id = ?";
             PreparedStatement preparedStmt = connection.prepareStatement(query);
 
             Calendar cal = Calendar.getInstance();
@@ -145,7 +145,7 @@ public class DatabaseController {
 
     public boolean setOrderDispatched(UUID id) {
         try {
-            String query = "UPDATE orders SET state = 2 WHERE id = ?";
+            String query = "UPDATE warehouse_orders SET state = 2 WHERE id = ?";
             PreparedStatement preparedStmt = connection.prepareStatement(query);
             preparedStmt.setString(1, id.toString());
 
