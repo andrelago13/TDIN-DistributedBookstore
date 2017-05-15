@@ -12,6 +12,6 @@ namespace Common.api
 
         public static readonly string WAREHOUSE_PATH = BASE_URL + "warehouse/";
         public static readonly string WAREHOUSE_ORDERS_PATH = WAREHOUSE_PATH + "orders/";
-        public static readonly string WAREHOUSE_ORDERS_UPDATE_PATH = WAREHOUSE_PATH + WAREHOUSE_ORDERS_PATH + "update/";
+        public static readonly string WAREHOUSE_ORDERS_UPDATE_PATH = WAREHOUSE_ORDERS_PATH + "update/";
     }
 }

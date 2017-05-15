@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlTypes;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -58,12 +59,10 @@ namespace Warehouse
                         pending_grid.Rows.Add(order.OrderID, order.BookID, order.Quantity, order.ClientName, order.ClientAddress, order.ClientEmail);
                         break;
                     case State.WILL_BE_DISPATCHED:
-                        DateTime d = new DateTime(order.StateDate);
-                        processed_grid.Rows.Add(order.OrderID, order.BookID, order.Quantity, order.ClientName, order.ClientAddress, order.ClientEmail, d.Date.ToString("dd/mm/yyyy"));
+                        processed_grid.Rows.Add(order.OrderID, order.BookID, order.Quantity, order.ClientName, order.ClientAddress, order.ClientEmail, order.StateDate.ToString("dd/MM/yyyy"));
                         break;
                     case State.DISPATCHED:
-                        DateTime date = new DateTime(order.StateDate);
-                        completed_grid.Rows.Add(order.OrderID, order.BookID, order.Quantity, order.ClientName, order.ClientAddress, order.ClientEmail, date.Date.ToString("dd/mm/yyyy"));
+                        completed_grid.Rows.Add(order.OrderID, order.BookID, order.Quantity, order.ClientName, order.ClientAddress, order.ClientEmail, order.StateDate.ToString("dd/MM/yyyy"));
                         break;
                 }
             }

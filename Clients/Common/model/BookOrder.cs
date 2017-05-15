@@ -23,11 +23,11 @@ namespace Common.model
         
         public State OrderState { get; set; }
 
-        public long StateDate { get; set; }
+        public DateTime StateDate { get; set; }
 
         public BookOrder() { }
 
-        public BookOrder(string id, string title, int quantity, string client_name, string client_addr, string client_email, int state, long state_date)
+        public BookOrder(string id, string title, int quantity, string client_name, string client_addr, string client_email, int state, DateTime state_date)
         {
             OrderID = id;
             BookID = title;
@@ -52,7 +52,7 @@ namespace Common.model
         }
 
         public BookOrder(string id, string title, int quantity, string client_name, string client_addr, string client_email) : 
-            this(id, title, quantity, client_name, client_addr, client_email, 0, -1) { }
+            this(id, title, quantity, client_name, client_addr, client_email, 0, new DateTime()) { }
 
         public BookOrder(JObject json)
         {
@@ -69,13 +69,20 @@ namespace Common.model
                     break;
                 case 1:
                     OrderState = State.WILL_BE_DISPATCHED;
-                    StateDate = (long) json.GetValue("stateDate");
+                    string test = (string)json.GetValue("stateDate");
+                    StateDate = DateFromLong((long) json.GetValue("stateDate"));
                     break;
                 case 2:
                     OrderState = State.DISPATCHED;
-                    StateDate = (long) json.GetValue("stateDate");
+                    StateDate = DateFromLong((long)json.GetValue("stateDate"));
                     break;
             }
+        }
+
+        private static DateTime DateFromLong(long value)
+        {
+            long beginTicks = new DateTime(1970, 1, 2, 0, 0, 0, DateTimeKind.Utc).Ticks;
+            return new DateTime(beginTicks + value * 10000, DateTimeKind.Utc).Date;
         }
     }
 
