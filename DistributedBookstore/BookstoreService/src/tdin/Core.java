@@ -1,7 +1,7 @@
 package tdin;
 
-import libs.database.Database;
-import libs.database.types.DatabaseType;
+import database.Database;
+import database.types.DatabaseType;
 
 import java.sql.SQLException;
 

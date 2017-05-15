@@ -1,7 +1,7 @@
-package libs.database.types;
+package database.types;
 
 
-import libs.database.Database;
+import database.Database;
 
 /**
  * PostgreSQL Database

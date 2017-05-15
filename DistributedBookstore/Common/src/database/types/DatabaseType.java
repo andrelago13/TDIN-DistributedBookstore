@@ -1,4 +1,4 @@
-package libs.database.types;
+package database.types;
 
 /**
  * Types of Databases

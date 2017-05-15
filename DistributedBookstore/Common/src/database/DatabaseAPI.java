@@ -1,6 +1,6 @@
-package libs.database;
+package database;
 
-import libs.database.utils.DataType;
+import database.utils.DataType;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;

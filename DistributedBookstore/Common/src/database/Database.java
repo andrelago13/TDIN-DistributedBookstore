@@ -1,10 +1,10 @@
-package libs.database;
+package database;
 
 
-import libs.database.types.DatabaseType;
-import libs.database.types.MySQL;
-import libs.database.types.OracleSQL;
-import libs.database.types.PostgreSQL;
+import database.types.DatabaseType;
+import database.types.MySQL;
+import database.types.OracleSQL;
+import database.types.PostgreSQL;
 
 import java.sql.*;
 import java.util.List;
@@ -94,6 +94,19 @@ public abstract class Database {
     }
 
     /**
+     * Reconnect to the database if needed
+     */
+    public void reconnect() {
+        if(isClosed()) {
+            try {
+                connect();
+            } catch (SQLException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
      * Close the connection to the database
      */
     public void close() {
@@ -168,6 +181,8 @@ public abstract class Database {
      * @return result of the given query
      */
     public ResultSet executeQuery(final String sql, final List<Object> parameters) {
+        reconnect();
+
         ResultSet resultSet = null;
         PreparedStatement preparedStatement;
         try {
@@ -193,6 +208,8 @@ public abstract class Database {
      * @return number of rows updated
      */
     public int executeUpdate(final String sql, final List<Object> parameters) {
+        reconnect();
+
         int numberRowsUpdated = -1;
         PreparedStatement preparedStatement = null;
         try {

@@ -1,4 +1,4 @@
-package libs.database.utils;
+package database.utils;
 
 /**
  * Data Type for MySQL
