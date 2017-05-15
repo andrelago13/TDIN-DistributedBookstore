@@ -50,12 +50,12 @@ public class BookOrder {
         this(UUID.randomUUID(), bookID, quantity, client, clAddr, clEmail, State.WAITING_EXPEDITION, -1);
     }
 
-    public BookOrder(UUID id, int bookID, int quantity, String client, String clAddr, String clEmail) {
-        this(id, bookID, quantity, client, clAddr, clEmail, State.WAITING_EXPEDITION, -1);
+    public BookOrder(UUID orderID, int bookID, int quantity, String client, String clAddr, String clEmail) {
+        this(orderID, bookID, quantity, client, clAddr, clEmail, State.WAITING_EXPEDITION, -1);
     }
 
-    public BookOrder(UUID id, int bookID, int quantity, String client, String clAddr, String clEmail, State state, long dateTime) {
-        this.orderID = id;
+    public BookOrder(UUID orderID, int bookID, int quantity, String client, String clAddr, String clEmail, State state, long dateTime) {
+        this.orderID = orderID;
         this.bookID = bookID;
         this.quantity = quantity;
         this.clientName = client;
@@ -96,15 +96,15 @@ public class BookOrder {
     }
 
     public BookOrder(JSONObject json) {
-        this.orderID = UUID.fromString(json.getString(ORDER_ID_KEY));
-        this.bookID = json.getInt(BOOK_ID_KEY);
-        this.quantity = json.getInt(QUANTITY_KEY);
-        this.clientName = json.getString(CLIENT_NAME_KEY);
-        this.clientAddress = json.getString(CLIENT_ADDRESS_KEY);
-        this.clientEmail = json.getString(CLIENT_EMAIL_KEY);
-        this.state = State.values()[json.getInt(STATE_KEY)];
+        this.orderID = json.has(ORDER_ID_KEY) ? UUID.fromString(json.getString(ORDER_ID_KEY)) : UUID.randomUUID();
+        this.bookID = json.has(BOOK_ID_KEY) ? json.getInt(BOOK_ID_KEY) : -1;
+        this.quantity = json.has(QUANTITY_KEY) ? json.getInt(QUANTITY_KEY) : -1;
+        this.clientName = json.has(CLIENT_NAME_KEY) ? json.getString(CLIENT_NAME_KEY) : null;
+        this.clientAddress = json.has(CLIENT_ADDRESS_KEY) ? json.getString(CLIENT_ADDRESS_KEY) : null;
+        this.clientEmail = json.has(CLIENT_EMAIL_KEY) ? json.getString(CLIENT_EMAIL_KEY) : null;
+        this.state = json.has(STATE_KEY) ? State.values()[json.getInt(STATE_KEY)] : State.WAITING_EXPEDITION;
         if(this.state != State.WAITING_EXPEDITION) {
-            stateDate = new Date(json.getLong(STATE_DATE_KEY));
+            stateDate = json.has(STATE_DATE_KEY) ? new Date(json.getLong(STATE_DATE_KEY)) : null;
         } else {
             stateDate = null;
         }
@@ -140,6 +140,10 @@ public class BookOrder {
 
     public State getState() {
         return state;
+    }
+
+    public Date getStateDate() {
+        return stateDate;
     }
 
     public void dispatched(Date date) {

@@ -29,7 +29,8 @@ public class OrdersHandler {
 
 
     public BookOrder getBookOrder(UUID id) throws SQLException {
-        ResultSet result = DatabaseAPI.executeQuery(Core.getInstance().getDatabase(),
+        ResultSet result = DatabaseAPI.executeQuery(
+                Core.getInstance().getDatabase(),
                 "store_orders",
                 Collections.singletonList("*"),
                 Collections.singletonList("id"),
@@ -42,7 +43,8 @@ public class OrdersHandler {
     }
 
     public BookOrderList getBookOrders() throws SQLException {
-        ResultSet result = DatabaseAPI.executeQuery(Core.getInstance().getDatabase(),
+        ResultSet result = DatabaseAPI.executeQuery(
+                Core.getInstance().getDatabase(),
                 "store_orders",
                 Collections.singletonList("*"));
 
@@ -52,5 +54,23 @@ public class OrdersHandler {
         }
 
         return new BookOrderList(bookOrders);
+    }
+
+    public boolean createOrder(final BookOrder bookOrder) {
+        // TODO: Check the stock
+        return DatabaseAPI.executeInsertion(
+                Core.getInstance().getDatabase(),
+                "store_orders",
+                new HashMap<String, Object>()
+                {{
+                    put(BookOrder.ORDER_ID_COLUMN, bookOrder.getOrderID().toString());
+                    put(BookOrder.BOOK_ID_COLUMN, bookOrder.getBookID());
+                    put(BookOrder.QUANTITY_COLUMN, bookOrder.getQuantity());
+                    put(BookOrder.CLIENT_NAME_COLUMN, bookOrder.getClientName());
+                    put(BookOrder.CLIENT_ADDRESS_COLUMN, bookOrder.getClientAddress());
+                    put(BookOrder.CLIENT_EMAIL_COLUMN, bookOrder.getClientEmail());
+                    put(BookOrder.STATE_COLUMN, bookOrder.getState().ordinal()); // TODO: Add state date
+                }}
+        ) >= 1;
     }
 }

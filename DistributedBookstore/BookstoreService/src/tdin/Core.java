@@ -1,15 +1,11 @@
 package tdin;
 
-import com.sun.javaws.exceptions.InvalidArgumentException;
 import database.Database;
 import database.DatabaseAPI;
 import database.types.DatabaseType;
-import sun.plugin.dom.exception.InvalidAccessException;
-import sun.plugin.dom.exception.InvalidStateException;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -62,7 +58,7 @@ public class Core {
 
     public void addStock(final int bookID, int quantity) {
         if(quantity <= 0) {
-            throw new InvalidAccessException("The quantity must be a positive value");
+            throw new RuntimeException("The quantity must be a positive value");
         }
         if(stock.containsKey(bookID)) {
             quantity += stock.get(bookID);
@@ -92,7 +88,7 @@ public class Core {
 
     public void removeFromStock(int bookID, int quantity) {
         if(!hasStock(bookID, quantity)) {
-            throw new InvalidStateException("There are not enough items in stock");
+            throw new RuntimeException("There are not enough items in stock");
         }
 
         stock.put(bookID, stock.get(bookID) - quantity);
