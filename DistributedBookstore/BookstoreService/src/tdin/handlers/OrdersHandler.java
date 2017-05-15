@@ -27,27 +27,6 @@ public class OrdersHandler {
 
     }
 
-    private BookOrder parseBookOrder(ResultSet result) throws SQLException {
-        BookOrder bookOrder = new BookOrder(
-                UUID.fromString(result.getString(BookOrder.ORDER_ID_COLUMN)),
-                result.getString(BookOrder.BOOK_TITLE_COLUMN),
-                result.getInt(BookOrder.QUANTITY_COLUMN),
-                result.getString(BookOrder.CLIENT_NAME_COLUMN),
-                result.getString(BookOrder.CLIENT_ADDRESS_COLUMN),
-                result.getString(BookOrder.CLIENT_EMAIL_COLUMN)
-        );
-        BookOrder.State state = BookOrder.State.values()[result.getInt(BookOrder.STATE_COLUMN)];
-        switch (state) {
-            case DISPATCHED:
-                bookOrder.dispatched(new Date(result.getLong(BookOrder.STATE_DATE_COLUMN)));
-                break;
-            case WILL_DISPATCH:
-                bookOrder.willDispatch(new Date(result.getLong(BookOrder.STATE_DATE_COLUMN)));
-                break;
-        }
-
-        return bookOrder;
-    }
 
     public BookOrder getBookOrder(UUID id) throws SQLException {
         ResultSet result = DatabaseAPI.executeQuery(Core.getInstance().getDatabase(),
@@ -59,7 +38,7 @@ public class OrdersHandler {
         if(!result.next())
             return null;
 
-        return parseBookOrder(result);
+        return BookOrder.getOrderFromSQL(result);
     }
 
     public BookOrderList getBookOrders() throws SQLException {
@@ -69,7 +48,7 @@ public class OrdersHandler {
 
         List<BookOrder> bookOrders = new ArrayList<>();
         while (result.next()) {
-            bookOrders.add(parseBookOrder(result));
+            bookOrders.add(BookOrder.getOrderFromSQL(result));
         }
 
         return new BookOrderList(bookOrders);
