@@ -1,9 +1,8 @@
 package model;
 
-import services.Orders;
-
 import java.sql.*;
 import java.util.Calendar;
+import java.util.UUID;
 
 /**
  * Created by asl_m on 14/05/2017.
@@ -91,7 +90,7 @@ public class DatabaseController {
         return updateOrderState(order.getOrderID());
     }
 
-    public boolean updateOrderState(int id) {
+    public boolean updateOrderState(UUID id) {
         try {
             Statement statement = connection.createStatement();
             ResultSet results = statement.executeQuery("SELECT state FROM orders WHERE id = " + id);
@@ -121,7 +120,7 @@ public class DatabaseController {
         return setOrderDispatchDate(order.getOrderID());
     }
 
-    public boolean setOrderDispatchDate(int id) {
+    public boolean setOrderDispatchDate(UUID id) {
         try {
             String query = "UPDATE orders SET state = 1, state_date = ? WHERE id = ?";
             PreparedStatement preparedStmt = connection.prepareStatement(query);
@@ -130,7 +129,7 @@ public class DatabaseController {
             cal.add(Calendar.DAY_OF_YEAR, 2);
 
             preparedStmt.setLong(1, cal.getTime().getTime());
-            preparedStmt.setInt(2, id);
+            preparedStmt.setString(2, id.toString());
             preparedStmt.execute();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -144,11 +143,11 @@ public class DatabaseController {
         return setOrderDispatched(order.getOrderID());
     }
 
-    public boolean setOrderDispatched(int id) {
+    public boolean setOrderDispatched(UUID id) {
         try {
             String query = "UPDATE orders SET state = 2 WHERE id = ?";
             PreparedStatement preparedStmt = connection.prepareStatement(query);
-            preparedStmt.setInt(1, id);
+            preparedStmt.setString(1, id.toString());
 
             preparedStmt.execute();
         } catch (SQLException e) {

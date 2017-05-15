@@ -4,6 +4,7 @@ import libs.database.utils.DataType;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -36,6 +37,29 @@ public class DatabaseAPI {
 
     /**
      * Execute a update in a database
+     * @param database database to be updated the table
+     * @param tableName name of the table to be updated
+     * @param columns columns to be updated
+     */
+    public static ResultSet executeQuery(final Database database, final String tableName, final List<String> columns) {
+        String sql = "SELECT ";
+
+        // Columns to select
+        int index = 1;
+        for(final String column : columns) {
+            sql += column;
+
+            if(index < columns.size())
+                sql += ", ";
+            index++;
+        }
+        sql += " FROM " + tableName + ";";
+
+        return database.executeQuery(sql, Collections.emptyList());
+    }
+
+    /**
+     * Execute a query in a database
      * @param database database to be updated the table
      * @param tableName name of the table to be updated
      * @param columns columns to be updated

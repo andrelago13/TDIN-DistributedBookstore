@@ -1,4 +1,4 @@
-package services;
+package tdin.services;
 
 import model.DatabaseController;
 

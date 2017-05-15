@@ -5,6 +5,7 @@ import org.json.JSONObject;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * Created by asl_m on 13/05/2017.
@@ -26,16 +27,16 @@ public class BookOrder {
     public final static String STATE_KEY = "state";
     public final static String STATE_DATE_KEY = "stateDate";
 
-    private final static String ORDER_ID_COLUMN = "id";
+    public final static String ORDER_ID_COLUMN = "id";
     public final static String BOOK_TITLE_COLUMN = "book_title";
     public final static String QUANTITY_COLUMN = "quantity";
     public final static String CLIENT_NAME_COLUMN = "client_name";
-    public final static String CLIENT_ADDRESS_COLUMN = "client_addr";
+    public final static String CLIENT_ADDRESS_COLUMN = "client_address";
     public final static String CLIENT_EMAIL_COLUMN = "client_email";
     public final static String STATE_COLUMN = "state";
     public final static String STATE_DATE_COLUMN = "state_date";
 
-    private int orderID;
+    private UUID orderID;
     private String bookTitle;
     private int quantity;
     private String clientName;
@@ -45,11 +46,15 @@ public class BookOrder {
     private State state;
     private Date stateDate;
 
-    public BookOrder(int id, String title, int quantity, String client, String clAddr, String clEmail) {
+    public BookOrder(String title, int quantity, String client, String clAddr, String clEmail) {
+        this(UUID.randomUUID(), title, quantity, client, clAddr, clEmail, State.WAITING_EXPEDITION, -1);
+    }
+
+    public BookOrder(UUID id, String title, int quantity, String client, String clAddr, String clEmail) {
         this(id, title, quantity, client, clAddr, clEmail, State.WAITING_EXPEDITION, -1);
     }
 
-    public BookOrder(int id, String title, int quantity, String client, String clAddr, String clEmail, State state, long dateTime) {
+    public BookOrder(UUID id, String title, int quantity, String client, String clAddr, String clEmail, State state, long dateTime) {
         this.orderID = id;
         this.bookTitle = title;
         this.quantity = quantity;
@@ -66,7 +71,7 @@ public class BookOrder {
     }
 
     public static BookOrder getOrderFromSQL(ResultSet r) throws SQLException {
-        BookOrder order = new BookOrder(r.getInt(ORDER_ID_COLUMN),
+        BookOrder order = new BookOrder(UUID.fromString(r.getString(ORDER_ID_COLUMN)),
                 r.getString(BOOK_TITLE_COLUMN),
                 r.getInt(QUANTITY_COLUMN),
                 r.getString(CLIENT_NAME_COLUMN),
@@ -91,7 +96,7 @@ public class BookOrder {
     }
 
     public BookOrder(JSONObject json) {
-        this.orderID = json.getInt(ORDER_ID_KEY);
+        this.orderID = UUID.fromString(json.getString(ORDER_ID_KEY));
         this.bookTitle = json.getString(BOOK_TITLE_KEY);
         this.quantity = json.getInt(QUANTITY_KEY);
         this.clientName = json.getString(CLIENT_NAME_KEY);
@@ -105,7 +110,7 @@ public class BookOrder {
         }
     }
 
-    public int getOrderID() {
+    public UUID getOrderID() {
         return orderID;
     }
 
@@ -150,17 +155,17 @@ public class BookOrder {
     public JSONObject toJSON() {
         JSONObject result = new JSONObject();
 
-        result.append(ORDER_ID_KEY, orderID);
-        result.append(BOOK_TITLE_KEY, bookTitle);
-        result.append(QUANTITY_KEY, quantity);
-        result.append(CLIENT_NAME_KEY, clientName);
-        result.append(CLIENT_ADDRESS_KEY, clientAddress);
-        result.append(CLIENT_EMAIL_KEY, clientEmail);
-        result.append(STATE_KEY, state.ordinal());
+        result.put(ORDER_ID_KEY, orderID);
+        result.put(BOOK_TITLE_KEY, bookTitle);
+        result.put(QUANTITY_KEY, quantity);
+        result.put(CLIENT_NAME_KEY, clientName);
+        result.put(CLIENT_ADDRESS_KEY, clientAddress);
+        result.put(CLIENT_EMAIL_KEY, clientEmail);
+        result.put(STATE_KEY, state.ordinal());
         if(stateDate != null) {
-            result.append(STATE_DATE_KEY, stateDate.getTime());
+            result.put(STATE_DATE_KEY, stateDate.getTime());
         } else {
-            result.append(STATE_DATE_KEY, null);
+            result.put(STATE_DATE_KEY, JSONObject.NULL);
         }
 
         return result;

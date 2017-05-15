@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by asl_m on 13/05/2017.
@@ -12,13 +13,13 @@ public class BookOrderList {
 
     public final static String ORDERS_KEY = "orders";
 
-    private ArrayList<BookOrder> orders;
+    private List<BookOrder> orders;
 
     public BookOrderList() {
         orders = new ArrayList<>();
     }
 
-    public BookOrderList(ArrayList<BookOrder> orders) {
+    public BookOrderList(List<BookOrder> orders) {
         this.orders = orders;
     }
 
@@ -45,7 +46,7 @@ public class BookOrderList {
         for(BookOrder bo : orders) {
             list.put(bo.toJSON());
         }
-        result.append(ORDERS_KEY, list);
+        result.put(ORDERS_KEY, list);
 
         return result;
     }
