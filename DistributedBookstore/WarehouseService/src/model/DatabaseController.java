@@ -3,6 +3,7 @@ package model;
 import services.Orders;
 
 import java.sql.*;
+import java.util.Calendar;
 
 /**
  * Created by asl_m on 14/05/2017.
@@ -86,11 +87,75 @@ public class DatabaseController {
         return true;
     }
 
-    public boolean dispatchOrder(BookOrder order) {
-        return dispatchOrder(order.getOrderID());
+    public boolean updateOrderState(BookOrder order) {
+        return updateOrderState(order.getOrderID());
     }
 
-    public boolean dispatchOrder(int id) {
+    public boolean updateOrderState(int id) {
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet results = statement.executeQuery("SELECT state FROM orders WHERE id = " + id);
+            if(!results.next()) {
+                return false;
+            }
+
+            int state = results.getInt("state");
+
+            switch(BookOrder.State.values()[state]) {
+                case WAITING_EXPEDITION:
+                    return setOrderDispatchDate(id);
+                case WILL_DISPATCH:
+                    return setOrderDispatched(id);
+                case DISPATCHED:
+                    return false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
+
+    public boolean setOrderDispatchDate(BookOrder order) {
+        return setOrderDispatchDate(order.getOrderID());
+    }
+
+    public boolean setOrderDispatchDate(int id) {
+        try {
+            String query = "UPDATE orders SET state = 1, state_date = ? WHERE id = ?";
+            PreparedStatement preparedStmt = connection.prepareStatement(query);
+
+            Calendar cal = Calendar.getInstance();
+            cal.add(Calendar.DAY_OF_YEAR, 2);
+
+            preparedStmt.setLong(1, cal.getTime().getTime());
+            preparedStmt.setInt(2, id);
+            preparedStmt.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
+
+    public boolean setOrderDispatched(BookOrder order) {
+        return setOrderDispatched(order.getOrderID());
+    }
+
+    public boolean setOrderDispatched(int id) {
+        try {
+            String query = "UPDATE orders SET state = 2 WHERE id = ?";
+            PreparedStatement preparedStmt = connection.prepareStatement(query);
+            preparedStmt.setInt(1, id);
+
+            preparedStmt.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+
         return true;
     }
 

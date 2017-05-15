@@ -13,8 +13,8 @@ public class BookOrder {
 
     public static enum State {
         WAITING_EXPEDITION,
-        DISPATCHED,
-        WILL_DISPATCH
+        WILL_DISPATCH,
+        DISPATCHED
     }
 
     public final static String ORDER_ID_KEY = "orderID";

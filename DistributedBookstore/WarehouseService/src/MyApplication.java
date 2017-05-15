@@ -1,5 +1,6 @@
 import model.ModelSetup;
 import services.Auth;
+import services.OrderUpdater;
 import services.Orders;
 
 import javax.ws.rs.ApplicationPath;
@@ -15,6 +16,7 @@ public class MyApplication extends Application{
         ModelSetup.maybeSetup();
         HashSet h = new HashSet<Class<?>>();
         h.add( Orders.class );
+        h.add( OrderUpdater.class );
         h.add( Auth.class );
         return h;
     }
