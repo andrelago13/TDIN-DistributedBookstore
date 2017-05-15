@@ -140,7 +140,7 @@ public class DatabaseAPI {
      * @param where columns of the "Where" condition
      * @param whereValues values of the where columns
      */
-    public static void executeUpdate(final Database database, final String tableName, final List<String> columns, final List<Object> values, final List<String> where, final List<String> whereValues) {
+    public static void executeUpdate(final Database database, final String tableName, final List<String> columns, final List<Object> values, final List<String> where, final List<Object> whereValues) {
         String sql = "UPDATE " + tableName + " SET ";
 
         // Set
