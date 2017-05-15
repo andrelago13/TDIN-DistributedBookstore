@@ -45,7 +45,6 @@ public class BookOrder {
     private String clientName;
     private String clientAddress;
     private String clientEmail;
-
     private State state;
     private Date stateDate;
 
