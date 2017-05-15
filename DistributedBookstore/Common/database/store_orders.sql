@@ -1,3 +1,4 @@
+drop table if exists store_orders;
 create table store_orders (
   id VARCHAR(40),
   book_id INT,
