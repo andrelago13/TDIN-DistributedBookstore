@@ -3,6 +3,7 @@
     <properties maven-id="org.eclipse.jetty.orbit:javax.annotation:1.1.0.v201108011116" />
     <CLASSES>
       <root url="jar://$MAVEN_REPOSITORY$/org/eclipse/jetty/orbit/javax.annotation/1.1.0.v201108011116/javax.annotation-1.1.0.v201108011116.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/eclipse/jetty/orbit/javax.annotation/1.1.0.v201108011116/javax.annotation-1.1.0.v201108011116.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

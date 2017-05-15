@@ -19,5 +19,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="GlassFish 4.1.2" level="application_server_libraries" />
     <orderEntry type="library" name="org.eclipse.jetty.orbit:javax.annotation:1.1.0.v201108011116" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="GlassFish 4.1.2 - RESTful Web Service" level="application_server_libraries" />
+    <orderEntry type="library" scope="PROVIDED" name="GlassFish 4.1.2 - EJB" level="application_server_libraries" />
   </component>
 </module>
