@@ -96,9 +96,9 @@ public class Core {
                 this.database,
                 "stock",
                 Collections.singletonList("quantity"),
-                Collections.<Object>singletonList(quantity),
+                Collections.singletonList(stock.get(bookID)),
                 Collections.singletonList("book_id"),
-                Collections.<Object>singletonList(bookID)
+                Collections.singletonList(bookID)
         );
     }
 

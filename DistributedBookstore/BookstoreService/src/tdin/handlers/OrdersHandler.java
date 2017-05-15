@@ -7,6 +7,9 @@ import tdin.Core;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.util.*;
 
 /**
@@ -57,7 +60,13 @@ public class OrdersHandler {
     }
 
     public boolean createOrder(final BookOrder bookOrder) {
-        // TODO: Check the stock
+        if(Core.getInstance().hasStock(bookOrder.getBookID(), bookOrder.getQuantity())) {
+            bookOrder.willDispatch(Date.from(LocalDateTime.ofInstant(new Date().toInstant(), ZoneId.systemDefault()).plusDays(1).atZone(ZoneId.systemDefault()).toInstant()));
+            Core.getInstance().removeFromStock(bookOrder.getBookID(), bookOrder.getQuantity());
+        } else {
+            // TODO: Create request for stock to the warehouse
+        }
+
         return DatabaseAPI.executeInsertion(
                 Core.getInstance().getDatabase(),
                 "store_orders",
@@ -69,7 +78,8 @@ public class OrdersHandler {
                     put(BookOrder.CLIENT_NAME_COLUMN, bookOrder.getClientName());
                     put(BookOrder.CLIENT_ADDRESS_COLUMN, bookOrder.getClientAddress());
                     put(BookOrder.CLIENT_EMAIL_COLUMN, bookOrder.getClientEmail());
-                    put(BookOrder.STATE_COLUMN, bookOrder.getState().ordinal()); // TODO: Add state date
+                    put(BookOrder.STATE_COLUMN, bookOrder.getState().ordinal());
+                    put(BookOrder.STATE_DATE_COLUMN, bookOrder.getStateDate());
                 }}
         ) >= 1;
     }
