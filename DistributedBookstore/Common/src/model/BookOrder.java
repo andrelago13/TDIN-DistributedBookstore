@@ -155,17 +155,17 @@ public class BookOrder {
     public JSONObject toJSON() {
         JSONObject result = new JSONObject();
 
-        result.append(ORDER_ID_KEY, orderID);
-        result.append(BOOK_TITLE_KEY, bookTitle);
-        result.append(QUANTITY_KEY, quantity);
-        result.append(CLIENT_NAME_KEY, clientName);
-        result.append(CLIENT_ADDRESS_KEY, clientAddress);
-        result.append(CLIENT_EMAIL_KEY, clientEmail);
-        result.append(STATE_KEY, state.ordinal());
+        result.put(ORDER_ID_KEY, orderID);
+        result.put(BOOK_TITLE_KEY, bookTitle);
+        result.put(QUANTITY_KEY, quantity);
+        result.put(CLIENT_NAME_KEY, clientName);
+        result.put(CLIENT_ADDRESS_KEY, clientAddress);
+        result.put(CLIENT_EMAIL_KEY, clientEmail);
+        result.put(STATE_KEY, state.ordinal());
         if(stateDate != null) {
-            result.append(STATE_DATE_KEY, stateDate.getTime());
+            result.put(STATE_DATE_KEY, stateDate.getTime());
         } else {
-            result.append(STATE_DATE_KEY, null);
+            result.put(STATE_DATE_KEY, JSONObject.NULL);
         }
 
         return result;

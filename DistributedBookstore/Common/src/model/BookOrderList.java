@@ -46,7 +46,7 @@ public class BookOrderList {
         for(BookOrder bo : orders) {
             list.put(bo.toJSON());
         }
-        result.append(ORDERS_KEY, list);
+        result.put(ORDERS_KEY, list);
 
         return result;
     }
