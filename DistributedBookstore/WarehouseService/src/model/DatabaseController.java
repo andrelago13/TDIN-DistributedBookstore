@@ -68,8 +68,8 @@ public class DatabaseController {
 
     public boolean postOrder(BookOrder order) {
         try {
-            String query = "INSERT INTO warehouse_orders (id, quantity, book_id, client_name, " +
-                    "client_address, client_email, state) VALUES (?, ?, ?, ?, ?, ?, 0)";
+            String query = "INSERT INTO warehouse_orders (id, quantity, book_id, client_name, client_address," +
+                    "client_email, state, state_date) VALUES (?, ?, ?, ?, ?, ?, 0, DATE(CURRENT_TIMESTAMP))";
             PreparedStatement preparedStmt = connection.prepareStatement(query);
             preparedStmt.setString(1, order.getOrderID().toString());
             preparedStmt.setInt(2, order.getQuantity());
@@ -94,7 +94,7 @@ public class DatabaseController {
     public boolean updateOrderState(UUID id) {
         try {
             Statement statement = connection.createStatement();
-            ResultSet results = statement.executeQuery("SELECT state FROM warehouse_orders WHERE id = " + id);
+            ResultSet results = statement.executeQuery("SELECT state FROM warehouse_orders WHERE id = '" + id + "'");
             if(!results.next()) {
                 return false;
             }
@@ -129,7 +129,7 @@ public class DatabaseController {
             Calendar cal = Calendar.getInstance();
             cal.add(Calendar.DAY_OF_YEAR, 2);
 
-            preparedStmt.setLong(1, cal.getTime().getTime());
+            preparedStmt.setDate(1, new Date(cal.getTime().getTime()));
             preparedStmt.setString(2, id.toString());
             preparedStmt.execute();
         } catch (SQLException e) {
