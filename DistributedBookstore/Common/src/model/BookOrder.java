@@ -19,7 +19,7 @@ public class BookOrder {
     }
 
     public final static String ORDER_ID_KEY = "orderID";
-    public final static String BOOK_TITLE_KEY = "bookTitle";
+    public final static String BOOK_ID_KEY = "bookID";
     public final static String QUANTITY_KEY = "quantity";
     public final static String CLIENT_NAME_KEY = "clientName";
     public final static String CLIENT_ADDRESS_KEY = "clientAddress";
@@ -28,7 +28,7 @@ public class BookOrder {
     public final static String STATE_DATE_KEY = "stateDate";
 
     public final static String ORDER_ID_COLUMN = "id";
-    public final static String BOOK_TITLE_COLUMN = "book_title";
+    public final static String BOOK_ID_COLUMN = "book_id";
     public final static String QUANTITY_COLUMN = "quantity";
     public final static String CLIENT_NAME_COLUMN = "client_name";
     public final static String CLIENT_ADDRESS_COLUMN = "client_address";
@@ -37,7 +37,7 @@ public class BookOrder {
     public final static String STATE_DATE_COLUMN = "state_date";
 
     private UUID orderID;
-    private String bookTitle;
+    private int bookID;
     private int quantity;
     private String clientName;
     private String clientAddress;
@@ -46,17 +46,17 @@ public class BookOrder {
     private State state;
     private Date stateDate;
 
-    public BookOrder(String title, int quantity, String client, String clAddr, String clEmail) {
-        this(UUID.randomUUID(), title, quantity, client, clAddr, clEmail, State.WAITING_EXPEDITION, -1);
+    public BookOrder(int bookID, int quantity, String client, String clAddr, String clEmail) {
+        this(UUID.randomUUID(), bookID, quantity, client, clAddr, clEmail, State.WAITING_EXPEDITION, -1);
     }
 
-    public BookOrder(UUID id, String title, int quantity, String client, String clAddr, String clEmail) {
-        this(id, title, quantity, client, clAddr, clEmail, State.WAITING_EXPEDITION, -1);
+    public BookOrder(UUID id, int bookID, int quantity, String client, String clAddr, String clEmail) {
+        this(id, bookID, quantity, client, clAddr, clEmail, State.WAITING_EXPEDITION, -1);
     }
 
-    public BookOrder(UUID id, String title, int quantity, String client, String clAddr, String clEmail, State state, long dateTime) {
+    public BookOrder(UUID id, int bookID, int quantity, String client, String clAddr, String clEmail, State state, long dateTime) {
         this.orderID = id;
-        this.bookTitle = title;
+        this.bookID = bookID;
         this.quantity = quantity;
         this.clientName = client;
         this.clientAddress = clAddr;
@@ -72,7 +72,7 @@ public class BookOrder {
 
     public static BookOrder getOrderFromSQL(ResultSet r) throws SQLException {
         BookOrder order = new BookOrder(UUID.fromString(r.getString(ORDER_ID_COLUMN)),
-                r.getString(BOOK_TITLE_COLUMN),
+                r.getInt(BOOK_ID_COLUMN),
                 r.getInt(QUANTITY_COLUMN),
                 r.getString(CLIENT_NAME_COLUMN),
                 r.getString(CLIENT_ADDRESS_COLUMN),
@@ -81,10 +81,10 @@ public class BookOrder {
         State state = State.values()[r.getInt(STATE_COLUMN)];
         switch (state) {
             case DISPATCHED:
-                order.dispatched(new Date(r.getLong(STATE_DATE_COLUMN)));
+                order.dispatched(r.getDate(STATE_DATE_COLUMN));
                 break;
             case WILL_DISPATCH:
-                order.willDispatch(new Date(r.getLong(STATE_DATE_COLUMN)));
+                order.willDispatch(r.getDate(STATE_DATE_COLUMN));
                 break;
         }
 
@@ -97,7 +97,7 @@ public class BookOrder {
 
     public BookOrder(JSONObject json) {
         this.orderID = UUID.fromString(json.getString(ORDER_ID_KEY));
-        this.bookTitle = json.getString(BOOK_TITLE_KEY);
+        this.bookID = json.getInt(BOOK_ID_KEY);
         this.quantity = json.getInt(QUANTITY_KEY);
         this.clientName = json.getString(CLIENT_NAME_KEY);
         this.clientAddress = json.getString(CLIENT_ADDRESS_KEY);
@@ -114,8 +114,8 @@ public class BookOrder {
         return orderID;
     }
 
-    public String getBookTitle() {
-        return bookTitle;
+    public int getBookID() {
+        return bookID;
     }
 
     public int getQuantity() {
@@ -156,7 +156,7 @@ public class BookOrder {
         JSONObject result = new JSONObject();
 
         result.put(ORDER_ID_KEY, orderID);
-        result.put(BOOK_TITLE_KEY, bookTitle);
+        result.put(BOOK_ID_KEY, bookID);
         result.put(QUANTITY_KEY, quantity);
         result.put(CLIENT_NAME_KEY, clientName);
         result.put(CLIENT_ADDRESS_KEY, clientAddress);

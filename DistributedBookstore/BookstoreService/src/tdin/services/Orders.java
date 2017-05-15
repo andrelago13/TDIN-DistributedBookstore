@@ -39,10 +39,10 @@ public class Orders {
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public String createOrder(@FormParam("bookTitle") String title, @FormParam("quantity") int quantity,
+    public String createOrder(@FormParam("bookID") int bookID, @FormParam("quantity") int quantity,
                               @FormParam("clientName") String clientName, @FormParam("clientAddress") String clientAddress,
                               @FormParam("clientEmail") String clientEmail) {
-        BookOrder bookOrder = new BookOrder(title, quantity, clientName, clientAddress, clientEmail);
+        BookOrder bookOrder = new BookOrder(bookID, quantity, clientName, clientAddress, clientEmail);
 
         return bookOrder.toJSON().toString();
     }
