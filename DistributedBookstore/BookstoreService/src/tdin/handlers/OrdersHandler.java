@@ -81,6 +81,6 @@ public class OrdersHandler {
                     put(BookOrder.STATE_COLUMN, bookOrder.getState().ordinal());
                     put(BookOrder.STATE_DATE_COLUMN, bookOrder.getStateDate());
                 }}
-        ) >= 1;
+        );
     }
 }

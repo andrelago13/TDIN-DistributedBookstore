@@ -101,7 +101,7 @@ public class DatabaseAPI {
      * @param tableName name of the table to execute the insertion
      * @param columns columns to set the values
      */
-    public static int executeInsertion(final Database database, final String tableName, final Map<String, Object> columns) {
+    public static boolean executeInsertion(final Database database, final String tableName, final Map<String, Object> columns) {
         final List<Object> parameters = new ArrayList<>();
 
         // Columns
@@ -128,7 +128,7 @@ public class DatabaseAPI {
         }
         sql += ");";
 
-        return database.executeUpdate(sql, parameters);
+        return database.executeUpdate(sql, parameters) == 1;
     }
 
     /**
