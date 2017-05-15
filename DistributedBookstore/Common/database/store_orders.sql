@@ -1,6 +1,6 @@
 drop table if exists store_orders;
 create table store_orders (
-  id VARCHAR(40),
+  id VARCHAR(40) PRIMARY KEY,
   book_id INT,
   quantity INT,
   client_name VARCHAR(50),

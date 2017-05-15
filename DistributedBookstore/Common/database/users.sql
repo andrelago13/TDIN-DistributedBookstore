@@ -1,6 +1,6 @@
 drop table if exists users;
 create table users (
-  id INT,
+  id INT PRIMARY KEY,
   username VARCHAR(50) UNIQUE,
   password VARCHAR(50),
   name VARCHAR(50),

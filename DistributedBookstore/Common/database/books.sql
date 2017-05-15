@@ -1,6 +1,6 @@
 create table books (
-  id INT,
-  isbn VARCHAR(50),
+  id INT PRIMARY KEY,
+  isbn VARCHAR(50) UNIQUE,
   name VARCHAR(50),
   author VARCHAR(50)
 );

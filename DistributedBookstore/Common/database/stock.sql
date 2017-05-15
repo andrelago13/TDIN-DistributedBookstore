@@ -1,6 +1,6 @@
 drop table if exists stock;
 create table stock (
-  book_id INT UNIQUE,
+  book_id INT PRIMARY KEY,
   quantity INT
 );
 
