@@ -4,6 +4,7 @@ import database.DatabaseAPI;
 import model.BookOrder;
 import model.BookOrderList;
 import model.StoreBookOrder;
+import model.StoreBookOrderList;
 import tdin.Core;
 
 import java.sql.ResultSet;
@@ -32,7 +33,7 @@ public class OrdersHandler {
     }
 
 
-    public BookOrder getBookOrder(UUID id) throws SQLException {
+    public StoreBookOrder getBookOrder(UUID id) throws SQLException {
         ResultSet result = DatabaseAPI.executeQuery(
                 Core.getInstance().getDatabase(),
                 "store_orders",
@@ -43,24 +44,24 @@ public class OrdersHandler {
         if(!result.next())
             return null;
 
-        return BookOrder.getOrderFromSQL(result);
+        return StoreBookOrder.getOrderFromSQL(result);
     }
 
-    public BookOrderList getBookOrders() throws SQLException {
+    public StoreBookOrderList getBookOrders() throws SQLException {
         ResultSet result = DatabaseAPI.executeQuery(
                 Core.getInstance().getDatabase(),
                 "store_orders",
                 Collections.singletonList("*"));
 
-        List<BookOrder> bookOrders = new ArrayList<>();
+        List<StoreBookOrder> bookOrders = new ArrayList<>();
         while (result.next()) {
-            bookOrders.add(BookOrder.getOrderFromSQL(result));
+            bookOrders.add(StoreBookOrder.getOrderFromSQL(result));
         }
 
-        return new BookOrderList(bookOrders);
+        return new StoreBookOrderList(bookOrders);
     }
 
-    public boolean createOrder(final BookOrder bookOrder) {
+    public boolean createOrder(final StoreBookOrder bookOrder) {
         if(Core.getInstance().hasStock(bookOrder.getBookID(), bookOrder.getQuantity())) {
             bookOrder.willDispatch(Date.from(LocalDateTime.ofInstant(new Date().toInstant(), ZoneId.systemDefault()).plusDays(1).atZone(ZoneId.systemDefault()).toInstant()));
             Core.getInstance().removeFromStock(bookOrder.getBookID(), bookOrder.getQuantity());
@@ -73,17 +74,15 @@ public class OrdersHandler {
                 "store_orders",
                 new HashMap<String, Object>()
                 {{
-                    put(BookOrder.ORDER_ID_COLUMN, bookOrder.getOrderID().toString());
-                    put(BookOrder.BOOK_ID_COLUMN, bookOrder.getBookID());
-                    put(BookOrder.QUANTITY_COLUMN, bookOrder.getQuantity());
-                    if(bookOrder instanceof StoreBookOrder) {
-                        put(StoreBookOrder.TOTAL_PRICE_COLUMN, ((StoreBookOrder) bookOrder).getTotalPrice());
-                    }
-                    put(BookOrder.CLIENT_NAME_COLUMN, bookOrder.getClientName());
-                    put(BookOrder.CLIENT_ADDRESS_COLUMN, bookOrder.getClientAddress());
-                    put(BookOrder.CLIENT_EMAIL_COLUMN, bookOrder.getClientEmail());
-                    put(BookOrder.STATE_COLUMN, bookOrder.getState().ordinal());
-                    put(BookOrder.STATE_DATE_COLUMN, bookOrder.getStateDate());
+                    put(StoreBookOrder.ORDER_ID_COLUMN, bookOrder.getOrderID().toString());
+                    put(StoreBookOrder.BOOK_ID_COLUMN, bookOrder.getBookID());
+                    put(StoreBookOrder.QUANTITY_COLUMN, bookOrder.getQuantity());
+                    put(StoreBookOrder.TOTAL_PRICE_COLUMN, bookOrder.getTotalPrice());
+                    put(StoreBookOrder.CLIENT_NAME_COLUMN, bookOrder.getClientName());
+                    put(StoreBookOrder.CLIENT_ADDRESS_COLUMN, bookOrder.getClientAddress());
+                    put(StoreBookOrder.CLIENT_EMAIL_COLUMN, bookOrder.getClientEmail());
+                    put(StoreBookOrder.STATE_COLUMN, bookOrder.getState().ordinal());
+                    put(StoreBookOrder.STATE_DATE_COLUMN, bookOrder.getStateDate());
                 }}
         );
     }

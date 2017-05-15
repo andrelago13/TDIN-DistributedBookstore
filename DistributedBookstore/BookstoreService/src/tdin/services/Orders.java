@@ -1,6 +1,7 @@
 package tdin.services;
 
 import model.BookOrder;
+import model.StoreBookOrder;
 import org.json.JSONObject;
 import tdin.handlers.OrdersHandler;
 
@@ -42,7 +43,7 @@ public class Orders {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createOrder(String jsonRequest) {
-        BookOrder bookOrder = new BookOrder(new JSONObject(jsonRequest));
+        StoreBookOrder bookOrder = new StoreBookOrder(new JSONObject(jsonRequest));
         if(OrdersHandler.getInstance().createOrder(bookOrder)) {
             return Response.created(URI.create("orders/" + bookOrder.getOrderID().toString())).build();
         } else {
