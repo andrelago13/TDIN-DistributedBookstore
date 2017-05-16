@@ -4,7 +4,7 @@ var config = require('./../configuration/config');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('index', {
+  res.render('home', {
     title: config.app_title
   });
 });
