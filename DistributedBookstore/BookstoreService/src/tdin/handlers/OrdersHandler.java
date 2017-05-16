@@ -1,6 +1,7 @@
 package tdin.handlers;
 
 import database.DatabaseAPI;
+import model.BookOrder;
 import model.StoreBookOrder;
 import model.StoreBookOrderList;
 import tdin.Core;
@@ -35,7 +36,7 @@ public class OrdersHandler {
                 Core.getInstance().getDatabase(),
                 "store_orders",
                 Collections.singletonList("*"),
-                Collections.singletonList("id"),
+                Collections.singletonList(StoreBookOrder.ORDER_ID_COLUMN),
                 Collections.<Object>singletonList(id.toString()));
 
         if (!result.next())
@@ -49,6 +50,22 @@ public class OrdersHandler {
                 Core.getInstance().getDatabase(),
                 "store_orders",
                 Collections.singletonList("*"));
+
+        List<StoreBookOrder> bookOrders = new ArrayList<>();
+        while (result.next()) {
+            bookOrders.add(StoreBookOrder.getOrderFromSQL(result));
+        }
+
+        return new StoreBookOrderList(bookOrders);
+    }
+
+    public StoreBookOrderList getUserBookOrders(int userID) throws SQLException {
+        ResultSet result = DatabaseAPI.executeQuery(
+                Core.getInstance().getDatabase(),
+                "store_orders",
+                Collections.singletonList("*"),
+                Collections.singletonList(StoreBookOrder.USER_ID_COLUMN),
+                Collections.singletonList(userID));
 
         List<StoreBookOrder> bookOrders = new ArrayList<>();
         while (result.next()) {
@@ -76,6 +93,7 @@ public class OrdersHandler {
                     put(StoreBookOrder.ORDER_ID_COLUMN, bookOrder.getOrderID().toString());
                     put(StoreBookOrder.BOOK_ID_COLUMN, bookOrder.getBookID());
                     put(StoreBookOrder.QUANTITY_COLUMN, bookOrder.getQuantity());
+                    put(StoreBookOrder.USER_ID_COLUMN, bookOrder.getUserID());
                     put(StoreBookOrder.ORDER_DATE_COLUMN, bookOrder.getOrderDate());
                     put(StoreBookOrder.TOTAL_PRICE_COLUMN, bookOrder.getTotalPrice());
                     put(StoreBookOrder.CLIENT_NAME_COLUMN, bookOrder.getClientName());

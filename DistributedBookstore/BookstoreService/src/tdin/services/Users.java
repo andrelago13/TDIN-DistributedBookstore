@@ -2,6 +2,7 @@ package tdin.services;
 
 import model.Book;
 import tdin.handlers.BooksHandler;
+import tdin.handlers.OrdersHandler;
 import tdin.handlers.UsersHandler;
 
 import javax.ws.rs.*;
@@ -23,4 +24,10 @@ public class Users {
         return Response.ok().build();
     }
 
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("{id}/orders")
+    public Response getUserOrders(@PathParam("id") int userID) throws SQLException {
+        return Response.ok(OrdersHandler.getInstance().getUserBookOrders(userID).toString()).build();
+    }
 }

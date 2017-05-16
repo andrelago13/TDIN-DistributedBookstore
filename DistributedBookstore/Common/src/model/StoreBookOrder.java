@@ -74,6 +74,10 @@ public class StoreBookOrder extends BookOrder {
         return result;
     }
 
+    public int getUserID() {
+        return userID;
+    }
+
     public double getTotalPrice() {
         return totalPrice;
     }

@@ -45,7 +45,7 @@ public class BooksHandler {
                 Core.getInstance().getDatabase(),
                 "books",
                 Collections.singletonList("*"),
-                Collections.singletonList("id"),
+                Collections.singletonList(Book.ID_COLUMN),
                 Collections.singletonList(bookID));
 
         if(!result.next())
