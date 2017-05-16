@@ -47,7 +47,6 @@ namespace Warehouse
         private void UpdateOrders()
         {
             pending_grid.Rows.Clear();
-            processed_grid.Rows.Clear();
             completed_grid.Rows.Clear();
 
             List<BookOrder> orders = WarehouseConnection.GetOrders();
@@ -56,13 +55,10 @@ namespace Warehouse
                 switch (order.OrderState)
                 {
                     case State.AWAITING_EXPEDITION:
-                        pending_grid.Rows.Add(order.OrderID, order.BookID, order.Quantity, order.ClientName, order.ClientAddress, order.ClientEmail);
-                        break;
-                    case State.WILL_BE_DISPATCHED:
-                        processed_grid.Rows.Add(order.OrderID, order.BookID, order.Quantity, order.ClientName, order.ClientAddress, order.ClientEmail, order.StateDate.ToString("dd/MM/yyyy"));
+                        pending_grid.Rows.Add(order.OrderID, order.BookID, order.Quantity, order.StateDate.ToString("dd/MM/yyyy"));
                         break;
                     case State.DISPATCHED:
-                        completed_grid.Rows.Add(order.OrderID, order.BookID, order.Quantity, order.ClientName, order.ClientAddress, order.ClientEmail, order.StateDate.ToString("dd/MM/yyyy"));
+                        completed_grid.Rows.Add(order.OrderID, order.BookID, order.Quantity, order.StateDate.ToString("dd/MM/yyyy"));
                         break;
                 }
             }
