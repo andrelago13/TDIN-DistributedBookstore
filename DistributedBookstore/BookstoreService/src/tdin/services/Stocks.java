@@ -118,6 +118,10 @@ public class Stocks {
             return Response.serverError().build();
         }
 
-        return Response.ok(incomingStock.toString()).build();
+        JSONObject bookStock = new JSONObject();
+        int bookID = incomingStock.getInt("bookID");
+        bookStock.put("bookID", bookID);
+        bookStock.put("quantity", StockHandler.getInstance().getBookStock(bookID));
+        return Response.accepted(bookStock.toString()).build();
     }
 }
