@@ -44,6 +44,7 @@ public class Orders {
     public Response createOrder(String jsonRequest) {
         StoreBookOrder bookOrder = new StoreBookOrder(new JSONObject(jsonRequest));
         if (OrdersHandler.getInstance().createOrder(bookOrder)) {
+            // TODO: Send an email to the user regarding his order
             return Response.created(URI.create("orders/" + bookOrder.getOrderID().toString())).build();
         } else {
             return Response.serverError().build();

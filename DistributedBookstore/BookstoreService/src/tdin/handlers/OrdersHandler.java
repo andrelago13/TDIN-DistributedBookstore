@@ -121,13 +121,25 @@ public class OrdersHandler {
         );
     }
 
-    public boolean markShouldDispatchOrder(UUID id) {
+    public boolean markAsShouldDispatchOrder(UUID id) {
         Timestamp shouldDispatchTime = Timestamp.from(new Date().toInstant().plus(2, ChronoUnit.DAYS));
         return DatabaseAPI.executeUpdate(
                 Core.getInstance().getDatabase(),
                 "store_orders",
                 Arrays.asList(StoreBookOrder.STATE_COLUMN, StoreBookOrder.DISPATCH_DATE_COLUMN),
                 Arrays.asList(BookOrder.State.SHOULD_DISPATCH.ordinal(), shouldDispatchTime),
+                Collections.singletonList(StoreBookOrder.ORDER_ID_COLUMN),
+                Collections.singletonList(id.toString())
+        ) == 1;
+    }
+
+    public boolean markAsDispatchedOrder(UUID id) {
+        Timestamp dispatchedTime = Timestamp.from(new Date().toInstant());
+        return DatabaseAPI.executeUpdate(
+                Core.getInstance().getDatabase(),
+                "store_orders",
+                Arrays.asList(StoreBookOrder.STATE_COLUMN, StoreBookOrder.DISPATCH_DATE_COLUMN),
+                Arrays.asList(BookOrder.State.DISPATCHED.ordinal(), dispatchedTime),
                 Collections.singletonList(StoreBookOrder.ORDER_ID_COLUMN),
                 Collections.singletonList(id.toString())
         ) == 1;

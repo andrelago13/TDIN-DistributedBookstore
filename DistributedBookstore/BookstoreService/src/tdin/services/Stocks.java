@@ -1,6 +1,5 @@
 package tdin.services;
 
-import model.BookOrder;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import tdin.handlers.OrdersHandler;
@@ -13,8 +12,6 @@ import java.net.URI;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.ParseException;
-import java.time.temporal.ChronoUnit;
-import java.util.Date;
 import java.util.Map;
 import java.util.UUID;
 
@@ -85,26 +82,26 @@ public class Stocks {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createIncomingBookStock(String jsonRequest) throws SQLException {
         JSONObject incomingStock = new JSONObject(jsonRequest);
-        UUID uuid = incomingStock.has("id") ? UUID.fromString(incomingStock.getString("id")) : null;
+        UUID id = incomingStock.has("id") ? UUID.fromString(incomingStock.getString("id")) : null;
         int bookID = incomingStock.has("bookID") ? incomingStock.getInt("bookID") : -1;
         int quantity = incomingStock.has("quantity") ? incomingStock.getInt("quantity") : -1;
         Timestamp dispatchDate = incomingStock.has("dispatchDate") ? Timestamp.valueOf(incomingStock.getString("dispatchDate")) : null;
 
-        if (uuid == null || bookID == -1 || quantity == -1 || dispatchDate == null) {
+        if (id == null || bookID == -1 || quantity == -1 || dispatchDate == null) {
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
 
-        if (!StockHandler.getInstance().createIncomingBookStock(uuid, bookID, quantity, dispatchDate)) {
+        if (!StockHandler.getInstance().createIncomingBookStock(id, bookID, quantity, dispatchDate)) {
             return Response.serverError().build();
         }
 
         // Change dispatched state
-        if (!OrdersHandler.getInstance().markShouldDispatchOrder(uuid)) {
+        // TODO: Send email to the user that the order should be dispatched in 2 days
+        if (!OrdersHandler.getInstance().markAsShouldDispatchOrder(id)) {
             return Response.serverError().build();
         }
 
-
-        return Response.created(URI.create("stocks/incoming/" + uuid.toString())).build();
+        return Response.created(URI.create("stocks/incoming/" + id.toString())).build();
     }
 
     @POST
@@ -120,7 +117,11 @@ public class Stocks {
             return Response.serverError().build();
         }
 
-        // TODO: Mark order as dispatched today
+        // TODO: Send an email telling that the order is going to be dispatched
+        // TODO: Fulfil all pending orders that can be fulfilled
+        if (!OrdersHandler.getInstance().markAsDispatchedOrder(id)) {
+            return Response.serverError().build();
+        }
 
         return Response.accepted().build();
     }
