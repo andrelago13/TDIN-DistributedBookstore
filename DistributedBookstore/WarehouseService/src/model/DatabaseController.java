@@ -68,7 +68,7 @@ public class DatabaseController {
 
     public boolean postOrder(BookOrder order) {
         try {
-            String query = "INSERT INTO warehouse_orders (id, quantity, book_id, state, state_date)" +
+            String query = "INSERT INTO warehouse_orders (id, quantity, book_id, state, dispatch_date)" +
                     "VALUES (?, ?, ?, 0, DATE(CURRENT_TIMESTAMP))";
             PreparedStatement preparedStmt = connection.prepareStatement(query);
             preparedStmt.setString(1, order.getOrderID().toString());
@@ -100,7 +100,7 @@ public class DatabaseController {
 
             switch (BookOrder.State.values()[state]) {
                 case WAITING_EXPEDITION:
-                case WILL_DISPATCH:
+                case SHOULD_DISPATCH:
                     return setOrderDispatched(id);
                 case DISPATCHED:
                     return false;
