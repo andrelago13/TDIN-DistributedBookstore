@@ -145,7 +145,7 @@ public class DatabaseAPI {
      * @param where       columns of the "Where" condition
      * @param whereValues values of the where columns
      */
-    public static void executeUpdate(final Database database, final String tableName, final List<String> columns, final List<Object> values, final List<String> where, final List<Object> whereValues) {
+    public static int executeUpdate(final Database database, final String tableName, final List<String> columns, final List<Object> values, final List<String> where, final List<Object> whereValues) {
         String sql = "UPDATE " + tableName + " SET ";
 
         // Set
@@ -173,7 +173,7 @@ public class DatabaseAPI {
         // Merge values and whereValues
         final List<Object> parameters = new ArrayList<>(values);
         parameters.addAll(whereValues);
-        database.executeUpdate(sql, parameters);
+        return database.executeUpdate(sql, parameters);
     }
 
     /**
@@ -184,7 +184,7 @@ public class DatabaseAPI {
      * @param where       columns of the "Where" condition
      * @param whereValues values of the where columns
      */
-    public static void executeDeletation(final Database database, final String tableName, final List<String> where, final List<Object> whereValues) {
+    public static int executeDeletation(final Database database, final String tableName, final List<String> where, final List<Object> whereValues) {
         String sql = "DELETE FROM " + tableName + " WHERE ";
 
         // Where
@@ -199,6 +199,6 @@ public class DatabaseAPI {
         sql += ";";
 
         final List<Object> parameters = new ArrayList<Object>(whereValues);
-        database.executeUpdate(sql, parameters);
+        return database.executeUpdate(sql, parameters);
     }
 }

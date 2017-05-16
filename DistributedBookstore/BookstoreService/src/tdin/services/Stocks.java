@@ -18,6 +18,10 @@ import java.util.UUID;
 @Path("stocks")
 public class Stocks {
 
+    /////////////////
+    // STORE STOCK //
+    /////////////////
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getBooksStock() throws SQLException {
@@ -36,12 +40,16 @@ public class Stocks {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("{id}")
-    public Response getBookStock(@PathParam("id") int id) throws SQLException {
+    public Response getBookStock(@PathParam("id") int bookID) throws SQLException {
         JSONObject bookStock = new JSONObject();
-        bookStock.put("bookID", id);
-        bookStock.put("quantity", StockHandler.getInstance().getBookStock(id));
+        bookStock.put("bookID", bookID);
+        bookStock.put("quantity", StockHandler.getInstance().getBookStock(bookID));
         return Response.ok(bookStock.toString()).build();
     }
+
+    ////////////////////
+    // INCOMING BOOKS //
+    ////////////////////
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -76,7 +84,7 @@ public class Stocks {
         JSONObject incomingStock = new JSONObject(jsonRequest);
         int bookID = incomingStock.has("bookID") ? incomingStock.getInt("bookID") : -1;
         int quantity = incomingStock.has("quantity") ? incomingStock.getInt("quantity") : -1;
-        Date dispatchDate = incomingStock.has("dispatchDate") ? DateFormat.getDateInstance().parse((incomingStock.getString("dispatchDate"))) : null;
+        Date dispatchDate = incomingStock.has("dispatchDate") ? DateFormat.getDateInstance().parse(incomingStock.getString("dispatchDate")) : null;
 
         if (bookID == -1 || quantity == -1 || dispatchDate == null) {
             return Response.status(Response.Status.BAD_REQUEST).build();
@@ -88,5 +96,28 @@ public class Stocks {
         } else {
             return Response.serverError().build();
         }
+    }
+
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("incoming/{id}/accept")
+    public Response acceptIncomingStock(@PathParam("id") String id) throws SQLException, ParseException {
+        UUID uuid;
+        try {
+            uuid = UUID.fromString(id);
+        } catch (IllegalArgumentException e) {
+            return Response.status(Response.Status.BAD_REQUEST).build();
+        }
+
+        JSONObject incomingStock = StockHandler.getInstance().getIncomingBookStock(uuid);
+        if (incomingStock == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+
+        if(!StockHandler.getInstance().acceptIncomingBookStock(uuid)) {
+            return Response.serverError().build();
+        }
+
+        return Response.ok(incomingStock.toString()).build();
     }
 }
