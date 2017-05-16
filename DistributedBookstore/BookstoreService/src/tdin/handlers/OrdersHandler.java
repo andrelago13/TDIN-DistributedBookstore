@@ -45,7 +45,7 @@ public class OrdersHandler {
         return StoreBookOrder.getOrderFromSQL(result);
     }
 
-    public StoreBookOrderList getBookOrders() throws SQLException {
+    public List<StoreBookOrder> getBookOrders() throws SQLException {
         ResultSet result = DatabaseAPI.executeQuery(
                 Core.getInstance().getDatabase(),
                 "store_orders",
@@ -56,23 +56,39 @@ public class OrdersHandler {
             bookOrders.add(StoreBookOrder.getOrderFromSQL(result));
         }
 
-        return new StoreBookOrderList(bookOrders);
+        return bookOrders;
     }
 
-    public StoreBookOrderList getPendingOrders() throws SQLException {
+    public List<StoreBookOrder> getPendingOrders() throws SQLException {
         ResultSet result = DatabaseAPI.executeQuery(
                 Core.getInstance().getDatabase(),
                 "store_orders",
                 Collections.singletonList("*"),
                 Collections.singletonList(StoreBookOrder.STATE_COLUMN),
-                Collections.singletonList(StoreBookOrder.State.WAITING_EXPEDITION));
+                Collections.singletonList(StoreBookOrder.State.WAITING_EXPEDITION.ordinal()));
 
         List<StoreBookOrder> bookOrders = new ArrayList<>();
         while (result.next()) {
             bookOrders.add(StoreBookOrder.getOrderFromSQL(result));
         }
 
-        return new StoreBookOrderList(bookOrders);
+        return bookOrders;
+    }
+
+    public List<StoreBookOrder> getPendingBookOrders(int bookID) throws SQLException {
+        ResultSet result = DatabaseAPI.executeQuery(
+                Core.getInstance().getDatabase(),
+                "store_orders",
+                Collections.singletonList("*"),
+                Arrays.asList(StoreBookOrder.STATE_COLUMN, StoreBookOrder.BOOK_ID_COLUMN),
+                Arrays.asList(StoreBookOrder.State.WAITING_EXPEDITION.ordinal(), bookID));
+
+        List<StoreBookOrder> bookOrders = new ArrayList<>();
+        while (result.next()) {
+            bookOrders.add(StoreBookOrder.getOrderFromSQL(result));
+        }
+
+        return bookOrders;
     }
 
     public StoreBookOrderList getUserBookOrders(int userID) throws SQLException {
@@ -94,9 +110,9 @@ public class OrdersHandler {
     public boolean createOrder(final StoreBookOrder bookOrder) {
         StockHandler stockHandler = StockHandler.getInstance();
         if (stockHandler.hasBookStock(bookOrder.getBookID(), bookOrder.getQuantity())) {
+            stockHandler.removeBookStock(bookOrder.getBookID(), bookOrder.getQuantity());
             Timestamp timestamp = Timestamp.from(new Date().toInstant().plus(1, ChronoUnit.DAYS));
             bookOrder.dispatch(timestamp);
-            stockHandler.removeBookStock(bookOrder.getBookID(), bookOrder.getQuantity());
         } else {
             int quantity = bookOrder.getQuantity() + 10;
             // TODO: Create request for stock to the warehouse

@@ -2,6 +2,7 @@ package tdin.services;
 
 import model.BookOrder;
 import model.StoreBookOrder;
+import model.StoreBookOrderList;
 import org.json.JSONObject;
 import tdin.handlers.OrdersHandler;
 
@@ -18,14 +19,14 @@ public class Orders {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getOrders() throws SQLException {
-        return Response.ok(OrdersHandler.getInstance().getBookOrders().toString()).build();
+        return Response.ok(new StoreBookOrderList(OrdersHandler.getInstance().getBookOrders()).toString()).build();
     }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("pending")
     public Response getPendingOrders() throws SQLException {
-        return Response.ok(OrdersHandler.getInstance().getPendingOrders().toString()).build();
+        return Response.ok(new StoreBookOrderList(OrdersHandler.getInstance().getPendingOrders()).toString()).build();
     }
 
     @GET

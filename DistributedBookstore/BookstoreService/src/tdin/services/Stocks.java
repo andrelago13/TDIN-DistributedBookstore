@@ -1,5 +1,6 @@
 package tdin.services;
 
+import model.StoreBookOrder;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import tdin.handlers.OrdersHandler;
@@ -12,6 +13,7 @@ import java.net.URI;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.ParseException;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -118,9 +120,14 @@ public class Stocks {
         }
 
         // TODO: Send an email telling that the order is going to be dispatched
-        // TODO: Fulfil all pending orders that can be fulfilled
-        if (!OrdersHandler.getInstance().markAsDispatchedOrder(id)) {
+        if (!OrdersHandler.getInstance().markAsDispatchedOrder(id)) { // TODO: Update the stock
             return Response.serverError().build();
+        }
+
+        // TODO: Fulfil all pending orders that can be fulfilled
+        List<StoreBookOrder> pendingBookOrders = OrdersHandler.getInstance().getPendingBookOrders(incomingStock.getInt("book_id"));
+        for(StoreBookOrder pendingBookOrder : pendingBookOrders) {
+
         }
 
         return Response.accepted().build();
