@@ -62,10 +62,10 @@ public class StoreBookOrder extends BookOrder {
         State state = State.values()[r.getInt(STATE_COLUMN)];
         switch (state) {
             case DISPATCHED:
-                result.dispatched(r.getTimestamp(STATE_DATE_COLUMN));
+                result.dispatched(r.getTimestamp(DISPATCH_DATE_COLUMN));
                 break;
             case SHOULD_DISPATCH:
-                result.shouldDispatch(r.getTimestamp(STATE_DATE_COLUMN));
+                result.shouldDispatch(r.getTimestamp(DISPATCH_DATE_COLUMN));
                 break;
         }
 

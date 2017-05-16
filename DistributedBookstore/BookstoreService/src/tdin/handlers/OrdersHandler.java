@@ -8,10 +8,7 @@ import tdin.Core;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalUnit;
 import java.util.*;
 
 /**
@@ -83,7 +80,7 @@ public class OrdersHandler {
                     put(StoreBookOrder.CLIENT_ADDRESS_COLUMN, bookOrder.getClientAddress());
                     put(StoreBookOrder.CLIENT_EMAIL_COLUMN, bookOrder.getClientEmail());
                     put(StoreBookOrder.STATE_COLUMN, bookOrder.getState().ordinal());
-                    put(StoreBookOrder.STATE_DATE_COLUMN, bookOrder.getStateDate());
+                    put(StoreBookOrder.DISPATCH_DATE_COLUMN, bookOrder.getDispatchDate());
                 }}
         );
     }
