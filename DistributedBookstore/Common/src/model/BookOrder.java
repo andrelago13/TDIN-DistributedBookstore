@@ -4,6 +4,7 @@ import org.json.JSONObject;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
 
@@ -55,7 +56,7 @@ public class BookOrder {
 
         this.state = state;
         if (dateTime < 0) {
-            stateDate = null;
+            stateDate = Calendar.getInstance().getTime();
         } else {
             stateDate = new Date(dateTime);
         }
@@ -68,6 +69,10 @@ public class BookOrder {
 
         State state = State.values()[r.getInt(STATE_COLUMN)];
         switch (state) {
+            case WAITING_EXPEDITION:
+                order.state = State.WAITING_EXPEDITION;
+                order.stateDate = r.getDate(STATE_DATE_COLUMN);
+                break;
             case DISPATCHED:
                 order.dispatched(r.getDate(STATE_DATE_COLUMN));
                 break;
@@ -88,11 +93,7 @@ public class BookOrder {
         this.bookID = json.has(BOOK_ID_KEY) ? json.getInt(BOOK_ID_KEY) : -1;
         this.quantity = json.has(QUANTITY_KEY) ? json.getInt(QUANTITY_KEY) : -1;
         this.state = json.has(STATE_KEY) ? State.values()[json.getInt(STATE_KEY)] : State.WAITING_EXPEDITION;
-        if (this.state != State.WAITING_EXPEDITION) {
-            stateDate = json.has(STATE_DATE_KEY) ? new Date(json.getLong(STATE_DATE_KEY)) : null;
-        } else {
-            stateDate = null;
-        }
+        this.stateDate = json.has(STATE_DATE_KEY) ? new Date(json.getLong(STATE_DATE_KEY)) : null;
     }
 
     public UUID getOrderID() {
@@ -141,11 +142,7 @@ public class BookOrder {
         result.put(BOOK_ID_KEY, bookID);
         result.put(QUANTITY_KEY, quantity);
         result.put(STATE_KEY, state.ordinal());
-        if (stateDate != null) {
-            result.put(STATE_DATE_KEY, stateDate.getTime());
-        } else {
-            result.put(STATE_DATE_KEY, JSONObject.NULL);
-        }
+        result.put(STATE_DATE_KEY, stateDate.getTime());
 
         return result;
     }
