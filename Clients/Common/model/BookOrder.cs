@@ -61,7 +61,7 @@ namespace Common.model
                     OrderState = State.DISPATCHED;
                     break;
             }
-            StateDate = DateFromLong((long)json.GetValue("stateDate"));
+            StateDate = DateTime.Parse((string)json.GetValue("dispatchDate")); ;
         }
 
         private static DateTime DateFromLong(long value)
