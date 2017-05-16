@@ -27,7 +27,7 @@ public class UsersHandler {
 
     }
 
-    public boolean validateCredentials(String username, String password) throws SQLException {
+    public boolean validCredentials(String username, String password) throws SQLException {
         ResultSet result = DatabaseAPI.executeQuery(
                 Core.getInstance().getDatabase(),
                 "users",

@@ -59,6 +59,22 @@ public class OrdersHandler {
         return new StoreBookOrderList(bookOrders);
     }
 
+    public StoreBookOrderList getPendingOrders() throws SQLException {
+        ResultSet result = DatabaseAPI.executeQuery(
+                Core.getInstance().getDatabase(),
+                "store_orders",
+                Collections.singletonList("*"),
+                Collections.singletonList(StoreBookOrder.STATE_COLUMN),
+                Collections.singletonList(StoreBookOrder.State.WAITING_EXPEDITION));
+
+        List<StoreBookOrder> bookOrders = new ArrayList<>();
+        while (result.next()) {
+            bookOrders.add(StoreBookOrder.getOrderFromSQL(result));
+        }
+
+        return new StoreBookOrderList(bookOrders);
+    }
+
     public StoreBookOrderList getUserBookOrders(int userID) throws SQLException {
         ResultSet result = DatabaseAPI.executeQuery(
                 Core.getInstance().getDatabase(),
@@ -79,7 +95,7 @@ public class OrdersHandler {
         StockHandler stockHandler = StockHandler.getInstance();
         if (stockHandler.hasBookStock(bookOrder.getBookID(), bookOrder.getQuantity())) {
             Timestamp timestamp = Timestamp.from(new Date().toInstant().plus(1, ChronoUnit.DAYS));
-            bookOrder.dispatched(timestamp);
+            bookOrder.dispatch(timestamp);
             stockHandler.removeBookStock(bookOrder.getBookID(), bookOrder.getQuantity());
         } else {
             int quantity = bookOrder.getQuantity() + 10;
@@ -103,5 +119,17 @@ public class OrdersHandler {
                     put(StoreBookOrder.DISPATCH_DATE_COLUMN, bookOrder.getDispatchDate());
                 }}
         );
+    }
+
+    public boolean markShouldDispatchOrder(UUID id) {
+        Timestamp shouldDispatchTime = Timestamp.from(new Date().toInstant().plus(2, ChronoUnit.DAYS));
+        return DatabaseAPI.executeUpdate(
+                Core.getInstance().getDatabase(),
+                "store_orders",
+                Arrays.asList(StoreBookOrder.STATE_COLUMN, StoreBookOrder.DISPATCH_DATE_COLUMN),
+                Arrays.asList(BookOrder.State.SHOULD_DISPATCH.ordinal(), shouldDispatchTime),
+                Collections.singletonList(StoreBookOrder.ORDER_ID_COLUMN),
+                Collections.singletonList(id.toString())
+        ) == 1;
     }
 }

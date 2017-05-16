@@ -1,6 +1,7 @@
 package tdin.handlers;
 
 import database.DatabaseAPI;
+import model.BookOrder;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import tdin.Core;
@@ -11,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 public class StockHandler {
@@ -182,7 +184,7 @@ public class StockHandler {
         return parseIncomingBookStockFromSQL(result);
     }
 
-    public boolean createIncomingBookStock(UUID uuid, int bookID, int quantity, Timestamp dispatchDate) {
+    public boolean createIncomingBookStock(UUID uuid, int bookID, int quantity, Timestamp dispatchDate) throws SQLException {
         return DatabaseAPI.executeInsertion(
                 Core.getInstance().getDatabase(),
                 "incoming_stock",

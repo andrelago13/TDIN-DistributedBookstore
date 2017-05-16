@@ -1,7 +1,9 @@
 package tdin.services;
 
+import model.BookOrder;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import tdin.handlers.OrdersHandler;
 import tdin.handlers.StockHandler;
 
 import javax.ws.rs.*;
@@ -11,6 +13,8 @@ import java.net.URI;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.ParseException;
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
 import java.util.Map;
 import java.util.UUID;
 
@@ -79,7 +83,7 @@ public class Stocks {
     @POST
     @Path("incoming")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response createIncomingBookStock(String jsonRequest) throws ParseException {
+    public Response createIncomingBookStock(String jsonRequest) throws SQLException {
         JSONObject incomingStock = new JSONObject(jsonRequest);
         UUID uuid = incomingStock.has("id") ? UUID.fromString(incomingStock.getString("id")) : null;
         int bookID = incomingStock.has("bookID") ? incomingStock.getInt("bookID") : -1;
@@ -90,34 +94,33 @@ public class Stocks {
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
 
-        if (StockHandler.getInstance().createIncomingBookStock(uuid, bookID, quantity, dispatchDate)) {
-            return Response.created(URI.create("stocks/incoming/" + uuid.toString())).build();
-        } else {
+        if (!StockHandler.getInstance().createIncomingBookStock(uuid, bookID, quantity, dispatchDate)) {
             return Response.serverError().build();
         }
+
+        // Change dispatched state
+        if (!OrdersHandler.getInstance().markShouldDispatchOrder(uuid)) {
+            return Response.serverError().build();
+        }
+
+
+        return Response.created(URI.create("stocks/incoming/" + uuid.toString())).build();
     }
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Path("incoming/{id}/accept")
-    public Response acceptIncomingStock(@PathParam("id") String id) throws SQLException, ParseException {
-        UUID uuid;
-        try {
-            uuid = UUID.fromString(id);
-        } catch (IllegalArgumentException e) {
-            return Response.status(Response.Status.BAD_REQUEST).build();
-        }
-
-        JSONObject incomingStock = StockHandler.getInstance().getIncomingBookStock(uuid);
+    public Response acceptIncomingStock(@PathParam("id") UUID id) throws SQLException, ParseException {
+        JSONObject incomingStock = StockHandler.getInstance().getIncomingBookStock(id);
         if (incomingStock == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
 
-        if(!StockHandler.getInstance().acceptIncomingBookStock(uuid)) {
+        if (!StockHandler.getInstance().acceptIncomingBookStock(id)) {
             return Response.serverError().build();
         }
 
-        // TODO: Fulfil pending orders
+        // TODO: Mark order as dispatched today
 
         return Response.accepted().build();
     }

@@ -23,16 +23,16 @@ public class Orders {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("{id}")
-    public Response getOrder(@PathParam("id") String id) throws SQLException {
-        UUID uuid;
-        try {
-            uuid = UUID.fromString(id);
-        } catch (IllegalArgumentException e) {
-            return Response.status(Response.Status.BAD_REQUEST).build();
-        }
+    @Path("pending")
+    public Response getPendingOrders() throws SQLException {
+        return Response.ok(OrdersHandler.getInstance().getPendingOrders().toString()).build();
+    }
 
-        BookOrder bookOrder = OrdersHandler.getInstance().getBookOrder(uuid);
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("{id}")
+    public Response getOrder(@PathParam("id") UUID id) throws SQLException {
+        BookOrder bookOrder = OrdersHandler.getInstance().getBookOrder(id);
         if (bookOrder == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
