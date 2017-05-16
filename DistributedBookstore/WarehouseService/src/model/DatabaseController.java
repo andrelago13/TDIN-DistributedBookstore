@@ -119,7 +119,7 @@ public class DatabaseController {
 
     public boolean setOrderDispatched(UUID id) {
         try {
-            String query = "UPDATE warehouse_orders SET state = 2, state_date = ? WHERE id = ?";
+            String query = "UPDATE warehouse_orders SET state = 2, dispatch_date = ? WHERE id = ?";
             PreparedStatement preparedStmt = connection.prepareStatement(query);
 
             preparedStmt.setDate(1, new Date(Calendar.getInstance().getTime().getTime()));

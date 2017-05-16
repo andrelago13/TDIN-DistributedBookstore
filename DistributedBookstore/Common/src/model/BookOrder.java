@@ -70,6 +70,7 @@ public class BookOrder {
         State state = State.values()[r.getInt(STATE_COLUMN)];
         switch (state) {
             case WAITING_EXPEDITION:
+                order.dispatchDate = r.getTimestamp(DISPATCH_DATE_COLUMN);
                 order.state = State.WAITING_EXPEDITION;
                 break;
             case DISPATCHED:
