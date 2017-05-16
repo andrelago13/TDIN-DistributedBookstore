@@ -14,12 +14,6 @@ namespace Common.model
         public string BookID { get; set; }
 
         public int Quantity { get; set; }
-
-        public string ClientName { get; set; }
-
-        public string ClientAddress { get; set; }
-
-        public string ClientEmail { get; set; }
         
         public State OrderState { get; set; }
 
@@ -27,14 +21,11 @@ namespace Common.model
 
         public BookOrder() { }
 
-        public BookOrder(string id, string title, int quantity, string client_name, string client_addr, string client_email, int state, DateTime state_date)
+        public BookOrder(string id, string title, int quantity, int state, DateTime state_date)
         {
             OrderID = id;
             BookID = title;
             Quantity = quantity;
-            ClientName = client_name;
-            ClientAddress = client_addr;
-            ClientEmail = client_email;
             switch (state)
             {
                 case 0:
@@ -42,26 +33,22 @@ namespace Common.model
                     break;
                 case 1:
                     OrderState = State.WILL_BE_DISPATCHED;
-                    StateDate = state_date;
                     break;
                 case 2:
                     OrderState = State.DISPATCHED;
-                    StateDate = state_date;
                     break;
             }
+            StateDate = state_date;
         }
 
-        public BookOrder(string id, string title, int quantity, string client_name, string client_addr, string client_email) : 
-            this(id, title, quantity, client_name, client_addr, client_email, 0, new DateTime()) { }
+        public BookOrder(string id, string title, int quantity, string client_email) : 
+            this(id, title, quantity, 0, new DateTime()) { }
 
         public BookOrder(JObject json)
         {
             OrderID = (string) json.GetValue("orderID");
             BookID = (string) json.GetValue("bookID");
             Quantity = (int) json.GetValue("quantity");
-            ClientName = (string) json.GetValue("clientName");
-            ClientAddress = (string) json.GetValue("clientAddress");
-            ClientEmail = (string) json.GetValue("clientEmail");
             switch ((int) json.GetValue("state"))
             {
                 case 0:
@@ -69,14 +56,12 @@ namespace Common.model
                     break;
                 case 1:
                     OrderState = State.WILL_BE_DISPATCHED;
-                    string test = (string)json.GetValue("stateDate");
-                    StateDate = DateFromLong((long) json.GetValue("stateDate"));
                     break;
                 case 2:
                     OrderState = State.DISPATCHED;
-                    StateDate = DateFromLong((long)json.GetValue("stateDate"));
                     break;
             }
+            StateDate = DateFromLong((long)json.GetValue("stateDate"));
         }
 
         private static DateTime DateFromLong(long value)
