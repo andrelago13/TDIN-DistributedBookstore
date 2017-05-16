@@ -40,19 +40,17 @@ public class BooksHandler {
         return books;
     }
 
-    public Map<Integer, Integer> getBooksStock() throws SQLException {
+    public Book getBook(int bookID) throws SQLException {
         ResultSet result = DatabaseAPI.executeQuery(
                 Core.getInstance().getDatabase(),
                 "books",
-                Collections.singletonList("id"));
+                Collections.singletonList("*"),
+                Collections.singletonList("id"),
+                Collections.singletonList(bookID));
 
-        Map<Integer, Integer> booksStock = new HashMap<>();
-        int bookID;
-        while (result.next()) {
-            bookID = result.getInt("id");
-            booksStock.put(bookID, StockHandler.getInstance().getStock(bookID));
-        }
+        if(!result.next())
+            return null;
 
-        return booksStock;
+        return Book.getOrderFromSQL(result);
     }
 }
