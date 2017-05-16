@@ -1,11 +1,11 @@
 var express = require('express');
 var router = express.Router();
 var config = require('./../configuration/config');
-var session = require('express-session')
+var session = require('express-session');
 
 /* GET login page */
 router.get('/', function (req, res, next) {
-  if(typeof session.userid != undefined && session.userid != null) {
+  if(typeof session.username != undefined && session.username != null) {
     res.status(200);
     res.redirect('/home');
     return;
