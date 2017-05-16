@@ -65,22 +65,9 @@ public class BookOrder {
         BookOrder order = new BookOrder(UUID.fromString(r.getString(ORDER_ID_COLUMN)),
                 r.getInt(BOOK_ID_COLUMN),
                 r.getInt(QUANTITY_COLUMN),
-                r.getTimestamp(ORDER_DATE_COLUMN));
-
-        State state = State.values()[r.getInt(STATE_COLUMN)];
-        switch (state) {
-            case WAITING_EXPEDITION:
-                order.dispatchDate = r.getTimestamp(DISPATCH_DATE_COLUMN);
-                order.state = State.WAITING_EXPEDITION;
-                break;
-            case DISPATCHED:
-                order.dispatched(r.getTimestamp(DISPATCH_DATE_COLUMN));
-                break;
-            case SHOULD_DISPATCH:
-                order.shouldDispatch(r.getTimestamp(DISPATCH_DATE_COLUMN));
-                break;
-        }
-
+                r.getTimestamp(ORDER_DATE_COLUMN),
+                State.values()[r.getInt(STATE_COLUMN)],
+                r.getTimestamp(DISPATCH_DATE_COLUMN));
         return order;
     }
 
@@ -125,14 +112,14 @@ public class BookOrder {
         return dispatchDate;
     }
 
-    public void dispatched(Timestamp date) {
-        state = State.DISPATCHED;
-        dispatchDate = date;
+    public void dispatch(Timestamp dispatchDate) {
+        this.dispatchDate = dispatchDate;
+        this.state = State.DISPATCHED;
     }
 
-    public void shouldDispatch(Timestamp date) {
-        state = State.SHOULD_DISPATCH;
-        dispatchDate = date;
+    public void shouldDispatch(Timestamp dispatchDate) {
+        this.dispatchDate = dispatchDate;
+        this.state = State.SHOULD_DISPATCH;
     }
 
     @Override

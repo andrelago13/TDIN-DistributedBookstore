@@ -30,8 +30,8 @@ public class StoreBookOrder extends BookOrder {
     protected String clientEmail;
     protected int userID;
 
-    public StoreBookOrder(UUID orderID, int bookID, int quantity, Timestamp orderDate, double totalPrice, String client, String clAddr, String clEmail, int userID) {
-        super(orderID, bookID, quantity, orderDate);
+    public StoreBookOrder(UUID orderID, int bookID, int quantity, Timestamp orderDate, State state, Timestamp dispatchedDate, double totalPrice, String client, String clAddr, String clEmail, int userID) {
+        super(orderID, bookID, quantity, orderDate, state, dispatchedDate);
 
         this.totalPrice = totalPrice;
         this.clientName = client;
@@ -55,23 +55,19 @@ public class StoreBookOrder extends BookOrder {
                 r.getInt(BOOK_ID_COLUMN),
                 r.getInt(QUANTITY_COLUMN),
                 r.getTimestamp(ORDER_DATE_COLUMN),
+                State.values()[r.getInt(STATE_COLUMN)],
+                r.getTimestamp(DISPATCH_DATE_COLUMN),
                 r.getInt(TOTAL_PRICE_COLUMN),
                 r.getString(CLIENT_NAME_COLUMN),
                 r.getString(CLIENT_ADDRESS_COLUMN),
                 r.getString(CLIENT_EMAIL_COLUMN),
                 r.getInt(USER_ID_COLUMN));
 
-        State state = State.values()[r.getInt(STATE_COLUMN)];
-        switch (state) {
-            case DISPATCHED:
-                result.dispatched(r.getTimestamp(DISPATCH_DATE_COLUMN));
-                break;
-            case SHOULD_DISPATCH:
-                result.shouldDispatch(r.getTimestamp(DISPATCH_DATE_COLUMN));
-                break;
-        }
-
         return result;
+    }
+
+    public int getUserID() {
+        return userID;
     }
 
     public double getTotalPrice() {

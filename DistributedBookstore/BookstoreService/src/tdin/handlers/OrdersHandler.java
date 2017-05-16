@@ -1,6 +1,7 @@
 package tdin.handlers;
 
 import database.DatabaseAPI;
+import model.BookOrder;
 import model.StoreBookOrder;
 import model.StoreBookOrderList;
 import tdin.Core;
@@ -35,7 +36,7 @@ public class OrdersHandler {
                 Core.getInstance().getDatabase(),
                 "store_orders",
                 Collections.singletonList("*"),
-                Collections.singletonList("id"),
+                Collections.singletonList(StoreBookOrder.ORDER_ID_COLUMN),
                 Collections.<Object>singletonList(id.toString()));
 
         if (!result.next())
@@ -44,11 +45,59 @@ public class OrdersHandler {
         return StoreBookOrder.getOrderFromSQL(result);
     }
 
-    public StoreBookOrderList getBookOrders() throws SQLException {
+    public List<StoreBookOrder> getBookOrders() throws SQLException {
         ResultSet result = DatabaseAPI.executeQuery(
                 Core.getInstance().getDatabase(),
                 "store_orders",
                 Collections.singletonList("*"));
+
+        List<StoreBookOrder> bookOrders = new ArrayList<>();
+        while (result.next()) {
+            bookOrders.add(StoreBookOrder.getOrderFromSQL(result));
+        }
+
+        return bookOrders;
+    }
+
+    public List<StoreBookOrder> getPendingOrders() throws SQLException {
+        ResultSet result = DatabaseAPI.executeQuery(
+                Core.getInstance().getDatabase(),
+                "store_orders",
+                Collections.singletonList("*"),
+                Collections.singletonList(StoreBookOrder.STATE_COLUMN),
+                Collections.singletonList(StoreBookOrder.State.WAITING_EXPEDITION.ordinal()));
+
+        List<StoreBookOrder> bookOrders = new ArrayList<>();
+        while (result.next()) {
+            bookOrders.add(StoreBookOrder.getOrderFromSQL(result));
+        }
+
+        return bookOrders;
+    }
+
+    public List<StoreBookOrder> getPendingBookOrders(int bookID) throws SQLException {
+        ResultSet result = DatabaseAPI.executeQuery(
+                Core.getInstance().getDatabase(),
+                "store_orders",
+                Collections.singletonList("*"),
+                Arrays.asList(StoreBookOrder.STATE_COLUMN, StoreBookOrder.BOOK_ID_COLUMN),
+                Arrays.asList(StoreBookOrder.State.WAITING_EXPEDITION.ordinal(), bookID));
+
+        List<StoreBookOrder> bookOrders = new ArrayList<>();
+        while (result.next()) {
+            bookOrders.add(StoreBookOrder.getOrderFromSQL(result));
+        }
+
+        return bookOrders;
+    }
+
+    public StoreBookOrderList getUserBookOrders(int userID) throws SQLException {
+        ResultSet result = DatabaseAPI.executeQuery(
+                Core.getInstance().getDatabase(),
+                "store_orders",
+                Collections.singletonList("*"),
+                Collections.singletonList(StoreBookOrder.USER_ID_COLUMN),
+                Collections.singletonList(userID));
 
         List<StoreBookOrder> bookOrders = new ArrayList<>();
         while (result.next()) {
@@ -61,9 +110,9 @@ public class OrdersHandler {
     public boolean createOrder(final StoreBookOrder bookOrder) {
         StockHandler stockHandler = StockHandler.getInstance();
         if (stockHandler.hasBookStock(bookOrder.getBookID(), bookOrder.getQuantity())) {
-            Timestamp timestamp = Timestamp.from(new Date().toInstant().plus(1, ChronoUnit.DAYS));
-            bookOrder.dispatched(timestamp);
             stockHandler.removeBookStock(bookOrder.getBookID(), bookOrder.getQuantity());
+            Timestamp timestamp = Timestamp.from(new Date().toInstant().plus(1, ChronoUnit.DAYS));
+            bookOrder.dispatch(timestamp);
         } else {
             int quantity = bookOrder.getQuantity() + 10;
             // TODO: Create request for stock to the warehouse
@@ -76,6 +125,7 @@ public class OrdersHandler {
                     put(StoreBookOrder.ORDER_ID_COLUMN, bookOrder.getOrderID().toString());
                     put(StoreBookOrder.BOOK_ID_COLUMN, bookOrder.getBookID());
                     put(StoreBookOrder.QUANTITY_COLUMN, bookOrder.getQuantity());
+                    put(StoreBookOrder.USER_ID_COLUMN, bookOrder.getUserID());
                     put(StoreBookOrder.ORDER_DATE_COLUMN, bookOrder.getOrderDate());
                     put(StoreBookOrder.TOTAL_PRICE_COLUMN, bookOrder.getTotalPrice());
                     put(StoreBookOrder.CLIENT_NAME_COLUMN, bookOrder.getClientName());
@@ -85,5 +135,29 @@ public class OrdersHandler {
                     put(StoreBookOrder.DISPATCH_DATE_COLUMN, bookOrder.getDispatchDate());
                 }}
         );
+    }
+
+    public boolean markAsShouldDispatchOrder(UUID id) {
+        Timestamp shouldDispatchTime = Timestamp.from(new Date().toInstant().plus(2, ChronoUnit.DAYS));
+        return DatabaseAPI.executeUpdate(
+                Core.getInstance().getDatabase(),
+                "store_orders",
+                Arrays.asList(StoreBookOrder.STATE_COLUMN, StoreBookOrder.DISPATCH_DATE_COLUMN),
+                Arrays.asList(BookOrder.State.SHOULD_DISPATCH.ordinal(), shouldDispatchTime),
+                Collections.singletonList(StoreBookOrder.ORDER_ID_COLUMN),
+                Collections.singletonList(id.toString())
+        ) == 1;
+    }
+
+    public boolean markAsDispatchedOrder(UUID id) {
+        Timestamp dispatchedTime = Timestamp.from(new Date().toInstant());
+        return DatabaseAPI.executeUpdate(
+                Core.getInstance().getDatabase(),
+                "store_orders",
+                Arrays.asList(StoreBookOrder.STATE_COLUMN, StoreBookOrder.DISPATCH_DATE_COLUMN),
+                Arrays.asList(BookOrder.State.DISPATCHED.ordinal(), dispatchedTime),
+                Collections.singletonList(StoreBookOrder.ORDER_ID_COLUMN),
+                Collections.singletonList(id.toString())
+        ) == 1;
     }
 }
