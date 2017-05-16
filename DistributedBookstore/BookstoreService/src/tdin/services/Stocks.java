@@ -10,9 +10,7 @@ import javax.ws.rs.core.Response;
 import java.net.URI;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.util.Date;
 import java.util.Map;
 import java.util.UUID;
 
@@ -83,16 +81,16 @@ public class Stocks {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createIncomingBookStock(String jsonRequest) throws ParseException {
         JSONObject incomingStock = new JSONObject(jsonRequest);
+        UUID uuid = incomingStock.has("id") ? UUID.fromString(incomingStock.getString("id")) : null;
         int bookID = incomingStock.has("bookID") ? incomingStock.getInt("bookID") : -1;
         int quantity = incomingStock.has("quantity") ? incomingStock.getInt("quantity") : -1;
         Timestamp dispatchDate = incomingStock.has("dispatchDate") ? Timestamp.valueOf(incomingStock.getString("dispatchDate")) : null;
 
-        if (bookID == -1 || quantity == -1 || dispatchDate == null) {
+        if (uuid == null || bookID == -1 || quantity == -1 || dispatchDate == null) {
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
 
-        UUID uuid = StockHandler.getInstance().createIncomingBookStock(bookID, quantity, dispatchDate);
-        if (uuid != null) {
+        if (StockHandler.getInstance().createIncomingBookStock(uuid, bookID, quantity, dispatchDate)) {
             return Response.created(URI.create("stocks/incoming/" + uuid.toString())).build();
         } else {
             return Response.serverError().build();

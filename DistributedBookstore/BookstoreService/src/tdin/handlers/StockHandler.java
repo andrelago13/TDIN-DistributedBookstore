@@ -182,8 +182,7 @@ public class StockHandler {
         return parseIncomingBookStockFromSQL(result);
     }
 
-    public UUID createIncomingBookStock(int bookID, int quantity, Timestamp dispatchDate) {
-        UUID uuid = UUID.randomUUID();
+    public boolean createIncomingBookStock(UUID uuid, int bookID, int quantity, Timestamp dispatchDate) {
         return DatabaseAPI.executeInsertion(
                 Core.getInstance().getDatabase(),
                 "incoming_stock",
@@ -193,7 +192,7 @@ public class StockHandler {
                     put("quantity", quantity);
                     put("dispatch_date", dispatchDate);
                 }}
-        ) ? uuid : null;
+        );
     }
 
     public boolean acceptIncomingBookStock(UUID id) throws SQLException, ParseException {
