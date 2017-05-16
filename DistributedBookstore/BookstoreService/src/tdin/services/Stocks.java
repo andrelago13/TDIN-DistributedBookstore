@@ -9,6 +9,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.net.URI;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.Date;
@@ -84,7 +85,7 @@ public class Stocks {
         JSONObject incomingStock = new JSONObject(jsonRequest);
         int bookID = incomingStock.has("bookID") ? incomingStock.getInt("bookID") : -1;
         int quantity = incomingStock.has("quantity") ? incomingStock.getInt("quantity") : -1;
-        Date dispatchDate = incomingStock.has("dispatchDate") ? DateFormat.getDateInstance().parse(incomingStock.getString("dispatchDate")) : null;
+        Timestamp dispatchDate = incomingStock.has("dispatchDate") ? Timestamp.valueOf(incomingStock.getString("dispatchDate")) : null;
 
         if (bookID == -1 || quantity == -1 || dispatchDate == null) {
             return Response.status(Response.Status.BAD_REQUEST).build();
@@ -92,7 +93,7 @@ public class Stocks {
 
         UUID uuid = StockHandler.getInstance().createIncomingBookStock(bookID, quantity, dispatchDate);
         if (uuid != null) {
-            return Response.created(URI.create("incoming/" + uuid.toString())).build();
+            return Response.created(URI.create("stocks/incoming/" + uuid.toString())).build();
         } else {
             return Response.serverError().build();
         }

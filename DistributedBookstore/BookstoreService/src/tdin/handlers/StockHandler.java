@@ -8,6 +8,7 @@ import tdin.Core;
 import javax.ws.rs.core.Response;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.*;
@@ -146,7 +147,7 @@ public class StockHandler {
         incomingStock.put("ID", UUID.fromString(result.getString("id")));
         incomingStock.put("bookID", result.getInt("book_id"));
         incomingStock.put("quantity", result.getInt("quantity"));
-        incomingStock.put("dispatchDate", result.getDate("dispatchDate"));
+        incomingStock.put("dispatchDate", result.getTimestamp("dispatch_date"));
 
         return incomingStock;
     }
@@ -181,16 +182,16 @@ public class StockHandler {
         return parseIncomingBookStockFromSQL(result);
     }
 
-    public UUID createIncomingBookStock(int bookID, int quantity, Date dispatchDate) {
+    public UUID createIncomingBookStock(int bookID, int quantity, Timestamp dispatchDate) {
         UUID uuid = UUID.randomUUID();
         return DatabaseAPI.executeInsertion(
                 Core.getInstance().getDatabase(),
                 "incoming_stock",
                 new HashMap<String, Object>() {{
-                    put("id", uuid);
+                    put("id", uuid.toString());
                     put("book_id", bookID);
                     put("quantity", quantity);
-                    put("date", dispatchDate);
+                    put("dispatch_date", dispatchDate);
                 }}
         ) ? uuid : null;
     }
@@ -211,7 +212,7 @@ public class StockHandler {
         JSONObject incomingStock = parseIncomingBookStockFromSQL(result);
         int bookID = incomingStock.has("bookID") ? incomingStock.getInt("bookID") : -1;
         int quantity = incomingStock.has("quantity") ? incomingStock.getInt("quantity") : -1;
-        Date dispatchDate = incomingStock.has("dispatchDate") ? (Date)incomingStock.get("dispatchDate") : null;
+        Timestamp dispatchDate = incomingStock.has("dispatchDate") ? (Timestamp) incomingStock.get("dispatchDate") : null;
         if (bookID == -1 || quantity == -1 || dispatchDate == null) {
             return false;
         }
