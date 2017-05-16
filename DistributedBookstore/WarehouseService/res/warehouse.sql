@@ -8,7 +8,7 @@ CREATE TABLE warehouse_orders (
   state          INTEGER      NOT NULL,
   order_date     DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   created_at     DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  dispatch_date  DATETIME
+  dispatch_date  DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE users (
