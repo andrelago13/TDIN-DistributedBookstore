@@ -59,9 +59,10 @@ public class OrdersHandler {
     }
 
     public boolean createOrder(final StoreBookOrder bookOrder) {
-        if (Core.getInstance().hasStock(bookOrder.getBookID(), bookOrder.getQuantity())) {
+        StockHandler stockHandler = StockHandler.getInstance();
+        if (stockHandler.hasStock(bookOrder.getBookID(), bookOrder.getQuantity())) {
             bookOrder.willDispatch(Date.from(LocalDateTime.ofInstant(new Date().toInstant(), ZoneId.systemDefault()).plusDays(1).atZone(ZoneId.systemDefault()).toInstant()));
-            Core.getInstance().removeFromStock(bookOrder.getBookID(), bookOrder.getQuantity());
+            stockHandler.removeStock(bookOrder.getBookID(), bookOrder.getQuantity());
         } else {
             // TODO: Create request for stock to the warehouse
         }
