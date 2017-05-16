@@ -119,15 +119,33 @@ public class Stocks {
             return Response.serverError().build();
         }
 
+        // Get book and quantity of the incoming stock
+        int bookID = incomingStock.has("bookID") ? incomingStock.getInt("bookID") : -1;
+        int remainingQuantity = incomingStock.has("quantity") ? incomingStock.getInt("quantity") : -1;
+
         // TODO: Send an email telling that the order is going to be dispatched
-        if (!OrdersHandler.getInstance().markAsDispatchedOrder(id)) { // TODO: Update the stock
+        StoreBookOrder order = OrdersHandler.getInstance().getBookOrder(id);
+        remainingQuantity -= order.getQuantity();
+        if (!OrdersHandler.getInstance().markAsDispatchedOrder(id)) {
             return Response.serverError().build();
         }
 
-        // TODO: Fulfil all pending orders that can be fulfilled
-        List<StoreBookOrder> pendingBookOrders = OrdersHandler.getInstance().getPendingBookOrders(incomingStock.getInt("book_id"));
+        // Fulfil all pending orders that can be satisfied
+        List<StoreBookOrder> pendingBookOrders = OrdersHandler.getInstance().getPendingBookOrders(bookID);
         for(StoreBookOrder pendingBookOrder : pendingBookOrders) {
+            if(pendingBookOrder.getQuantity() > remainingQuantity) {
+                continue;
+            }
 
+            if(!OrdersHandler.getInstance().markAsDispatchedOrder(pendingBookOrder.getOrderID())) {
+                continue;
+            }
+
+            remainingQuantity -= pendingBookOrder.getQuantity();
+        }
+
+        if(!StockHandler.getInstance().addBookStock(bookID, remainingQuantity)) {
+            return Response.serverError().build();
         }
 
         return Response.accepted().build();

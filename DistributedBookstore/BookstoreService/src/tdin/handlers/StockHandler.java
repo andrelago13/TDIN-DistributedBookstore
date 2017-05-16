@@ -83,7 +83,7 @@ public class StockHandler {
             return false;
         }
 
-        if (currentStock == -1) { // Insert in stock database
+        if (currentStock == -1 && quantity > 0) { // Insert in stock database
             return DatabaseAPI.executeInsertion(
                     Core.getInstance().getDatabase(),
                     "stock",
@@ -220,10 +220,6 @@ public class StockHandler {
 
         if(dispatchDate.compareTo(new Date()) > 0) {
             throw new RuntimeException("Cannot accept an incoming request that has not arrived yet");
-        }
-
-        if(!addBookStock(bookID, quantity)) {
-            return false;
         }
 
         return DatabaseAPI.executeDeletation(
