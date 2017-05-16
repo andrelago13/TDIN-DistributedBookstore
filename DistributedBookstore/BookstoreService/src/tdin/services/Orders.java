@@ -17,6 +17,12 @@ public class Orders {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
+    public Response getOrders() throws SQLException {
+        return Response.ok(OrdersHandler.getInstance().getBookOrders().toString()).build();
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
     @Path("{id}")
     public Response getOrder(@PathParam("id") String id) throws SQLException {
         UUID uuid;
@@ -32,13 +38,6 @@ public class Orders {
         }
         return Response.ok(bookOrder.toString()).build();
     }
-
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getOrders() throws SQLException {
-        return Response.ok(OrdersHandler.getInstance().getBookOrders().toString()).build();
-    }
-
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
