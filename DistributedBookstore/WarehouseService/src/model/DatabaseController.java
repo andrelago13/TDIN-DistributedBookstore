@@ -68,15 +68,12 @@ public class DatabaseController {
 
     public boolean postOrder(BookOrder order) {
         try {
-            String query = "INSERT INTO warehouse_orders (id, quantity, book_id, client_name, client_address," +
-                    "client_email, state, state_date) VALUES (?, ?, ?, ?, ?, ?, 0, DATE(CURRENT_TIMESTAMP))";
+            String query = "INSERT INTO warehouse_orders (id, quantity, book_id, state, state_date)" +
+                    "VALUES (?, ?, ?, 0, DATE(CURRENT_TIMESTAMP))";
             PreparedStatement preparedStmt = connection.prepareStatement(query);
             preparedStmt.setString(1, order.getOrderID().toString());
             preparedStmt.setInt(2, order.getQuantity());
             preparedStmt.setInt(3, order.getBookID());
-            preparedStmt.setString(4, order.getClientName());
-            preparedStmt.setString(5, order.getClientAddress());
-            preparedStmt.setString(6, order.getClientEmail());
 
             preparedStmt.execute();
         } catch (SQLException e) {
@@ -103,35 +100,11 @@ public class DatabaseController {
 
             switch (BookOrder.State.values()[state]) {
                 case WAITING_EXPEDITION:
-                    return setOrderDispatchDate(id);
                 case WILL_DISPATCH:
                     return setOrderDispatched(id);
                 case DISPATCHED:
                     return false;
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-
-        return true;
-    }
-
-    public boolean setOrderDispatchDate(BookOrder order) {
-        return setOrderDispatchDate(order.getOrderID());
-    }
-
-    public boolean setOrderDispatchDate(UUID id) {
-        try {
-            String query = "UPDATE warehouse_orders SET state = 1, state_date = ? WHERE id = ?";
-            PreparedStatement preparedStmt = connection.prepareStatement(query);
-
-            Calendar cal = Calendar.getInstance();
-            cal.add(Calendar.DAY_OF_YEAR, 2);
-
-            preparedStmt.setDate(1, new Date(cal.getTime().getTime()));
-            preparedStmt.setString(2, id.toString());
-            preparedStmt.execute();
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
@@ -146,10 +119,11 @@ public class DatabaseController {
 
     public boolean setOrderDispatched(UUID id) {
         try {
-            String query = "UPDATE warehouse_orders SET state = 2 WHERE id = ?";
+            String query = "UPDATE warehouse_orders SET state = 2, state_date = ? WHERE id = ?";
             PreparedStatement preparedStmt = connection.prepareStatement(query);
-            preparedStmt.setString(1, id.toString());
 
+            preparedStmt.setDate(1, new Date(Calendar.getInstance().getTime().getTime()));
+            preparedStmt.setString(2, id.toString());
             preparedStmt.execute();
         } catch (SQLException e) {
             e.printStackTrace();

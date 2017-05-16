@@ -17,10 +17,8 @@ public class Orders {
 
     @POST
     @Produces("application/json")
-    public String postMessage(@FormParam("book_id") String book_id, @FormParam("quantity") int quantity,
-                              @FormParam("client_name") String clientName, @FormParam("client_addr") String clientAddress,
-                              @FormParam("client_email") String clientEmail) {
-        postOrder(new BookOrder(UUID.fromString(book_id), quantity, 0, clientName, clientAddress, clientEmail));
+    public String postMessage(@FormParam("book_id") int book_id, @FormParam("quantity") int quantity) {
+        postOrder(new BookOrder(book_id, quantity));
         return "{ hey }";
     }
 
