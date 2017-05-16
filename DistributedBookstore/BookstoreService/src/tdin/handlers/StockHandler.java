@@ -216,7 +216,7 @@ public class StockHandler {
             return false;
         }
 
-        if(dispatchDate.compareTo(new Date()) > 1) {
+        if(dispatchDate.compareTo(new Date()) > 0) {
             throw new RuntimeException("Cannot accept an incoming request that has not arrived yet");
         }
 
