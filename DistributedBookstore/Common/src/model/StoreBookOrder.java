@@ -4,6 +4,7 @@ import org.json.JSONObject;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.UUID;
 
 /**
@@ -29,8 +30,8 @@ public class StoreBookOrder extends BookOrder {
     protected String clientEmail;
     protected int userID;
 
-    public StoreBookOrder(UUID orderID, int bookID, int quantity, double totalPrice, String client, String clAddr, String clEmail, int userID) {
-        super(orderID, bookID, quantity);
+    public StoreBookOrder(UUID orderID, int bookID, int quantity, Timestamp orderDate, double totalPrice, String client, String clAddr, String clEmail, int userID) {
+        super(orderID, bookID, quantity, orderDate);
 
         this.totalPrice = totalPrice;
         this.clientName = client;
@@ -53,6 +54,7 @@ public class StoreBookOrder extends BookOrder {
         StoreBookOrder result = new StoreBookOrder(UUID.fromString(r.getString(ORDER_ID_COLUMN)),
                 r.getInt(BOOK_ID_COLUMN),
                 r.getInt(QUANTITY_COLUMN),
+                r.getTimestamp(ORDER_DATE_COLUMN),
                 r.getInt(TOTAL_PRICE_COLUMN),
                 r.getString(CLIENT_NAME_COLUMN),
                 r.getString(CLIENT_ADDRESS_COLUMN),

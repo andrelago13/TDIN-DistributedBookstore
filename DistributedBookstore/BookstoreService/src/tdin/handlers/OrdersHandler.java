@@ -65,6 +65,7 @@ public class OrdersHandler {
             bookOrder.dispatched(timestamp);
             stockHandler.removeBookStock(bookOrder.getBookID(), bookOrder.getQuantity());
         } else {
+            int quantity = bookOrder.getQuantity() + 10;
             // TODO: Create request for stock to the warehouse
         }
 
@@ -75,6 +76,7 @@ public class OrdersHandler {
                     put(StoreBookOrder.ORDER_ID_COLUMN, bookOrder.getOrderID().toString());
                     put(StoreBookOrder.BOOK_ID_COLUMN, bookOrder.getBookID());
                     put(StoreBookOrder.QUANTITY_COLUMN, bookOrder.getQuantity());
+                    put(StoreBookOrder.ORDER_DATE_COLUMN, bookOrder.getOrderDate());
                     put(StoreBookOrder.TOTAL_PRICE_COLUMN, bookOrder.getTotalPrice());
                     put(StoreBookOrder.CLIENT_NAME_COLUMN, bookOrder.getClientName());
                     put(StoreBookOrder.CLIENT_ADDRESS_COLUMN, bookOrder.getClientAddress());

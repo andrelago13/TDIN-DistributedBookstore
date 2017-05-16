@@ -91,7 +91,7 @@ public class BookOrder {
         this.orderID = json.has(ORDER_ID_KEY) ? UUID.fromString(json.getString(ORDER_ID_KEY)) : UUID.randomUUID();
         this.bookID = json.has(BOOK_ID_KEY) ? json.getInt(BOOK_ID_KEY) : -1;
         this.quantity = json.has(QUANTITY_KEY) ? json.getInt(QUANTITY_KEY) : -1;
-        this.orderDate = json.has(ORDER_DATE_KEY) ? new Timestamp(json.getLong(ORDER_DATE_KEY)) : null;
+        this.orderDate = json.has(ORDER_DATE_KEY) ? new Timestamp(json.getLong(ORDER_DATE_KEY)) : new Timestamp(System.currentTimeMillis());
         this.state = json.has(STATE_KEY) ? State.values()[json.getInt(STATE_KEY)] : State.WAITING_EXPEDITION;
         this.dispatchDate = json.has(DISPATCH_DATE_KEY) ? new Timestamp(json.getLong(DISPATCH_DATE_KEY)) : null;
     }
