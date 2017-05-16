@@ -1,354 +1,113 @@
 DROP TABLE IF EXISTS store_orders;
-DROP TABLE IF EXISTS store_orders;
-CREATE TABLE store_orders (
-  id             VARCHAR(40),
-  book_id        INT,
-  quantity       INT,
-  total_price    DECIMAL(5, 2),
-  client_name    VARCHAR(50),
+create table store_orders (
+  id VARCHAR(40),
+  book_id INT,
+  quantity INT,
+  total_price DECIMAL(5,2),
+  user_id INT,
+  client_name VARCHAR(50),
   client_address VARCHAR(50),
-  client_email   VARCHAR(50),
-  state          INT,
-  state_date     DATE
+  client_email VARCHAR(50),
+  state INT,
+  state_date DECIMAL(10,2)
 );
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES
-  ('1c1b32f0-661a-43ce-bd82-6f40e38c9839', 33, 11, 179.12, 'Fenelia Darbishire', '6 Aberg Way', 'fdarbishire0@etsy.com',
-   0, NULL);
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('dcd87396-3779-4b45-b5b1-c3fc1ee31ba7', 50, 10, 263.06, 'Georgena Slott', '8 Village Green Hill',
-        'gslott1@cargocollective.com', 2, '2017-06-09 07:06:56');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES
-  ('cbdec581-3b22-43f6-8941-0dfbb91f7159', 3, 13, 213.13, 'Olly Stansbie', '5640 Dayton Place', 'ostansbie2@i2i.jp', 1,
-   '2017-06-01 18:09:23');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('bf78c8c0-a90f-4abd-9a8c-377c6fcb9c50', 41, 10, 181.12, 'Rollins Claisse', '6102 Melrose Point',
-        'rclaisse3@upenn.edu', 1, '2017-06-06 04:44:12');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES
-  ('1a4b7cb0-f9fd-4b70-b884-2dc02a6436d0', 40, 15, 89.54, 'Homer Coneybeer', '8 Sommers Hill', 'hconeybeer4@joomla.org',
-   0, NULL);
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('9848ea28-6808-44c1-a017-c510ac45abf5', 36, 2, 9.22, 'Uriel Piatkow', '76986 Lakewood Crossing',
-        'upiatkow5@digg.com', 2, '2017-05-23 19:27:57');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES
-  ('fb067c19-ac39-451e-93b7-2b160878bdc9', 8, 11, 172.81, 'Bartholemy Vanin', '3 Barnett Hill', 'bvanin6@xinhuanet.com',
-   1, '2017-05-26 14:52:07');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('54e3fffc-1928-4db9-8abe-cbcff7e42a43', 10, 15, 267.15, 'Vikky Crosston', '31395 Thompson Point',
-        'vcrosston7@networksolutions.com', 2, '2017-06-12 14:24:20');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('05d23f58-c894-462d-8fe9-62b021f332e9', 23, 18, 85.14, 'Kerianne Skettles', '7 Anniversary Alley',
-        'kskettles8@vkontakte.ru', 2, '2017-06-09 04:46:04');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES
-  ('b64f11c0-0c50-42f4-8ad6-a3fb57f76fbd', 6, 8, 87.16, 'Esme Varey', '92 Helena Center', 'evarey9@wsj.com', 0, NULL);
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('a4b15735-4147-44db-91d1-800b1a6da287', 41, 1, 107.5, 'Aland Battaille', '84476 Little Fleur Way',
-        'abattaillea@soundcloud.com', 1, '2017-05-22 17:26:36');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES
-  ('366c4fc0-0785-423e-ab66-49199ea03db5', 44, 6, 176.94, 'Cecilius Whitby', '290 Alpine Street', 'cwhitbyb@elpais.com',
-   1, '2017-05-17 02:45:42');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('091136ed-5886-4107-a254-2175e231d86c', 44, 13, 25.33, 'Lettie Corringham', '8 Scofield Hill',
-        'lcorringhamc@uol.com.br', 2, '2017-05-17 19:15:22');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('6e178364-9102-4589-b4be-008a3148341d', 50, 7, 121.32, 'Christy De Carteret', '87 Manufacturers Drive',
-        'cded@jugem.jp', 1, '2017-05-17 20:11:40');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('8c849641-48ea-4e66-96ee-81168aa6d924', 39, 16, 136.15, 'Joelle Duffield', '05191 Crescent Oaks Way',
-        'jduffielde@zdnet.com', 0, NULL);
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('c075df49-ed17-4745-998a-d3f6778daf38', 32, 9, 295.09, 'Hermon Martland', '275 Green Ridge Center',
-        'hmartlandf@barnesandnoble.com', 2, '2017-06-10 09:02:43');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('6efa51e0-3a80-4217-80e9-d83641746cf9', 44, 14, 159.37, 'Charlot Geraudel', '53013 Fieldstone Park',
-        'cgeraudelg@abc.net.au', 2, '2017-05-25 05:03:04');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES
-  ('15f84bce-4eb0-4631-bb7e-95c1953a243e', 41, 1, 89.54, 'Stepha Bosden', '7300 Del Sol Alley', 'sbosdenh@last.fm', 1,
-   '2017-06-13 19:59:48');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('36846dde-bb2f-4f50-aeb4-ca9ad5202425', 2, 9, 123.29, 'Johnnie Bearward', '196 Towne Way',
-        'jbearwardi@slideshare.net', 2, '2017-06-01 07:43:34');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('26e6d21b-409c-4d97-a859-f905c2360432', 36, 8, 196.85, 'Legra Steinhammer', '95 Eastlawn Road',
-        'lsteinhammerj@networkadvertising.org', 0, NULL);
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES
-  ('ffa6c7cf-718b-4bc9-ae3c-c447e6562530', 49, 1, 131.09, 'Coreen Keavy', '054 Commercial Center', 'ckeavyk@discuz.net',
-   1, '2017-05-27 17:29:17');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('112b0cfd-cec4-462d-b789-d3745cd14780', 43, 3, 72.46, 'Duff Hantusch', '70166 Monterey Circle',
-        'dhantuschl@joomla.org', 1, '2017-06-05 08:22:11');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('334e4f85-4791-406e-904c-863a31957af9', 7, 4, 292.74, 'Rosy Stappard', '8 Roxbury Terrace',
-        'rstappardm@indiegogo.com', 1, '2017-06-05 13:28:29');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('736aa5b1-233e-40a9-b46d-61edb3926256', 10, 20, 187.36, 'Donetta Thorne', '87 Londonderry Place',
-        'dthornen@wikipedia.org', 1, '2017-05-29 19:54:24');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('cfd831cb-65cc-454f-bc79-54cd79b571bf', 20, 13, 118.35, 'Alane Hampton', '9 Grayhawk Trail',
-        'ahamptono@cocolog-nifty.com', 2, '2017-06-09 12:14:31');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES
-  ('491d8147-748c-44ee-b495-be9cd62d50f6', 7, 7, 176.78, 'Collete Beacon', '343 Esch Center', 'cbeaconp@freewebs.com',
-   1, '2017-06-12 02:38:24');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('2310b87f-3eea-4f9a-a4a5-ac32f7102458', 5, 17, 294.29, 'Valeria Caccavale', '9908 Karstens Avenue',
-        'vcaccavaleq@dmoz.org', 1, '2017-05-28 22:58:18');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES
-  ('e93df303-a127-4115-b916-df03fc3dd2da', 26, 12, 7.51, 'Eve Ordemann', '73 Kipling Pass', 'eordemannr@amazon.co.uk',
-   2, '2017-05-29 19:27:09');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('79680673-7bbd-41ee-9305-034c7c181c59', 44, 5, 126.16, 'Karissa Hackinge', '86762 Stuart Terrace',
-        'khackinges@creativecommons.org', 0, NULL);
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES
-  ('07aad8b0-cffc-496c-8e37-94ada36853aa', 37, 14, 277.9, 'Baxy Geggie', '43 Delaware Park', 'bgeggiet@altervista.org',
-   2, '2017-05-21 19:17:20');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES
-  ('bdbcb1ec-38f1-47a2-9c59-b4f7bbac57e4', 33, 17, 223.29, 'Amalee Tylor', '048 Arkansas Crossing', 'atyloru@mapy.cz',
-   0, NULL);
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES
-  ('0d90682f-5312-4973-8104-d1120302bb8e', 30, 6, 291.91, 'Carole Paton', '101 Sundown Street', 'cpatonv@blogspot.com',
-   0, NULL);
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('a5cc5504-85b6-42bb-9cf1-b57755d69cd1', 10, 20, 91.92, 'Lamar Collister', '25646 Derek Court',
-        'lcollisterw@unesco.org', 2, '2017-06-13 20:10:08');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES
-  ('fee83db0-c9c4-468b-9891-a1eaffab60ee', 26, 14, 222.63, 'Clementine Gumery', '603 Garrison Lane', 'cgumeryx@un.org',
-   0, NULL);
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('a1b18517-fdc5-40ba-baaa-8c535b2175a7', 29, 18, 79.71, 'Priscilla Kingswood', '9447 Sherman Terrace',
-        'pkingswoody@infoseek.co.jp', 0, NULL);
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('53843983-f795-434d-bae5-9851c95e53ab', 46, 19, 240.94, 'Reinaldos Colliar', '11861 Michigan Place',
-        'rcolliarz@rakuten.co.jp', 2, '2017-05-25 13:55:28');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('a4638cd0-197c-44c0-b23a-c5c47e00c5ba', 46, 12, 24.91, 'Ana Reames', '58713 Sunbrook Parkway',
-        'areames10@sina.com.cn', 1, '2017-05-31 00:43:35');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES
-  ('0c42cd55-3139-45d8-b51f-4f814eb8ad68', 46, 12, 81.31, 'Mickey Gaskal', '949 Pearson Way', 'mgaskal11@amazonaws.com',
-   2, '2017-05-22 20:27:20');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('ad72562f-4c09-4b2c-a1a8-479581e4b4b0', 24, 2, 156.36, 'Darrel Djordjevic', '14 Waxwing Hill',
-        'ddjordjevic12@dedecms.com', 1, '2017-06-10 08:30:12');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES
-  ('a579fdbf-fbd0-4bc9-81a8-b08de25ce4bd', 10, 8, 254.84, 'Hilliary Craig', '4 Petterle Park', 'hcraig13@reuters.com',
-   2, '2017-05-28 00:33:38');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES
-  ('3f3510f1-2f39-4bd7-812c-c0bc1f70cd5b', 3, 18, 18.35, 'Ami Jumont', '2691 Darwin Way', 'ajumont14@kickstarter.com',
-   1, '2017-05-20 23:04:28');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES
-  ('ad52e04d-b859-437b-a71a-a98a6e141838', 21, 13, 63.43, 'Niven De Luna', '93476 Del Mar Avenue', 'nde15@wikia.com', 1,
-   '2017-06-14 04:47:12');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES
-  ('f2103a0b-0352-4f80-b83d-27d50a5b3051', 20, 14, 14.01, 'Fair Nelane', '4513 Drewry Point', 'fnelane16@xrea.com', 1,
-   '2017-05-25 12:42:39');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES
-  ('fb0de37a-d1fe-461e-bf6f-45f137636988', 2, 9, 28.2, 'Amanda Gypps', '5674 Mallory Way', 'agypps17@yahoo.co.jp', 2,
-   '2017-05-21 08:46:40');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES
-  ('03b78140-4ab9-4f35-bb67-12f72550a6a0', 1, 10, 74.23, 'Vincenz Girkin', '05683 Gale Plaza', 'vgirkin18@i2i.jp', 2,
-   '2017-06-12 13:47:39');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('7e1839e1-cb60-4932-b56c-a852c59191ac', 33, 13, 9.61, 'Jeannine Drakes', '3341 Harper Crossing',
-        'jdrakes19@simplemachines.org', 1, '2017-06-13 15:22:48');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('837b87f4-1f57-4d6a-bfd5-855ae67e4a81', 39, 14, 32.01, 'Melisandra Wasylkiewicz', '12 Bartillon Plaza',
-        'mwasylkiewicz1a@zimbio.com', 0, NULL);
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('e7564ce8-c8d5-403a-8d3a-200e328a16c9', 13, 12, 105.52, 'Kristyn Motton', '7722 Morningstar Avenue',
-        'kmotton1b@newsvine.com', 2, '2017-06-03 00:11:13');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES
-  ('86f42e90-a0bf-48af-b6b7-887513cf36f6', 4, 13, 200.96, 'Leontyne Firsby', '92 Dwight Way', 'lfirsby1c@about.me', 0,
-   NULL);
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('20b1d310-f26c-43ae-9dab-225727c88538', 25, 11, 177.12, 'Taylor Dimitriev', '20 Harper Trail',
-        'tdimitriev1d@prweb.com', 0, NULL);
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('2b163b67-541e-4941-9cf1-9ebb07a97d7b', 28, 3, 246.59, 'Sheryl Elgie', '32 Golden Leaf Hill',
-        'selgie1e@thetimes.co.uk', 1, '2017-06-01 07:18:07');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES
-  ('6c45f437-8211-47f6-ab9a-9cf13ca57603', 16, 5, 68.4, 'Gay Chrstine', '6386 Longview Terrace', 'gchrstine1f@cnet.com',
-   2, '2017-05-26 08:18:15');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES
-  ('bc3daad5-43dd-4e41-9525-b5ff03e83467', 16, 6, 190.98, 'Adolphe Mutton', '8910 Melvin Court', 'amutton1g@va.gov', 0,
-   NULL);
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES
-  ('bede4113-484f-48fe-84f8-2971ea589e0d', 5, 15, 1.85, 'Niven Balaison', '872 Carioca Place', 'nbalaison1h@sbwire.com',
-   2, '2017-06-10 11:59:38');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES
-  ('8c292204-8a11-4d38-bae3-8c318665090b', 2, 7, 212.68, 'Ingrim Melesk', '65 Homewood Hill', 'imelesk1i@cbsnews.com',
-   2, '2017-05-25 12:37:25');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES
-  ('948955bd-f0da-4dc9-bc65-6c5f07c0805b', 18, 12, 39.33, 'Allistir McMillan', '57 Raven Parkway', 'amcmillan1j@vk.com',
-   2, '2017-06-09 10:38:46');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES
-  ('0d6a1eb4-2ba2-4964-9892-c556a2dcdb5c', 42, 9, 119.64, 'Isac Pavier', '0 Westerfield Road', 'ipavier1k@dmoz.org', 2,
-   '2017-05-27 21:50:57');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('993083b0-66da-43c3-8a68-83ad588bd81d', 36, 20, 141.35, 'Crin Borkett', '4087 Ridgeway Place',
-        'cborkett1l@nytimes.com', 0, NULL);
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('c07228fc-ed16-4260-8d33-a704a1c117ef', 17, 10, 158.72, 'Rakel Filipchikov', '04 Karstens Way',
-        'rfilipchikov1m@go.com', 0, NULL);
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES
-  ('9f3f255f-64a4-4df8-8187-e29f20782466', 37, 9, 205.4, 'Beck Haresnaip', '79 Scott Junction', 'bharesnaip1n@admin.ch',
-   1, '2017-06-12 22:58:17');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('b244ce17-455a-4f10-9f1f-a8fc25e9d874', 29, 13, 296.81, 'Inger Heinsius', '485 Bultman Circle',
-        'iheinsius1o@domainmarket.com', 2, '2017-06-01 07:30:42');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('4aa45305-f6b0-4c91-97ec-f51ce86a0972', 37, 13, 290.63, 'Ebeneser Frisby', '6705 Summit Circle',
-        'efrisby1p@mozilla.org', 0, NULL);
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('94275d40-fe29-400e-8af2-1ffd43e8483d', 36, 4, 111.45, 'Alexandre Pickersail', '49 Schmedeman Lane',
-        'apickersail1q@skype.com', 1, '2017-05-19 01:02:58');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('7b04081c-41ae-4260-ad78-9073e3046edb', 15, 2, 236.28, 'Jessa Toll', '45053 Mallard Drive',
-        'jtoll1r@yellowpages.com', 2, '2017-05-27 05:45:15');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES
-  ('07d094cb-c4ed-41f6-979a-c2f3260ac147', 27, 14, 91.03, 'Colette Phelps', '7047 Brentwood Trail', 'cphelps1s@fc2.com',
-   1, '2017-06-01 09:55:34');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('5c6bd49f-0828-41e2-b429-38ebcdcc955e', 35, 20, 61.31, 'Thacher Garric', '97844 Green Ridge Road',
-        'tgarric1t@soup.io', 0, NULL);
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('a9ab4eed-d1f3-4a45-8013-c6c3a18fb911', 40, 14, 19.16, 'Ewart Bubbear', '55 Southridge Alley',
-        'ebubbear1u@studiopress.com', 1, '2017-05-20 14:23:44');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES
-  ('e4edf17c-6059-4bbc-b516-0db62ec3d5e3', 15, 11, 132.28, 'Weidar Warke', '6113 Almo Road', 'wwarke1v@shareasale.com',
-   2, '2017-06-07 10:13:40');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES
-  ('709f99ac-7a75-4282-b793-7016294dae7a', 19, 12, 7.17, 'Bernie Tully', '3220 Erie Pass', 'btully1w@photobucket.com',
-   1, '2017-05-22 17:23:15');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('3bcfab6f-552e-4708-8acf-85528b3ffa90', 32, 12, 181.11, 'Berkley Vakhonin', '1 Sundown Road',
-        'bvakhonin1x@rediff.com', 0, NULL);
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('46895667-8978-437e-a3ee-50c5b97e2d0b', 13, 20, 105.28, 'Carroll Gino', '5 Lighthouse Bay Center',
-        'cgino1y@google.com', 0, NULL);
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('7ecac3eb-1551-48b5-8ef5-8c12c6e16882', 7, 17, 0.24, 'Lucien Pateman', '16 Rockefeller Trail',
-        'lpateman1z@amazon.co.uk', 2, '2017-05-25 12:43:51');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('630e1edb-3999-4d5e-b079-c389669abf03', 20, 17, 107.99, 'Ellary Felix', '85127 Graceland Hill',
-        'efelix20@unicef.org', 0, NULL);
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES
-  ('fee3efa7-47ae-4aa5-8e8f-a70cfb32a51b', 42, 14, 113.56, 'Leonid Crosen', '1 Shasta Point', 'lcrosen21@slate.com', 0,
-   NULL);
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('717d1528-11d8-41aa-9dcb-027b71094aec', 26, 9, 188.88, 'Laetitia Barrie', '43326 Portage Parkway',
-        'lbarrie22@feedburner.com', 0, NULL);
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES
-  ('a275ea2a-df31-4436-b55d-a69d15c9ed73', 17, 1, 84.02, 'Selle Lafford', '97645 Moose Plaza', 'slafford23@dion.ne.jp',
-   0, NULL);
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('cbc8f1d5-b696-41ac-a30d-47be739f4120', 29, 20, 297.18, 'Isidora Phillis', '8306 Eagle Crest Crossing',
-        'iphillis24@t.co', 1, '2017-05-20 03:22:22');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('833cff12-c0d5-4ad6-b526-add95aece30f', 12, 4, 30.18, 'Tom Croser', '7767 Bellgrove Avenue',
-        'tcroser25@macromedia.com', 1, '2017-06-13 10:59:34');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES
-  ('2a049111-a9fe-4ad4-acf2-62bab177a8bd', 13, 5, 243.82, 'Clerissa Chiplen', '872 East Trail', 'cchiplen26@hexun.com',
-   2, '2017-06-13 08:59:17');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('0c9478dd-7086-4561-ab0e-d7e9bdcce4db', 6, 2, 242.94, 'Constantine Driscoll', '4278 Cambridge Circle',
-        'cdriscoll27@wunderground.com', 2, '2017-06-02 02:31:26');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('9ccdd146-b298-46f2-a84b-68edef9d6d2c', 11, 5, 184.25, 'Rebeka Raccio', '212 Reinke Lane',
-        'rraccio28@photobucket.com', 1, '2017-06-11 05:19:54');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('b55d9c1d-1996-48d6-b17c-8add6b75e0ed', 5, 6, 226.2, 'Kimmie Mallebone', '45743 Coolidge Parkway',
-        'kmallebone29@stanford.edu', 2, '2017-06-06 21:05:43');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES
-  ('91591447-cd8e-404a-b19e-e084b1b9ff92', 43, 20, 240.96, 'Tobi Dunhill', '0983 Claremont Center', 'tdunhill2a@qq.com',
-   1, '2017-06-02 08:30:37');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES
-  ('6c43c28b-c599-4191-bd31-6386c839a48f', 8, 4, 97.77, 'Salmon Ruttgers', '15 Lawn Plaza', 'sruttgers2b@globo.com', 2,
-   '2017-05-30 07:59:55');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('bfcd48bd-db44-4094-b399-d524525c55e0', 10, 12, 103.52, 'Page Loughead', '3632 New Castle Pass',
-        'ploughead2c@mayoclinic.com', 0, NULL);
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('194a5c51-27e2-447f-b397-3db0bcdc51e2', 15, 12, 138.81, 'Jean Clearie', '41203 Debra Center',
-        'jclearie2d@123-reg.co.uk', 1, '2017-06-10 19:59:14');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('07786590-b427-4228-bfd2-b5768f470f26', 1, 6, 244.88, 'Casandra Abrahamowitcz', '1 Farragut Park',
-        'cabrahamowitcz2e@cbc.ca', 0, NULL);
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('9af7032f-aa67-49b4-9861-bee1dd414ece', 10, 12, 81.64, 'Gil Dulanty', '717 Miller Hill',
-        'gdulanty2f@dagondesign.com', 2, '2017-05-23 19:55:00');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES
-  ('97b56c4b-79e2-426f-9c38-b21cc8826a90', 37, 18, 210.67, 'Gage Pymar', '91932 Maryland Avenue', 'gpymar2g@youtu.be',
-   0, NULL);
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('7d0933a5-45a5-4131-8d0a-2ac9076eb0fd', 10, 16, 285.93, 'Yoshiko Markey', '03 Sunbrook Lane',
-        'ymarkey2h@e-recht24.de', 1, '2017-06-12 20:09:45');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES
-  ('b776437c-f6c9-41a7-9806-f0bc082a885f', 38, 15, 65.46, 'Raine Catmull', '539 Cottonwood Center', 'rcatmull2i@51.la',
-   0, NULL);
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES
-  ('7e19fe7c-7f3b-4ce2-a13b-42b166c2f192', 6, 16, 122.24, 'Dyann Dani', '0340 Jenna Court', 'ddani2j@google.com.au', 2,
-   '2017-06-01 13:23:58');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES
-  ('f6874581-15cf-4b87-b83e-ae0214f87aa5', 22, 11, 102.6, 'Roselin Gunn', '974 Daystar Circle', 'rgunn2k@noaa.gov', 0,
-   NULL);
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('b1153980-f08c-41d7-8bc1-7ef5121f7fef', 39, 20, 91.4, 'Viviyan McIlenna', '2662 Lindbergh Alley',
-        'vmcilenna2l@geocities.jp', 2, '2017-05-28 06:20:53');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('7d223269-07f9-49c5-886d-8d643d4c1036', 29, 16, 151.02, 'Ahmed Sewter', '850 Bowman Circle',
-        'asewter2m@gravatar.com', 0, NULL);
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('9482b5ca-3978-407c-a22c-a9e0993210c0', 35, 17, 154.27, 'Tamiko Kemmett', '74896 Lake View Alley',
-        'tkemmett2n@twitpic.com', 0, NULL);
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES
-  ('3abae8ae-6ab6-40f9-a5e4-8a10945df216', 21, 19, 112.7, 'Garvin Feyer', '5783 Stang Alley', 'gfeyer2o@cdbaby.com', 0,
-   NULL);
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('a5c768cb-a174-495d-9be3-7bdaeac9f3ec', 11, 9, 129.72, 'Erl Kubasek', '3 Forest Dale Trail',
-        'ekubasek2p@bizjournals.com', 2, '2017-05-26 03:32:35');
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('6afbf464-9b16-44fb-8fd0-fe8deeb471a3', 33, 16, 21.67, 'Worthington Blaylock', '829 Harper Terrace',
-        'wblaylock2q@flavors.me', 0, NULL);
-INSERT INTO store_orders (id, book_id, quantity, total_price, client_name, client_address, client_email, state, state_date)
-VALUES ('fe4f5c32-e03a-4d6a-beb1-e5513cb74624', 26, 9, 211.28, 'Nady Schaumaker', '26163 Sundown Hill',
-        'nschaumaker2r@mediafire.com', 1, '2017-06-14 15:03:21');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('c8670a2f-ba73-40b9-90ee-197a708be434', 38, 2, 177.18, null, 'Doretta Silbermann', '0 Pierstorff Alley', 'dsilbermann0@squarespace.com', 0, null);
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('4dec57f8-30e1-410a-867f-881398d1e1a5', 25, 13, 102.7, null, 'Annabela Trangmar', '895 Armistice Plaza', 'atrangmar1@statcounter.com', 0, null);
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('0ba1d337-4532-4e0b-abe0-01090dd15f85', 18, 14, 224.6, null, 'Ali Sherlock', '1 Dakota Place', 'asherlock2@yellowpages.com', 1, '2017-05-16 18:42:01');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('a2ee85ae-50e1-48fb-8089-6c86fab2918a', 16, 4, 163.85, null, 'Colver Simpole', '25 Karstens Plaza', 'csimpole3@technorati.com', 2, '2017-05-27 17:30:47');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('74f2d1b7-4815-46da-82d8-6aff1e1ea823', 16, 10, 76.82, null, 'Bidget Moorwood', '16397 Delaware Pass', 'bmoorwood4@ehow.com', 2, '2017-05-21 03:32:26');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('e6821ba9-f86f-46d0-8bf2-4b6fe448eb4d', 25, 15, 258.49, null, 'Sarine Trengrove', '077 Lotheville Trail', 'strengrove5@cargocollective.com', 1, '2017-06-09 08:55:04');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('ed30e30f-3bcc-4183-bccd-0e23ca96f4d0', 45, 2, 115.89, null, 'Carolee Skupinski', '898 Butterfield Parkway', 'cskupinski6@aol.com', 1, '2017-06-12 06:10:21');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('9ce6b2b8-4f5b-4268-a1e8-6d7b8193f8eb', 6, 16, 204.07, null, 'Mia Meaddowcroft', '51992 Bonner Way', 'mmeaddowcroft7@is.gd', 2, '2017-05-25 16:13:35');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('21837901-3bf0-4c13-88ab-9eee19aca17a', 47, 20, 272.16, null, 'Franciska Blowick', '25 Claremont Avenue', 'fblowick8@bloomberg.com', 2, '2017-05-24 17:18:22');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('3781b4b0-0422-4a1f-8844-52c02cf8bcd8', 21, 3, 163.63, 7, 'Vinita Brabender', '5591 3rd Street', 'vbrabender9@prweb.com', 2, '2017-06-08 07:49:48');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('be5722de-b672-474a-8941-ea6f5383c3d1', 34, 17, 30.18, null, 'Veda Halburton', '7953 Cambridge Circle', 'vhalburtona@ebay.co.uk', 2, '2017-06-14 11:08:00');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('0122d7bb-ddcd-47ce-b7c7-aef5998ea53b', 37, 18, 156.83, null, 'Marketa Briton', '160 Everett Drive', 'mbritonb@nhs.uk', 1, '2017-05-18 15:43:49');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('720da1d2-29c9-402d-b19d-d716b3cb4205', 34, 13, 37.81, 15, 'Raffaello Meo', '9 Sachtjen Way', 'rmeoc@marriott.com', 0, null);
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('358c7645-3ecf-45aa-81b3-de61d510b772', 5, 11, 187.63, null, 'Kathe Gittose', '20 Namekagon Trail', 'kgittosed@ft.com', 2, '2017-05-21 23:40:00');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('1b64ea1c-428c-4701-a08a-d4e5b252c4c5', 3, 4, 135.68, 0, 'Gloriana Studholme', '2 Northwestern Terrace', 'gstudholmee@intel.com', 2, '2017-05-28 11:20:54');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('064ee6d8-901a-40b9-b185-2dbce9ca19e1', 7, 3, 144.64, 7, 'Cale Grimoldby', '36916 Golf View Circle', 'cgrimoldbyf@stumbleupon.com', 0, null);
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('ffa0a85d-b699-4a59-bbe7-9e126c19aed4', 36, 10, 104.5, null, 'Krista Achurch', '46 Hoffman Crossing', 'kachurchg@wunderground.com', 2, '2017-06-10 18:38:57');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('95c76fd6-0c5b-4ec9-bbfc-aa327f724522', 36, 11, 84.76, null, 'Joel Iley', '001 Farmco Park', 'jileyh@smh.com.au', 0, null);
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('0ccbbc2f-3270-43d2-81e3-7cbf43d9d716', 25, 17, 154.04, null, 'Seymour Thurlby', '4454 Westend Hill', 'sthurlbyi@ask.com', 1, '2017-05-29 14:48:55');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('6ad3ff47-e18f-406a-b37d-aae6f666fed0', 10, 14, 286.7, null, 'Estelle Wilding', '39 Onsgard Park', 'ewildingj@discovery.com', 2, '2017-05-21 07:10:27');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('cdd03e3c-66eb-45a1-a888-c043e6dba570', 1, 19, 40.71, null, 'Myca Hemeret', '19 Eliot Lane', 'mhemeretk@ow.ly', 2, '2017-06-14 09:18:27');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('d257a813-cf84-43f7-890a-b3a83b0c55c8', 11, 15, 165.14, 22, 'Ricardo Keilty', '75 Oak Valley Circle', 'rkeiltyl@virginia.edu', 1, '2017-06-09 21:18:54');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('7428a95f-2d90-4ae4-9904-ca4fe891e92f', 47, 12, 113.06, null, 'Buddy Shieldon', '157 Rockefeller Avenue', 'bshieldonm@nymag.com', 0, null);
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('358fd732-f244-479c-ba03-ee3e667b9208', 29, 3, 125.76, null, 'Athena Bowshire', '75 Duke Hill', 'abowshiren@omniture.com', 2, '2017-06-10 23:29:58');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('7bc4970e-f025-4990-87de-d1298ec292df', 4, 10, 25.44, null, 'Roi Hessentaler', '4075 Thackeray Park', 'rhessentalero@shop-pro.jp', 1, '2017-06-11 16:35:20');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('b39e7b10-f1ee-47ac-a530-b8cbc92c8961', 27, 15, 46.47, 16, 'Taddeusz Kentwell', '5894 Debs Road', 'tkentwellp@ihg.com', 2, '2017-05-26 06:47:38');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('93815a46-0aff-414b-84c5-7c451176e910', 11, 6, 213.91, null, 'Felicity Stanistrete', '0 Bultman Circle', 'fstanistreteq@answers.com', 0, null);
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('668202b0-75cd-45ca-b49d-e425e38c39c8', 2, 8, 148.7, 24, 'Geoff Lauks', '9027 Pankratz Park', 'glauksr@rediff.com', 0, null);
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('22650865-ab01-46f7-836e-34d75ef17e95', 10, 12, 205.85, null, 'Camala Torpie', '354 Union Alley', 'ctorpies@marriott.com', 1, '2017-06-11 00:10:39');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('6262a462-da17-41aa-be70-65bba79fe367', 49, 4, 214.45, null, 'Ashli Elcoux', '561 Orin Parkway', 'aelcouxt@aol.com', 0, null);
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('b2cb0e3a-0177-4edb-9cf6-3720a93ce09b', 38, 13, 110.83, 8, 'Ayn Kingsnod', '7033 Dakota Court', 'akingsnodu@marriott.com', 0, null);
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('4e30073e-ccc9-498b-a912-ddc1813c33a1', 10, 11, 23.76, 9, 'Giovanni Payton', '12638 Ridgeway Place', 'gpaytonv@stumbleupon.com', 0, null);
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('1100e10b-2f1a-4e00-b316-f50ecc80e6b8', 35, 11, 176.6, null, 'Madelon Labroue', '99 Tennessee Avenue', 'mlabrouew@patch.com', 2, '2017-06-04 18:34:40');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('1ed6d7b2-4023-4fda-a586-95bc7878267b', 39, 12, 30.31, 15, 'Vittorio Elders', '9 Vahlen Point', 'veldersx@toplist.cz', 0, null);
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('bab7a6e0-123a-4ab9-acf4-6e9673c3a63e', 28, 7, 114.15, 7, 'Mackenzie Paulino', '3 Aberg Court', 'mpaulinoy@fotki.com', 1, '2017-05-23 15:32:47');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('06786b6a-88bd-4304-b5ed-9f53058565e3', 6, 11, 234.54, null, 'Emmy Frantsev', '1 Shoshone Trail', 'efrantsevz@typepad.com', 1, '2017-05-16 11:59:10');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('ac7b37cd-075b-4c81-9f58-126d39ec448a', 31, 14, 257.32, 0, 'Maxwell Josefsen', '1 Shoshone Terrace', 'mjosefsen10@unblog.fr', 0, null);
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('d10400a1-a3be-4d9c-bdaa-512858b39320', 19, 17, 32.97, null, 'Bertina Stoke', '3 Duke Road', 'bstoke11@nasa.gov', 0, null);
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('b401d495-e9f1-4c3f-90e2-1aadf7e81804', 45, 12, 204.17, null, 'Aguste Blaschek', '1608 Heffernan Plaza', 'ablaschek12@latimes.com', 0, null);
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('b51036ba-9dfc-45c7-924d-80c6e69145d0', 12, 6, 45.33, 23, 'Gabriella Woodman', '36976 Morrow Park', 'gwoodman13@stumbleupon.com', 1, '2017-06-14 04:31:54');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('be53b57f-44ba-43f3-ae3c-baebc0eaa9a4', 22, 8, 268.95, null, 'Newton MacGall', '3 Hooker Alley', 'nmacgall14@jigsy.com', 2, '2017-05-26 20:26:45');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('7ca638f2-b37e-403b-a93c-e419b537b929', 38, 8, 278.65, null, 'Angelia Bonhill', '755 Logan Parkway', 'abonhill15@home.pl', 0, null);
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('773f5959-7795-4105-963c-ea1b09960506', 10, 7, 93.92, 9, 'Lacie Hedgeley', '967 Hoepker Pass', 'lhedgeley16@ox.ac.uk', 0, null);
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('406cdad8-62d2-4124-b595-1977c3518293', 46, 15, 252.73, 9, 'Greta Chesshyre', '5939 Farwell Parkway', 'gchesshyre17@tripadvisor.com', 0, null);
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('e6cb71d8-b135-4b9a-8abb-6b79e9d70469', 8, 19, 88.21, null, 'Rosemaria Connah', '0 Mcguire Hill', 'rconnah18@sfgate.com', 2, '2017-05-22 05:09:15');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('c1581f90-9885-4151-99e8-2a5b1c444afe', 6, 20, 112.56, null, 'Chastity Dabnor', '842 Hintze Circle', 'cdabnor19@slate.com', 2, '2017-06-04 14:02:18');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('a8003eaa-022f-47ff-add8-79710fdacabf', 11, 18, 258.35, null, 'Dina Mewis', '142 1st Point', 'dmewis1a@google.nl', 2, '2017-06-07 17:09:50');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('6ab8f9fe-6a57-4803-9f03-ec89000ad2d9', 28, 14, 277.73, 16, 'Tammie Acres', '4 Bashford Alley', 'tacres1b@chron.com', 1, '2017-06-04 10:20:30');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('ba31c510-7008-464a-865c-a2c28db2047a', 46, 3, 237.41, null, 'Kahaleel Smewings', '86995 Emmet Parkway', 'ksmewings1c@squarespace.com', 1, '2017-06-02 04:24:20');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('773d8d65-35c2-43d0-9942-380f1c853d46', 23, 3, 291.61, null, 'Ruthi MacGilrewy', '2 Briar Crest Alley', 'rmacgilrewy1d@techcrunch.com', 1, '2017-06-04 10:51:34');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('626ea2d5-14a7-4016-9563-63f6e021e0ff', 20, 6, 93.41, null, 'Lyndel Wyldes', '2 Graceland Pass', 'lwyldes1e@walmart.com', 1, '2017-06-09 07:10:00');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('3c905628-eff3-4fc1-a507-ce9e8386d6ca', 18, 14, 292.6, null, 'Arri Earley', '84 Hooker Street', 'aearley1f@google.cn', 0, null);
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('5e26b918-b2f8-4bbf-abcf-aafd98b21963', 46, 15, 168.07, 8, 'Cecilia Thulborn', '20 Monterey Pass', 'cthulborn1g@angelfire.com', 1, '2017-05-23 09:47:27');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('8042208d-2fa5-40fb-83b1-35f83d571e13', 2, 11, 213.97, null, 'Annabelle Blundell', '4 Starling Junction', 'ablundell1h@about.me', 0, null);
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('e8957594-1205-437d-8219-695c6e6104dd', 17, 5, 210.66, null, 'Gordy Forster', '30993 4th Drive', 'gforster1i@gnu.org', 0, null);
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('45712469-f6aa-4a83-a09d-d5edee3c1a82', 49, 7, 178.61, 2, 'Rose Nolder', '3850 Bowman Drive', 'rnolder1j@reference.com', 2, '2017-05-20 18:53:49');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('dcacdc2c-e103-4afd-9c58-167655a3b864', 38, 14, 167.81, null, 'Susana Boam', '05356 Redwing Avenue', 'sboam1k@booking.com', 2, '2017-05-27 18:13:37');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('badb9309-b904-489f-a859-45acb8ed0961', 33, 20, 48.35, null, 'Thomasa Brabbins', '54 Hazelcrest Place', 'tbrabbins1l@huffingtonpost.com', 1, '2017-06-03 09:40:47');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('a684c275-f322-4fb3-84a1-76e09f04b87b', 30, 15, 35.83, null, 'Fran Slamaker', '0 Park Meadow Circle', 'fslamaker1m@edublogs.org', 0, null);
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('459a6d63-dcaf-479a-866d-8b335db17e3a', 23, 11, 240.46, null, 'Farrell Robillard', '8904 Anthes Court', 'frobillard1n@mediafire.com', 2, '2017-05-18 02:40:34');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('9efbd04f-af9c-4e21-b50b-d5c863275ed7', 14, 16, 111.63, 13, 'Val Harborow', '3682 Clyde Gallagher Plaza', 'vharborow1o@cyberchimps.com', 2, '2017-06-09 08:11:46');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('e231fa5f-5ffd-417f-af94-6853e6c6184d', 23, 12, 155.94, 13, 'Fairleigh Toombes', '8907 Susan Way', 'ftoombes1p@addthis.com', 0, null);
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('d1606f55-4c9b-4fbf-8e58-a65fd98c5eb0', 50, 2, 175.86, null, 'Keslie Rome', '11075 Morning Avenue', 'krome1q@bigcartel.com', 1, '2017-05-16 16:05:05');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('c34531e9-baea-4dc6-b4eb-1598cecd759f', 42, 8, 119.15, null, 'Levy Hamblyn', '244 Mendota Road', 'lhamblyn1r@123-reg.co.uk', 2, '2017-06-03 13:34:22');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('6b0b3caf-408e-490a-9dfc-5f097f392584', 33, 10, 151.74, 10, 'Bram Twinberrow', '611 Sugar Road', 'btwinberrow1s@sciencedirect.com', 1, '2017-05-28 07:35:50');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('de4518f2-9473-4739-b0e0-5c0d7baecdca', 27, 17, 116.57, null, 'Freddy Brimman', '82257 Thackeray Pass', 'fbrimman1t@altervista.org', 1, '2017-05-28 11:19:04');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('a2a2972f-65c1-4dd2-a93a-6b02f56daa93', 46, 10, 101.64, null, 'Winn Lideard', '8166 Trailsway Lane', 'wlideard1u@sakura.ne.jp', 2, '2017-06-11 06:59:11');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('26852120-05b6-49a3-a55f-6ef19d9f8a02', 33, 4, 57.79, null, 'Galen Ferrettini', '2 Tomscot Park', 'gferrettini1v@apache.org', 2, '2017-06-05 01:40:48');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('9d355115-69bf-4ef8-b077-346027d62d96', 17, 11, 68.91, 1, 'Tatiana Collman', '106 Lerdahl Street', 'tcollman1w@discovery.com', 1, '2017-06-05 07:01:22');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('c2c9a008-eea2-4264-a080-3ef8e74dcd58', 13, 15, 236.21, null, 'Eileen Devereux', '4 Shelley Terrace', 'edevereux1x@biglobe.ne.jp', 1, '2017-06-11 17:47:38');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('a148d7b8-73fd-4026-8fe0-5e7fc48ede2e', 44, 7, 87.29, null, 'Lynn Plail', '4585 Buena Vista Trail', 'lplail1y@dyndns.org', 0, null);
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('6f521e66-718c-491b-9d61-b466199c9a8d', 38, 5, 40.89, null, 'Lorens Glassborow', '95 Crowley Point', 'lglassborow1z@addtoany.com', 2, '2017-05-17 08:12:20');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('527b8ee6-785c-40b7-a982-7619ddeb0e6e', 41, 12, 187.53, null, 'Gracie Proven', '379 Lukken Alley', 'gproven20@e-recht24.de', 1, '2017-06-07 00:06:55');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('e559e5d8-4de2-4baa-b389-5c0da9306207', 42, 15, 240.33, null, 'Myer Lingwood', '1 Vermont Pass', 'mlingwood21@patch.com', 1, '2017-06-10 17:21:11');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('f3687b1c-4c9d-42f3-afb0-b350b6c0c095', 28, 2, 172.26, null, 'Gwenette Scriver', '8 Cascade Park', 'gscriver22@psu.edu', 1, '2017-06-06 10:20:49');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('d89c0756-4c87-49ce-ae06-be36bbb58e1d', 43, 11, 228.18, null, 'Giulietta Shannahan', '16305 Claremont Way', 'gshannahan23@ovh.net', 0, null);
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('178a97c9-d1d8-4ec0-84ca-452dd7b2d5de', 22, 19, 201.86, 2, 'Jarrad Marciskewski', '19 Buena Vista Road', 'jmarciskewski24@weebly.com', 2, '2017-05-27 17:29:50');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('cf677ed5-9b86-4a0d-afbf-a07801ed2223', 18, 12, 87.3, null, 'Beau Nairn', '5285 Birchwood Center', 'bnairn25@archive.org', 0, null);
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('355fad2f-5bb3-4258-bee3-117fff1e9fc4', 4, 5, 127.18, null, 'Cybill Sjollema', '6 Shoshone Park', 'csjollema26@photobucket.com', 2, '2017-05-26 13:27:53');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('51ab9d7a-8c97-414b-bcf7-05bbb598cb23', 26, 5, 299.34, null, 'Simeon Korlat', '2290 Mallard Park', 'skorlat27@google.pl', 0, null);
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('948c3a74-995c-4782-a74b-cf5250b4a876', 10, 2, 109.88, null, 'Chadd Bouts', '735 Elmside Pass', 'cbouts28@sciencedirect.com', 2, '2017-06-12 18:19:49');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('fd8a7605-8eec-4018-9a21-78abe395eeb4', 1, 10, 126.91, null, 'Karola Bussy', '92 Kings Court', 'kbussy29@prlog.org', 2, '2017-05-19 03:04:16');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('198fb57d-1499-47fd-8009-bf86acf7345e', 19, 9, 88.46, 5, 'Cletus Blues', '9278 Schiller Center', 'cblues2a@hhs.gov', 1, '2017-06-12 07:12:11');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('fec22018-a591-4ac9-8cf3-4100a4d321a6', 7, 19, 40.24, null, 'Johnathan Dowse', '525 Service Alley', 'jdowse2b@google.com.br', 0, null);
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('4664372a-ff30-4f5c-942e-97d8324c16c6', 46, 18, 291.22, null, 'Morganica cornhill', '32 Eagle Crest Court', 'mcornhill2c@microsoft.com', 1, '2017-05-31 12:16:28');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('61351347-79e1-430d-8c41-e9cdb967cf6c', 22, 8, 299.57, null, 'Damien Tarling', '6822 Dwight Place', 'dtarling2d@senate.gov', 2, '2017-05-21 03:34:07');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('26e64cd0-af8b-4725-815e-f184c5b0fede', 1, 9, 207.64, null, 'Miof mela Reveley', '6 Northfield Junction', 'mmela2e@amazonaws.com', 1, '2017-06-11 09:20:07');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('23c8b930-eafc-4dad-b1ca-f93ec6dad9ca', 31, 8, 282.55, null, 'Dorree Stoney', '01971 Dexter Crossing', 'dstoney2f@comcast.net', 1, '2017-05-17 03:13:44');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('e083010e-7138-4f7e-91b7-93114db1af09', 33, 11, 152.37, 3, 'Antonino Maffini', '291 Starling Parkway', 'amaffini2g@mediafire.com', 1, '2017-05-29 10:59:41');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('46b0a04b-75f2-4691-b74c-7168a82d3f6c', 26, 9, 16.06, null, 'Brandon Fante', '60 Hoard Park', 'bfante2h@sciencedaily.com', 0, null);
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('257c790e-8722-4a36-9399-583320358ecb', 29, 1, 16.37, 23, 'Marni Lakey', '4 Bluestem Avenue', 'mlakey2i@hostgator.com', 2, '2017-06-07 08:56:42');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('f74b9258-b555-4b25-a50e-b79e40f2e6ad', 49, 6, 253.64, null, 'Cassandry Waldock', '38479 Eggendart Street', 'cwaldock2j@networkadvertising.org', 0, null);
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('c9ccb786-a8ce-42ab-89e7-d17d950573a7', 26, 6, 195.33, null, 'Hervey Aberkirder', '67 Eliot Junction', 'haberkirder2k@slideshare.net', 0, null);
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('4194faca-c4d4-45d8-9cfc-1da279009b10', 48, 5, 46.7, 20, 'Madelina Grammer', '8 Thackeray Park', 'mgrammer2l@google.ca', 2, '2017-05-20 07:51:28');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('43680903-92d5-49bf-8a7d-a11062a17495', 31, 6, 282.56, 20, 'Margaret Arkwright', '9 Kennedy Point', 'markwright2m@patch.com', 2, '2017-06-04 13:57:31');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('e94ca151-4673-4fb1-a960-d15d92780853', 3, 20, 154.64, 14, 'Laryssa Obern', '060 Cardinal Drive', 'lobern2n@mac.com', 1, '2017-05-19 11:55:17');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('06c0077c-3eda-4c2f-ba96-d4d4da432db5', 47, 12, 7.26, null, 'Bordie Phebee', '7594 Service Trail', 'bphebee2o@hud.gov', 2, '2017-05-23 10:26:12');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('06ff0012-1c31-470c-a79f-f039a0b312cb', 49, 16, 248.86, null, 'Ransell Barrott', '57440 Darwin Alley', 'rbarrott2p@ning.com', 0, null);
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('4dd756af-3192-46f1-bc6c-4ab011c261ec', 8, 14, 153.12, null, 'Harman Enoksson', '04 Cherokee Place', 'henoksson2q@patch.com', 2, '2017-06-13 04:23:31');
+insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('0aaafb08-fa9c-456f-baba-d40d688d445e', 22, 13, 165.81, null, 'Enrichetta Halksworth', '1934 Shelley Junction', 'ehalksworth2r@state.gov', 0, null);
