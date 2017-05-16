@@ -5,13 +5,13 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import tdin.Core;
 
+import javax.ws.rs.core.Response;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.util.*;
 
-/**
- * Created by joaos on 16/05/2017.
- */
 public class StockHandler {
 
     private static StockHandler instance;
@@ -71,17 +71,17 @@ public class StockHandler {
         }
     }
 
-    public void addBookStock(int bookID, int quantity) {
+    public boolean addBookStock(int bookID, int quantity) {
         int currentStock;
         try {
             currentStock = getBookStock(bookID);
         } catch (SQLException e) {
             e.printStackTrace();
-            return;
+            return false;
         }
 
         if (currentStock == -1) { // Insert in stock database
-            DatabaseAPI.executeInsertion(
+            return DatabaseAPI.executeInsertion(
                     Core.getInstance().getDatabase(),
                     "stock",
                     new HashMap<String, Object>() {{
@@ -91,14 +91,14 @@ public class StockHandler {
             );
         } else { // Update current stock
             currentStock += quantity;
-            DatabaseAPI.executeUpdate(
+            return DatabaseAPI.executeUpdate(
                     Core.getInstance().getDatabase(),
                     "stock",
                     Collections.singletonList("quantity"),
                     Collections.singletonList(currentStock),
                     Collections.singletonList("book_id"),
                     Collections.singletonList(bookID)
-            );
+            ) == 1;
         }
     }
 
@@ -193,5 +193,42 @@ public class StockHandler {
                     put("date", dispatchDate);
                 }}
         ) ? uuid : null;
+    }
+
+    public boolean acceptIncomingBookStock(UUID id) throws SQLException, ParseException {
+        ResultSet result = DatabaseAPI.executeQuery(
+                Core.getInstance().getDatabase(),
+                "incoming_stock",
+                Collections.singletonList("*"),
+                Collections.singletonList("id"),
+                Collections.singletonList(id.toString()));
+
+        if (!result.next()) {
+            return false;
+        }
+
+        // Get the stock that is being accepted
+        JSONObject incomingStock = parseIncomingBookStockFromSQL(result);
+        int bookID = incomingStock.has("bookID") ? incomingStock.getInt("bookID") : -1;
+        int quantity = incomingStock.has("quantity") ? incomingStock.getInt("quantity") : -1;
+        Date dispatchDate = incomingStock.has("dispatchDate") ? (Date)incomingStock.get("dispatchDate") : null;
+        if (bookID == -1 || quantity == -1 || dispatchDate == null) {
+            return false;
+        }
+
+        if(dispatchDate.compareTo(new Date()) > 1) {
+            throw new RuntimeException("Cannot accept an incoming request that has not arrived yet");
+        }
+
+        if(!addBookStock(bookID, quantity)) {
+            return false;
+        }
+
+        return DatabaseAPI.executeDeletation(
+                Core.getInstance().getDatabase(),
+                "incoming_stock",
+                Collections.singletonList("id"),
+                Collections.singletonList(id.toString())
+        ) == 1;
     }
 }
