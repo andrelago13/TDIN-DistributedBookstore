@@ -2,6 +2,9 @@ package model;
 
 import org.json.JSONObject;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  * Created by joaos on 15/05/2017.
  */
@@ -70,6 +73,21 @@ public class Book {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public static Book getOrderFromSQL(ResultSet r) throws SQLException {
+        Book book = new Book(r.getInt(ID_COLUMN),
+                r.getString(ISBN_COLUMN),
+                r.getString(NAME_COLUMN),
+                r.getString(AUTHOR_COLUMN),
+                r.getDouble(PRICE_COLUMN));
+
+        return book;
+    }
+
+    @Override
+    public String toString() {
+        return toJSON().toString();
     }
 
     public JSONObject toJSON() {

@@ -30,7 +30,7 @@ public class StoreBookOrderList {
     public StoreBookOrderList(JSONObject json) {
         JSONArray list = json.getJSONArray(ORDERS_KEY);
         orders = new ArrayList<>();
-        for(int i = 0; i < list.length(); ++i) {
+        for (int i = 0; i < list.length(); ++i) {
             orders.add(new StoreBookOrder(list.getJSONObject(i)));
         }
     }
@@ -39,11 +39,16 @@ public class StoreBookOrderList {
         orders.add(order);
     }
 
+    @Override
+    public String toString() {
+        return toJSON().toString();
+    }
+
     public JSONObject toJSON() {
         JSONObject result = new JSONObject();
 
         JSONArray list = new JSONArray();
-        for(BookOrder bo : orders) {
+        for (BookOrder bo : orders) {
             list.put(bo.toJSON());
         }
         result.put(ORDERS_KEY, list);

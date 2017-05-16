@@ -8,7 +8,7 @@ public class ModelSetup {
     private static boolean setup = false;
 
     public static boolean maybeSetup() {
-        if(setup) {
+        if (setup) {
             return false;
         }
 

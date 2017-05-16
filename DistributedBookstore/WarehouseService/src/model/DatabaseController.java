@@ -12,7 +12,7 @@ public class DatabaseController {
     private static DatabaseController instance;
 
     public static DatabaseController getInstance() {
-        if(instance == null) {
+        if (instance == null) {
             instance = new DatabaseController();
         }
 
@@ -56,7 +56,7 @@ public class DatabaseController {
         try {
             Statement statement = connection.createStatement();
             ResultSet results = statement.executeQuery("SELECT * FROM warehouse_orders ORDER BY created_at DESC");
-            while(results.next()) {
+            while (results.next()) {
                 list.addOrder(BookOrder.getOrderFromSQL(results));
             }
         } catch (SQLException e) {
@@ -95,13 +95,13 @@ public class DatabaseController {
         try {
             Statement statement = connection.createStatement();
             ResultSet results = statement.executeQuery("SELECT state FROM warehouse_orders WHERE id = '" + id + "'");
-            if(!results.next()) {
+            if (!results.next()) {
                 return false;
             }
 
             int state = results.getInt("state");
 
-            switch(BookOrder.State.values()[state]) {
+            switch (BookOrder.State.values()[state]) {
                 case WAITING_EXPEDITION:
                     return setOrderDispatchDate(id);
                 case WILL_DISPATCH:
@@ -168,7 +168,7 @@ public class DatabaseController {
             Statement statement = connection.createStatement();
             ResultSet results = statement.executeQuery("SELECT * FROM users WHERE id = "
                     + userID + " AND password = " + password);
-            if(results.next())
+            if (results.next())
                 return true;
         } catch (SQLException e) {
             e.printStackTrace();

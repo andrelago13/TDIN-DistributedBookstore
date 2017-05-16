@@ -1,8 +1,6 @@
 package tdin.handlers;
 
 import database.DatabaseAPI;
-import model.BookOrder;
-import model.BookOrderList;
 import model.StoreBookOrder;
 import model.StoreBookOrderList;
 import tdin.Core;
@@ -11,7 +9,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.ZoneOffset;
 import java.util.*;
 
 /**
@@ -41,7 +38,7 @@ public class OrdersHandler {
                 Collections.singletonList("id"),
                 Collections.<Object>singletonList(id.toString()));
 
-        if(!result.next())
+        if (!result.next())
             return null;
 
         return StoreBookOrder.getOrderFromSQL(result);
@@ -62,7 +59,7 @@ public class OrdersHandler {
     }
 
     public boolean createOrder(final StoreBookOrder bookOrder) {
-        if(Core.getInstance().hasStock(bookOrder.getBookID(), bookOrder.getQuantity())) {
+        if (Core.getInstance().hasStock(bookOrder.getBookID(), bookOrder.getQuantity())) {
             bookOrder.willDispatch(Date.from(LocalDateTime.ofInstant(new Date().toInstant(), ZoneId.systemDefault()).plusDays(1).atZone(ZoneId.systemDefault()).toInstant()));
             Core.getInstance().removeFromStock(bookOrder.getBookID(), bookOrder.getQuantity());
         } else {
@@ -72,8 +69,7 @@ public class OrdersHandler {
         return DatabaseAPI.executeInsertion(
                 Core.getInstance().getDatabase(),
                 "store_orders",
-                new HashMap<String, Object>()
-                {{
+                new HashMap<String, Object>() {{
                     put(StoreBookOrder.ORDER_ID_COLUMN, bookOrder.getOrderID().toString());
                     put(StoreBookOrder.BOOK_ID_COLUMN, bookOrder.getBookID());
                     put(StoreBookOrder.QUANTITY_COLUMN, bookOrder.getQuantity());

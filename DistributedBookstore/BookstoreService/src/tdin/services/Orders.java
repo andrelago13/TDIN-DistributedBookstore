@@ -27,16 +27,16 @@ public class Orders {
         }
 
         BookOrder bookOrder = OrdersHandler.getInstance().getBookOrder(uuid);
-        if(bookOrder == null) {
+        if (bookOrder == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
-        return Response.ok(bookOrder.toJSON().toString()).build();
+        return Response.ok(bookOrder.toString()).build();
     }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getOrders() throws SQLException {
-        return Response.ok(OrdersHandler.getInstance().getBookOrders().toJSON().toString()).build();
+        return Response.ok(OrdersHandler.getInstance().getBookOrders().toString()).build();
     }
 
 
@@ -44,7 +44,7 @@ public class Orders {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createOrder(String jsonRequest) {
         StoreBookOrder bookOrder = new StoreBookOrder(new JSONObject(jsonRequest));
-        if(OrdersHandler.getInstance().createOrder(bookOrder)) {
+        if (OrdersHandler.getInstance().createOrder(bookOrder)) {
             return Response.created(URI.create("orders/" + bookOrder.getOrderID().toString())).build();
         } else {
             return Response.serverError().build();

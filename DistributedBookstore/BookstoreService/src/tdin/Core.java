@@ -15,14 +15,16 @@ import java.util.Map;
  */
 public class Core {
     private static Core instance;
+
     public static Core getInstance() {
-        if(instance == null) {
+        if (instance == null) {
             instance = new Core();
         }
         return instance;
     }
 
     private Database database;
+
     public Database getDatabase() {
         return database;
     }
@@ -51,16 +53,16 @@ public class Core {
                 "stock",
                 Collections.singletonList("*")
         );
-        while(result.next()) {
+        while (result.next()) {
             stock.put(result.getInt("book_id"), result.getInt("quantity"));
         }
     }
 
     public void addStock(final int bookID, int quantity) {
-        if(quantity <= 0) {
+        if (quantity <= 0) {
             throw new RuntimeException("The quantity must be a positive value");
         }
-        if(stock.containsKey(bookID)) {
+        if (stock.containsKey(bookID)) {
             quantity += stock.get(bookID);
             DatabaseAPI.executeUpdate(
                     this.database,
@@ -69,14 +71,13 @@ public class Core {
                     Collections.<Object>singletonList(quantity),
                     Collections.singletonList("book_id"),
                     Collections.<Object>singletonList(bookID)
-                    );
+            );
         } else {
             final int finalQuantity = quantity;
             DatabaseAPI.executeInsertion(
                     this.database,
                     "stock",
-                    new HashMap<String, Object>()
-                    {{
+                    new HashMap<String, Object>() {{
                         put("book_id", bookID);
                         put("quantity", finalQuantity);
                     }}
@@ -87,7 +88,7 @@ public class Core {
     }
 
     public void removeFromStock(int bookID, int quantity) {
-        if(!hasStock(bookID, quantity)) {
+        if (!hasStock(bookID, quantity)) {
             throw new RuntimeException("There are not enough items in stock");
         }
 

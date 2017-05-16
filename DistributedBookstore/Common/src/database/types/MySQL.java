@@ -9,6 +9,7 @@ public class MySQL extends Database {
 
     /**
      * Constructor of MySQL
+     *
      * @param hostname hostname of the MySQL
      * @param port     port of the MySQL
      * @param database database of the MySQL

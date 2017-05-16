@@ -4,7 +4,6 @@ import org.json.JSONObject;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -12,7 +11,7 @@ import java.util.UUID;
  */
 public class StoreBookOrder extends BookOrder {
 
-    public final static String TOTAL_PRICE_KEY= "totalPrice";
+    public final static String TOTAL_PRICE_KEY = "totalPrice";
     public final static String TOTAL_PRICE_COLUMN = "total_price";
 
     protected double totalPrice;
@@ -52,6 +51,11 @@ public class StoreBookOrder extends BookOrder {
 
     public double getTotalPrice() {
         return totalPrice;
+    }
+
+    @Override
+    public String toString() {
+        return toJSON().toString();
     }
 
     public JSONObject toJSON() {

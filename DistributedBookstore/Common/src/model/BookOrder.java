@@ -66,7 +66,7 @@ public class BookOrder {
         this.clientEmail = clEmail;
 
         this.state = state;
-        if(dateTime < 0) {
+        if (dateTime < 0) {
             stateDate = null;
         } else {
             stateDate = new Date(dateTime);
@@ -106,7 +106,7 @@ public class BookOrder {
         this.clientAddress = json.has(CLIENT_ADDRESS_KEY) ? json.getString(CLIENT_ADDRESS_KEY) : null;
         this.clientEmail = json.has(CLIENT_EMAIL_KEY) ? json.getString(CLIENT_EMAIL_KEY) : null;
         this.state = json.has(STATE_KEY) ? State.values()[json.getInt(STATE_KEY)] : State.WAITING_EXPEDITION;
-        if(this.state != State.WAITING_EXPEDITION) {
+        if (this.state != State.WAITING_EXPEDITION) {
             stateDate = json.has(STATE_DATE_KEY) ? new Date(json.getLong(STATE_DATE_KEY)) : null;
         } else {
             stateDate = null;
@@ -159,6 +159,11 @@ public class BookOrder {
         stateDate = date;
     }
 
+    @Override
+    public String toString() {
+        return toJSON().toString();
+    }
+
     public JSONObject toJSON() {
         JSONObject result = new JSONObject();
 
@@ -169,7 +174,7 @@ public class BookOrder {
         result.put(CLIENT_ADDRESS_KEY, clientAddress);
         result.put(CLIENT_EMAIL_KEY, clientEmail);
         result.put(STATE_KEY, state.ordinal());
-        if(stateDate != null) {
+        if (stateDate != null) {
             result.put(STATE_DATE_KEY, stateDate.getTime());
         } else {
             result.put(STATE_DATE_KEY, JSONObject.NULL);

@@ -9,6 +9,7 @@ public class OracleSQL extends Database {
 
     /**
      * Constructor of OracleSQL
+     *
      * @param hostname hostname of the OracleSQL
      * @param port     port of the OracleSQL
      * @param database database of the OracleSQL

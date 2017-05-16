@@ -97,7 +97,7 @@ public abstract class Database {
      * Reconnect to the database if needed
      */
     public void reconnect() {
-        if(isClosed()) {
+        if (isClosed()) {
             try {
                 connect();
             } catch (SQLException | ClassNotFoundException e) {
