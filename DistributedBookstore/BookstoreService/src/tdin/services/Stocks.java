@@ -119,10 +119,8 @@ public class Stocks {
             return Response.serverError().build();
         }
 
-        JSONObject bookStock = new JSONObject();
-        int bookID = incomingStock.getInt("bookID");
-        bookStock.put("bookID", bookID);
-        bookStock.put("quantity", StockHandler.getInstance().getBookStock(bookID));
-        return Response.accepted(bookStock.toString()).build();
+        // TODO: Fulfil pending orders
+
+        return Response.accepted().build();
     }
 }

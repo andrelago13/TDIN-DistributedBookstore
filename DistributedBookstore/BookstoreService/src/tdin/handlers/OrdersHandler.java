@@ -7,8 +7,11 @@ import tdin.Core;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalUnit;
 import java.util.*;
 
 /**
@@ -61,7 +64,8 @@ public class OrdersHandler {
     public boolean createOrder(final StoreBookOrder bookOrder) {
         StockHandler stockHandler = StockHandler.getInstance();
         if (stockHandler.hasBookStock(bookOrder.getBookID(), bookOrder.getQuantity())) {
-            bookOrder.willDispatch(Date.from(LocalDateTime.ofInstant(new Date().toInstant(), ZoneId.systemDefault()).plusDays(1).atZone(ZoneId.systemDefault()).toInstant()));
+            Timestamp timestamp = Timestamp.from(new Date().toInstant().plus(1, ChronoUnit.DAYS));
+            bookOrder.dispatched(timestamp);
             stockHandler.removeBookStock(bookOrder.getBookID(), bookOrder.getQuantity());
         } else {
             // TODO: Create request for stock to the warehouse

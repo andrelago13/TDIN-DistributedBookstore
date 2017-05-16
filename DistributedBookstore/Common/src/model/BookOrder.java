@@ -4,6 +4,7 @@ import org.json.JSONObject;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
@@ -15,7 +16,7 @@ public class BookOrder {
 
     public static enum State {
         WAITING_EXPEDITION,
-        WILL_DISPATCH,
+        SHOULD_DISPATCH,
         DISPATCHED
     }
 
@@ -35,7 +36,7 @@ public class BookOrder {
     protected int bookID;
     protected int quantity;
     protected State state;
-    protected Date stateDate;
+    protected Timestamp stateDate;
 
     public BookOrder(int bookID, int quantity) {
         this(UUID.randomUUID(), bookID, quantity, State.WAITING_EXPEDITION, -1);
@@ -55,10 +56,8 @@ public class BookOrder {
         this.quantity = quantity;
 
         this.state = state;
-        if (dateTime < 0) {
-            stateDate = Calendar.getInstance().getTime();
-        } else {
-            stateDate = new Date(dateTime);
+        if (dateTime > 0) {
+            stateDate = new Timestamp(dateTime);
         }
     }
 
@@ -71,13 +70,12 @@ public class BookOrder {
         switch (state) {
             case WAITING_EXPEDITION:
                 order.state = State.WAITING_EXPEDITION;
-                order.stateDate = r.getDate(STATE_DATE_COLUMN);
                 break;
             case DISPATCHED:
-                order.dispatched(r.getDate(STATE_DATE_COLUMN));
+                order.dispatched(r.getTimestamp(STATE_DATE_COLUMN));
                 break;
-            case WILL_DISPATCH:
-                order.willDispatch(r.getDate(STATE_DATE_COLUMN));
+            case SHOULD_DISPATCH:
+                order.shouldDispatch(r.getTimestamp(STATE_DATE_COLUMN));
                 break;
         }
 
@@ -93,7 +91,7 @@ public class BookOrder {
         this.bookID = json.has(BOOK_ID_KEY) ? json.getInt(BOOK_ID_KEY) : -1;
         this.quantity = json.has(QUANTITY_KEY) ? json.getInt(QUANTITY_KEY) : -1;
         this.state = json.has(STATE_KEY) ? State.values()[json.getInt(STATE_KEY)] : State.WAITING_EXPEDITION;
-        this.stateDate = json.has(STATE_DATE_KEY) ? new Date(json.getLong(STATE_DATE_KEY)) : null;
+        this.stateDate = json.has(STATE_DATE_KEY) ? new Timestamp(json.getLong(STATE_DATE_KEY)) : null;
     }
 
     public UUID getOrderID() {
@@ -116,17 +114,17 @@ public class BookOrder {
         return state;
     }
 
-    public Date getStateDate() {
+    public Timestamp getStateDate() {
         return stateDate;
     }
 
-    public void dispatched(Date date) {
+    public void dispatched(Timestamp date) {
         state = State.DISPATCHED;
         stateDate = date;
     }
 
-    public void willDispatch(Date date) {
-        state = State.WILL_DISPATCH;
+    public void shouldDispatch(Timestamp date) {
+        state = State.SHOULD_DISPATCH;
         stateDate = date;
     }
 
@@ -142,7 +140,7 @@ public class BookOrder {
         result.put(BOOK_ID_KEY, bookID);
         result.put(QUANTITY_KEY, quantity);
         result.put(STATE_KEY, state.ordinal());
-        result.put(STATE_DATE_KEY, stateDate.getTime());
+        result.put(STATE_DATE_KEY, stateDate != null ? stateDate : JSONObject.NULL);
 
         return result;
     }

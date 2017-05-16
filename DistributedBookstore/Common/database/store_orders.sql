@@ -9,7 +9,7 @@ create table store_orders (
   client_address VARCHAR(50),
   client_email VARCHAR(50),
   state INT,
-  state_date DECIMAL(10,2)
+  state_date DATETIME
 );
 insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('c8670a2f-ba73-40b9-90ee-197a708be434', 38, 2, 177.18, null, 'Doretta Silbermann', '0 Pierstorff Alley', 'dsilbermann0@squarespace.com', 0, null);
 insert into store_orders (id, book_id, quantity, total_price, user_id, client_name, client_address, client_email, state, state_date) values ('4dec57f8-30e1-410a-867f-881398d1e1a5', 25, 13, 102.7, null, 'Annabela Trangmar', '895 Armistice Plaza', 'atrangmar1@statcounter.com', 0, null);
