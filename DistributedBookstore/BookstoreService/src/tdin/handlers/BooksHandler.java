@@ -6,9 +6,7 @@ import tdin.Core;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by joaos on 16/05/2017.
@@ -40,5 +38,21 @@ public class BooksHandler {
         }
 
         return books;
+    }
+
+    public Map<Integer, Integer> getBooksStock() throws SQLException {
+        ResultSet result = DatabaseAPI.executeQuery(
+                Core.getInstance().getDatabase(),
+                "books",
+                Collections.singletonList("id"));
+
+        Map<Integer, Integer> booksStock = new HashMap<>();
+        int bookID;
+        while (result.next()) {
+            bookID = result.getInt("id");
+            booksStock.put(bookID, StockHandler.getInstance().getStock(bookID));
+        }
+
+        return booksStock;
     }
 }

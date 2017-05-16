@@ -95,14 +95,23 @@ public class StockHandler {
             if(currentStock < 0) {
                 throw new RuntimeException("Cant have a negative stock");
             }
-            DatabaseAPI.executeUpdate(
-                    Core.getInstance().getDatabase(),
-                    "stock",
-                    Collections.singletonList("quantity"),
-                    Collections.singletonList(currentStock),
-                    Collections.singletonList("book_id"),
-                    Collections.singletonList(bookID)
-            );
+            if(currentStock == 0) {
+                DatabaseAPI.executeDeletation(
+                        Core.getInstance().getDatabase(),
+                        "stock",
+                        Collections.singletonList("book_id"),
+                        Collections.singletonList(bookID)
+                );
+            } else {
+                DatabaseAPI.executeUpdate(
+                        Core.getInstance().getDatabase(),
+                        "stock",
+                        Collections.singletonList("quantity"),
+                        Collections.singletonList(currentStock),
+                        Collections.singletonList("book_id"),
+                        Collections.singletonList(bookID)
+                );
+            }
         }
     }
 }
