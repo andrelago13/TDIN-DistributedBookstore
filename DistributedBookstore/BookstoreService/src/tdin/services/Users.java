@@ -16,7 +16,7 @@ public class Users {
     @Path("login")
     public Response validateCredentials(@FormParam("username") String username, @FormParam("password") String password)
             throws SQLException {
-        if (password.length() == 0 || !UsersHandler.getInstance().validCredentials(username, password)) {
+        if (!UsersHandler.getInstance().validCredentials(username, password)) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
         return Response.ok().build();
