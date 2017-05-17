@@ -7,6 +7,7 @@ var bookstore_address = api_host + ":" + api_port + "/bookstore";
 var bookstore_users_address = bookstore_address + "/users";
 var bookstore_users_login_address = bookstore_users_address + "/login";
 var bookstore_users_register_address = bookstore_users_address + "/register";
+var bookstore_orders_address = bookstore_address + "/orders";
 
 module.exports={
 	"app_title"							:	app_title,
@@ -17,5 +18,6 @@ module.exports={
 	"bookstore_address"					:	bookstore_address,
 	"bookstore_users_address"			:	bookstore_users_address,
 	"bookstore_users_login_address"		:	bookstore_users_login_address,
-	"bookstore_users_register_address"	:	bookstore_users_register_address
+	"bookstore_users_register_address"	:	bookstore_users_register_address,
+	"bookstore_orders_address"			:	bookstore_orders_address
 }

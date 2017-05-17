@@ -11,7 +11,8 @@ router.get('/', function (req, res, next) {
   }
 
   res.render('shop', {
-    title: config.app_title
+    title: config.app_title,
+    username: session.username
   });
 });
 

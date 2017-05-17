@@ -13,8 +13,10 @@ $(document).ready(function () {
     });
 
     $('#modal-order-confirm').click(function (e) {
-        console.log("purchasing " + selected_book_id);
-        window.location.href = '/home';
+        $("#order-form-book_id").val(selected_book_id);
+        $("#order-form-quantity").val($("#order-input-form-quantity").val());
+        
+        $("#order-form").submit();
     });
 });
 
