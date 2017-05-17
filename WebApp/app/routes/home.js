@@ -9,10 +9,10 @@ var OrderState = orderUtils.OrderState;
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  /*if (typeof session.username == undefined || session.username == null) {
+  if (typeof session.username == undefined || session.username == null) {
     res.redirect("/");
     return;
-  }*/
+  }
 
   orderUtils.getOrders(function (orders, completed_orders) {
     res.render('home', {
