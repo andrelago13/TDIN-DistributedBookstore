@@ -10,8 +10,17 @@ a {
 /* CUSTOM STYLE */
 
 .login_title {
-  margin: auto;
-  text-align: center;
+	margin: auto;
+  	text-align: center;
+}
+
+.center {
+	width: 150px;
+  	margin: 40px auto;
+}
+
+.modal-table-element {
+	padding-right: 10px;
 }
 
 body {

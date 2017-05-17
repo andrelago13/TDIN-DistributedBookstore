@@ -24,6 +24,61 @@
 </nav>
 
 <div class="container">
+    <!-- Modal -->
+    <div class="modal fade" id="orderModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Order Confirmation</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Please confirm the book order:</p>
+
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td class="modal-table-element"><b>Title: <b/></td>
+                                <td id="order-modal-title"> Title</td>
+                            </tr>
+                            <tr>
+                                <td class="modal-table-element"><b>Author: <b/></td>
+                                <td id="order-modal-author"> Author</td>
+                            </tr>
+                            <tr>
+                                <td class="modal-table-element"><b>Price: <b/></td>
+                                <td id="order-modal-price"> 50€</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br/>
+                    <br/>
+
+                    <div class="input-group">
+                        <span class="input-group-btn">
+              <button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
+                  <span class="glyphicon glyphicon-minus"></span>
+                        </button>
+                        </span>
+                        <input type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="40">
+                        <span class="input-group-btn">
+              <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
+                  <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button id="modal-order-confirm" type="button" class="btn btn-success" data-dismiss="modal">Order!</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
     <div class="page-header">
         <h1>Shop</h1>
     </div>
@@ -44,20 +99,22 @@
         </thead>
         <tbody>
             <tr>
-                <td>1</td>
-                <td>1-123456</td>
-                <td>Tha buk</td>
-                <td>Jony Traduca</td>
-                <td><button type="button" class="btn btn-xs btn-success">BUY</button></td>
+                <td class="book-item-id">1</td>
+                <td class="book-item-isbn">1-123456</td>
+                <td class="book-item-title">Tha buk</td>
+                <td class="book-item-author">Jony Traduca</td>
+                <td><button type="button" class="book-item-buy btn btn-xs btn-success" data-toggle="modal" data-target="#orderModal">BUY</button></td>
             </tr>
             <tr>
-                <td>2</td>
-                <td>2-123456</td>
-                <td>Tha best buk</td>
-                <td>Andrew Lake</td>
-                <td><button type="button" class="btn btn-xs btn-success">BUY</button></td>
+                <td class="book-item-id">2</td>
+                <td class="book-item-isbn">2-123456</td>
+                <td class="book-item-title">Tha best buk</td>
+                <td class="book-item-author">Andrew Lake</td>
+                <td><button type="button" class="book-item-buy btn btn-xs btn-success" data-toggle="modal" data-target="#orderModal">BUY</button></td>
             </tr>
             <tr>
         </tbody>
     </table>
 </div>
+
+<script src="javascripts/shop.js"></script>
