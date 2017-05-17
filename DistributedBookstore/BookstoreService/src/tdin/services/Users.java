@@ -16,7 +16,18 @@ public class Users {
     @Path("login")
     public Response validateCredentials(@FormParam("username") String username, @FormParam("password") String password)
             throws SQLException {
-        if (!UsersHandler.getInstance().validCredentials(username, password)) {
+        if (password.length() == 0 || !UsersHandler.getInstance().validCredentials(username, password)) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+        return Response.ok().build();
+    }
+
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("register")
+    public Response register(@FormParam("username") String username, @FormParam("password") String password)
+            throws SQLException {
+        if (password.length() == 0 || !UsersHandler.getInstance().registerCredentials(username, password)) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
         return Response.ok().build();

@@ -36,4 +36,9 @@ public class UsersHandler {
                 Arrays.asList(username, password));
         return result.next();
     }
+
+    public boolean registerCredentials(String username, String password) throws SQLException {
+        // TODO register user in database
+        return true;
+    }
 }
