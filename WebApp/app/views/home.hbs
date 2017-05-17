@@ -59,23 +59,16 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>Tha buk</td>
-                <td>23</td>
-                <td>25€</td>
-                <td>Awaiting Expedition</td>
-                <td>-</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>Tha best buk in da wold</td>
-                <td>23</td>
-                <td>25€</td>
-                <td>Will be dispatched</td>
-                <td>25/06/2019</td>
-            </tr>
-            <tr>
+            {{#each orders as |order key|}}
+                <tr>
+                    <td>{{order.id}}</td>
+                    <td>{{order.book_title}}</td>
+                    <td>{{order.quantity}}</td>
+                    <td>{{order.price}}€</td>
+                    <td>{{order.status_message}}</td>
+                    <td>{{#if order.date}}{{order.date}}{{else}}-{{/if}}</td>
+                </tr>
+            {{/each}}
         </tbody>
     </table>
 
@@ -94,13 +87,15 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>Tha oldest buk in da city</td>
-                <td>23</td>
-                <td>25€</td>
-                <td>29/02/1998</td>
-            </tr>
+            {{#each completed_orders as |order key|}}
+                <tr>
+                    <td>{{order.id}}</td>
+                    <td>{{order.book_title}}</td>
+                    <td>{{order.quantity}}</td>
+                    <td>{{order.price}}€</td>
+                    <td>{{#if order.date}}{{order.date}}{{else}}-{{/if}}</td>
+                </tr>
+            {{/each}}
         </tbody>
     </table>
 </div>

@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var config = require('./../configuration/config');
 var session = require('express-session');
+var Book = require('./../utils/book').Book;
 
 /* GET shop page. */
 router.get('/', function (req, res, next) {
@@ -10,9 +11,12 @@ router.get('/', function (req, res, next) {
     return;
   }
 
+  var books = [new Book(1,2,3,4,5)];
+
   res.render('shop', {
     title: config.app_title,
-    username: session.username
+    username: session.username,
+    books: books
   });
 });
 

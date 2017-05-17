@@ -74,7 +74,7 @@
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button id="modal-order-confirm" type="button" class="btn btn-success" data-dismiss="modal">Order!</button>
                 </div>
-                <form style="display: invisible;" id="order-form" method="post" action="api/shop/order">
+                <form style="display: none;" id="order-form" method="post" action="api/shop/order">
                     <input type="text" name="username" id="order-form-username" value="{{ username }}"/>
                     <input type="text" name="book_id" id="order-form-book_id"/>
                     <input type="text" name="quantity" id="order-form-quantity"/>
@@ -99,25 +99,21 @@
                 <th>ISBN</th>
                 <th>Title</th>
                 <th>Author</th>
+                <th>Price</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td class="book-item-id">1</td>
-                <td class="book-item-isbn">1-123456</td>
-                <td class="book-item-title">Tha buk</td>
-                <td class="book-item-author">Jony Traduca</td>
-                <td><button type="button" class="book-item-buy btn btn-xs btn-success" data-toggle="modal" data-target="#orderModal">BUY</button></td>
-            </tr>
-            <tr>
-                <td class="book-item-id">2</td>
-                <td class="book-item-isbn">2-123456</td>
-                <td class="book-item-title">Tha best buk</td>
-                <td class="book-item-author">Andrew Lake</td>
-                <td><button type="button" class="book-item-buy btn btn-xs btn-success" data-toggle="modal" data-target="#orderModal">BUY</button></td>
-            </tr>
-            <tr>
+            {{#each books as |book key|}}
+                <tr>
+                    <td class="book-item-id">{{book.id}}</td>
+                    <td class="book-item-isbn">{{book.isbn}}</td> 
+                    <td class="book-item-title">{{book.title}}</td>
+                    <td class="book-item-author">{{book.author}}</td>
+                    <td class="book-item-author">{{book.price}}€</td>
+                    <td><button type="button" class="book-item-buy btn btn-xs btn-success" data-toggle="modal" data-target="#orderModal">BUY</button></td>
+                </tr>
+            {{/each}}
         </tbody>
     </table>
 </div>
