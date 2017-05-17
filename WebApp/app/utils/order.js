@@ -1,7 +1,9 @@
+var config = require('./../configuration/config');
+
 var OrderState = {
-    WAITING_DISPATCH: 1,
-    SHOULD_DISPATCH: 2,
-    DISPATCHED: 3,
+    WAITING_DISPATCH: 0,
+    SHOULD_DISPATCH: 1,
+    DISPATCHED: 2,
 }
 
 class Order {
@@ -28,7 +30,31 @@ class Order {
     }
 }
 
+function getOrders(callback) {
+    const request = require('request');
+
+    request.get({
+        url: "http://localhost:8080/warehouse/orders"//config.bookstore_orders_address
+    }, function (err, httpResponse, body) {
+        var orders = [];
+        var completed_orders = [];
+        var orders_json = JSON.parse(httpResponse.body).orders;
+
+        for (var i = 0; i < orders_json.length; ++i) {
+            var order_json = orders_json[i];
+            var order = new Order(order_json.orderID, order_json.bookID, order_json.quantity, 20, order_json.state, order_json.orderDate);
+            if (order.status == 2) {
+                completed_orders.push(order);
+            } else {
+                orders.push(order);
+            }
+        }
+        callback(orders, completed_orders);
+    })
+}
+
 module.exports = {
     Order: Order,
-    OrderState: OrderState
+    OrderState: OrderState,
+    getOrders: getOrders
 }
