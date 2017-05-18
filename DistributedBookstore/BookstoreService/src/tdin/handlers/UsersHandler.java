@@ -1,6 +1,8 @@
 package tdin.handlers;
 
 import database.DatabaseAPI;
+import model.StoreBookOrder;
+import model.User;
 import tdin.Core;
 
 import java.sql.ResultSet;
@@ -25,6 +27,20 @@ public class UsersHandler {
 
     private UsersHandler() {
 
+    }
+
+    public User getUser(int userID) throws SQLException {
+        ResultSet result = DatabaseAPI.executeQuery(
+                Core.getInstance().getDatabase(),
+                "users",
+                Collections.singletonList("*"),
+                Collections.singletonList(User.ID_COLUMN),
+                Collections.singletonList(userID));
+
+        if (!result.next())
+            return null;
+
+        return User.getOrderFromSQL(result);
     }
 
     public boolean validCredentials(String username, String password) throws SQLException {

@@ -1,6 +1,7 @@
 package tdin.services;
 
 import model.StoreBookOrderList;
+import model.User;
 import tdin.handlers.OrdersHandler;
 import tdin.handlers.UsersHandler;
 
@@ -34,6 +35,17 @@ public class Users {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
         return Response.ok().build();
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("{id}")
+    public Response getUser(@PathParam("id") int userID) throws SQLException {
+        User user = UsersHandler.getInstance().getUser(userID);
+        if (user == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+        return Response.ok(user.toString()).build();
     }
 
     @GET

@@ -34,7 +34,7 @@ function getOrders(callback) {
     const request = require('request');
 
     request.get({
-        url: "http://localhost:8080/warehouse/orders"//config.bookstore_orders_address
+        url: "http://localhost:8080/bookstore/orders"//config.bookstore_orders_address
     }, function (err, httpResponse, body) {
         var orders = [];
         var completed_orders = [];
