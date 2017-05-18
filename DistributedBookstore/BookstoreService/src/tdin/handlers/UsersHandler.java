@@ -7,8 +7,10 @@ import tdin.Core;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * Created by asl_m on 16/05/2017.
@@ -27,6 +29,20 @@ public class UsersHandler {
 
     private UsersHandler() {
 
+    }
+
+    public List<User> getUsers() throws SQLException {
+        ResultSet result = DatabaseAPI.executeQuery(
+                Core.getInstance().getDatabase(),
+                "users",
+                Collections.singletonList("*"));
+
+        List<User> users = new ArrayList<>();
+        while (result.next()) {
+            users.add(User.getOrderFromSQL(result));
+        }
+
+        return users;
     }
 
     public User getUser(int userID) throws SQLException {
