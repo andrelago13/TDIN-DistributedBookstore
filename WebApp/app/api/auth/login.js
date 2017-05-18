@@ -18,7 +18,13 @@ router.route('/login').post((req, res) => {
         }
     }, function (err, httpResponse, body) {
         if(httpResponse.statusCode == 200) {
-            session.username = username;
+            var body_json = JSON.parse(body);
+            session.user_address = body_json.address;
+            session.user_name = body_json.name;
+            session.username = body_json.username;
+            session.user_email = body_json.email;
+            session.user_id = body_json.ID;
+            
             res.status(200);
             res.redirect("/home");
         } else {

@@ -1,3 +1,5 @@
+var config = require('./../configuration/config');
+
 class Book {
     constructor(id, isbn, title, author, price) {
         this.id = id;

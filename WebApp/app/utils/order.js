@@ -1,4 +1,5 @@
 var config = require('./../configuration/config');
+var session = require('express-session');
 
 var OrderState = {
     WAITING_DISPATCH: 0,
@@ -34,7 +35,7 @@ function getOrders(callback) {
     const request = require('request');
 
     request.get({
-        url: "http://localhost:8080/bookstore/orders"//config.bookstore_orders_address
+        url: config.bookstore_users_address + "/" + session.user_id + "/orders"
     }, function (err, httpResponse, body) {
         var orders = [];
         var completed_orders = [];
