@@ -8,12 +8,14 @@ import java.sql.SQLException;
 public class User {
     public final static String ID_KEY = "ID";
     public final static String USERNAME_KEY = "username";
+    public final static String PASSWORD_KEY = "password";
     public final static String NAME_KEY = "name";
     public final static String EMAIL_KEY = "email";
     public final static String ADDRESS_KEY = "address";
 
     public final static String ID_COLUMN = "id";
     public final static String USERNAME_COLUMN = "username";
+    public final static String PASSWORD_COLUMN = "password";
     public final static String NAME_COLUMN = "name";
     public final static String EMAIL_COLUMN = "email";
     public final static String ADDRESS_COLUMN = "address";
@@ -30,6 +32,16 @@ public class User {
         this.name = name;
         this.email = email;
         this.address = address;
+    }
+
+    public static User getOrderFromSQL(ResultSet r) throws SQLException {
+        User user = new User(r.getInt(ID_COLUMN),
+                r.getString(USERNAME_COLUMN),
+                r.getString(NAME_COLUMN),
+                r.getString(EMAIL_COLUMN),
+                r.getString(ADDRESS_COLUMN));
+
+        return user;
     }
 
     public int getID() {
@@ -50,16 +62,6 @@ public class User {
 
     public String getAddress() {
         return address;
-    }
-
-    public static User getOrderFromSQL(ResultSet r) throws SQLException {
-        User user = new User(r.getInt(ID_COLUMN),
-                r.getString(USERNAME_COLUMN),
-                r.getString(NAME_COLUMN),
-                r.getString(EMAIL_COLUMN),
-                r.getString(ADDRESS_COLUMN));
-
-        return user;
     }
 
     @Override

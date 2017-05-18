@@ -1,16 +1,12 @@
 package tdin.handlers;
 
 import database.DatabaseAPI;
-import model.StoreBookOrder;
 import model.User;
 import tdin.Core;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by asl_m on 16/05/2017.
@@ -19,16 +15,16 @@ public class UsersHandler {
 
     private static UsersHandler instance;
 
+    private UsersHandler() {
+
+    }
+
     public static UsersHandler getInstance() {
         if(instance == null) {
             instance = new UsersHandler();
         }
 
         return instance;
-    }
-
-    private UsersHandler() {
-
     }
 
     public List<User> getUsers() throws SQLException {
@@ -83,8 +79,17 @@ public class UsersHandler {
         return result.next();
     }
 
-    public boolean registerCredentials(String username, String password) throws SQLException {
-        // TODO register user in database
-        return true;
+    public boolean registerCredentials(String username, String password, String name, String email, String address) throws SQLException {
+        return DatabaseAPI.executeInsertion(
+                Core.getInstance().getDatabase(),
+                "users",
+                new HashMap<String, Object>() {{
+                    put(User.USERNAME_COLUMN, username);
+                    put(User.PASSWORD_COLUMN, password);
+                    put(User.NAME_COLUMN, name);
+                    put(User.EMAIL_COLUMN, email);
+                    put(User.ADDRESS_COLUMN, address);
+                }}
+        );
     }
 }

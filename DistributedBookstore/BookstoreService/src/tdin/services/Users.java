@@ -1,16 +1,15 @@
 package tdin.services;
 
-import model.Book;
 import model.StoreBookOrderList;
 import model.User;
 import org.json.JSONArray;
-import tdin.handlers.BooksHandler;
 import tdin.handlers.OrdersHandler;
 import tdin.handlers.UsersHandler;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.net.URI;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -49,6 +48,23 @@ public class Users {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public Response register(@FormParam("username") String username,
+                             @FormParam("password") String password,
+                             @FormParam("name") String name,
+                             @FormParam("email") String email,
+                             @FormParam("address") String address)
+            throws SQLException {
+        if (password.length() == 0 || !UsersHandler.getInstance().registerCredentials(username, password, name, email, address)) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+
+        User registeredUser = UsersHandler.getInstance().getUser(username);
+        return Response.created(URI.create("users/" + registeredUser.getID())).build();
+    }
+
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Path("login")
     public Response validateCredentials(@FormParam("username") String username, @FormParam("password") String password)
             throws SQLException {
@@ -56,17 +72,5 @@ public class Users {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
         return Response.ok(UsersHandler.getInstance().getUser(username).toString()).build();
-    }
-
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    @Path("register")
-    public Response register(@FormParam("username") String username, @FormParam("password") String password)
-            throws SQLException {
-        if (password.length() == 0 || !UsersHandler.getInstance().registerCredentials(username, password)) {
-            return Response.status(Response.Status.NOT_FOUND).build();
-        }
-        return Response.ok().build();
     }
 }
