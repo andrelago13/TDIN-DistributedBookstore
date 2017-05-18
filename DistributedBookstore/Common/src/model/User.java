@@ -5,9 +5,6 @@ import org.json.JSONObject;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/**
- * Created by joaos on 18/05/2017.
- */
 public class User {
     public final static String ID_KEY = "ID";
     public final static String USERNAME_KEY = "username";

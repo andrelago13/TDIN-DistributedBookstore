@@ -43,6 +43,20 @@ public class UsersHandler {
         return User.getOrderFromSQL(result);
     }
 
+    public User getUser(String username) throws SQLException {
+        ResultSet result = DatabaseAPI.executeQuery(
+                Core.getInstance().getDatabase(),
+                "users",
+                Collections.singletonList("*"),
+                Collections.singletonList(User.USERNAME_COLUMN),
+                Collections.singletonList(username));
+
+        if (!result.next())
+            return null;
+
+        return User.getOrderFromSQL(result);
+    }
+
     public boolean validCredentials(String username, String password) throws SQLException {
         ResultSet result = DatabaseAPI.executeQuery(
                 Core.getInstance().getDatabase(),

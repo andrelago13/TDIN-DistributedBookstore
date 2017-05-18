@@ -22,7 +22,7 @@ public class Users {
         if (!UsersHandler.getInstance().validCredentials(username, password)) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
-        return Response.ok().build();
+        return Response.ok(UsersHandler.getInstance().getUser(username).toString()).build();
     }
 
     @POST
