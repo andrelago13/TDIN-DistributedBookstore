@@ -26,10 +26,5 @@ public class Core {
 
     private Core() {
         this.database = Database.createDatabase(DatabaseType.MYSQL, "localhost", 3306, "tdin", "user", "123456");
-        try {
-            this.database.connect();
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
     }
 }

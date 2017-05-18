@@ -1,5 +1,6 @@
 package tdin.services;
 
+import model.StoreBookOrderList;
 import tdin.handlers.OrdersHandler;
 import tdin.handlers.UsersHandler;
 
@@ -13,6 +14,7 @@ public class Users {
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Path("login")
     public Response validateCredentials(@FormParam("username") String username, @FormParam("password") String password)
             throws SQLException {
@@ -24,6 +26,7 @@ public class Users {
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Path("register")
     public Response register(@FormParam("username") String username, @FormParam("password") String password)
             throws SQLException {
@@ -37,6 +40,6 @@ public class Users {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("{id}/orders")
     public Response getUserOrders(@PathParam("id") int userID) throws SQLException {
-        return Response.ok(OrdersHandler.getInstance().getUserBookOrders(userID).toString()).build();
+        return Response.ok(new StoreBookOrderList(OrdersHandler.getInstance().getUserBookOrders(userID)).toString()).build();
     }
 }

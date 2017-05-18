@@ -41,9 +41,16 @@ public class Orders {
     }
 
     @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response createOrder(String jsonRequest) {
-        StoreBookOrder bookOrder = new StoreBookOrder(new JSONObject(jsonRequest));
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public Response createOrder(@FormParam("bookID") int bookID,
+                                @FormParam("quantity") int quantity,
+                                @FormParam("userID") int userID,
+                                @FormParam("totalPrice") double totalPrice,
+                                @FormParam("clientName") String clientName,
+                                @FormParam("clientAddress") String clientAddress,
+                                @FormParam("clientEmail") String clientEmail) {
+        StoreBookOrder bookOrder = new StoreBookOrder(bookID, quantity, totalPrice, clientName, clientAddress, clientEmail, userID);
         if (OrdersHandler.getInstance().createOrder(bookOrder)) {
             // TODO: Send an email to the user regarding his order
             return Response.created(URI.create("orders/" + bookOrder.getOrderID().toString())).build();

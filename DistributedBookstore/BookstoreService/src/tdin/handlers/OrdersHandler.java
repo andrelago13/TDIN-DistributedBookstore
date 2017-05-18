@@ -91,7 +91,7 @@ public class OrdersHandler {
         return bookOrders;
     }
 
-    public StoreBookOrderList getUserBookOrders(int userID) throws SQLException {
+    public List<StoreBookOrder> getUserBookOrders(int userID) throws SQLException {
         ResultSet result = DatabaseAPI.executeQuery(
                 Core.getInstance().getDatabase(),
                 "store_orders",
@@ -104,7 +104,7 @@ public class OrdersHandler {
             bookOrders.add(StoreBookOrder.getOrderFromSQL(result));
         }
 
-        return new StoreBookOrderList(bookOrders);
+        return bookOrders;
     }
 
     public boolean createOrder(final StoreBookOrder bookOrder) {

@@ -30,6 +30,10 @@ public class StoreBookOrder extends BookOrder {
     protected String clientEmail;
     protected int userID;
 
+    public StoreBookOrder(int bookID, int quantity, double totalPrice, String client, String clAddr, String clEmail, int userID) {
+        this(UUID.randomUUID(), bookID, quantity, new Timestamp(System.currentTimeMillis()), State.WAITING_EXPEDITION, null, totalPrice, client, clAddr, clEmail, userID);
+    }
+
     public StoreBookOrder(UUID orderID, int bookID, int quantity, Timestamp orderDate, State state, Timestamp dispatchedDate, double totalPrice, String client, String clAddr, String clEmail, int userID) {
         super(orderID, bookID, quantity, orderDate, state, dispatchedDate);
 
