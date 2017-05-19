@@ -43,5 +43,29 @@ namespace Clients
             else
                 return null;
         }
+
+        public List<Stock> GetStock()
+        {
+            HttpResponseMessage response = httpClient.GetAsync(APIConstants.BOOKSTORE_STOCK).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonString = response.Content.ReadAsStringAsync().Result;
+                return JsonConvert.DeserializeObject<List<Stock>>(jsonString);
+            }
+            else
+                return null;
+        }
+
+        public List<IncomingStock> GetIncomingStock()
+        {
+            HttpResponseMessage response = httpClient.GetAsync(APIConstants.BOOKSTORE_STOCK_INCOMING).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonString = response.Content.ReadAsStringAsync().Result;
+                return JsonConvert.DeserializeObject<List<IncomingStock>>(jsonString);
+            }
+            else
+                return null;
+        }
     }
 }

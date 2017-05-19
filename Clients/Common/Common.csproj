@@ -47,6 +47,8 @@
     <Compile Include="api\APIConstants.cs" />
     <Compile Include="model\Book.cs" />
     <Compile Include="model\BookOrder.cs" />
+    <Compile Include="model\IncomingStock.cs" />
+    <Compile Include="model\Stock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils.cs" />
   </ItemGroup>

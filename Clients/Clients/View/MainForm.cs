@@ -18,9 +18,16 @@ namespace Clients
         public MainForm()
         {
             InitializeComponent();
+
+            // Books View
             BooksViewModel.Instance.Controller = this;
             BooksViewModel.Instance.RefreshBooks();
             this.BooksViewModelBindingSource.Add(BooksViewModel.Instance);
+
+            // Stock View
+            StockViewModel.Instance.Controller = this;
+            StockViewModel.Instance.RefreshStocks();
+            this.StockViewModelBindingSource.Add(StockViewModel.Instance);
 
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
