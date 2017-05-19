@@ -17,11 +17,11 @@ namespace Common.model
         
         public State OrderState { get; set; }
 
-        public DateTime StateDate { get; set; }
+        public DateTime DispatchDate { get; set; }
 
         public BookOrder() { }
 
-        public BookOrder(string id, string title, int quantity, int state, DateTime state_date)
+        public BookOrder(string id, string title, int quantity, int state, DateTime dispatchDate)
         {
             OrderID = id;
             BookID = title;
@@ -38,10 +38,10 @@ namespace Common.model
                     OrderState = State.DISPATCHED;
                     break;
             }
-            StateDate = state_date;
+            DispatchDate = dispatchDate;
         }
 
-        public BookOrder(string id, string title, int quantity, string client_email) : 
+        public BookOrder(string id, string title, int quantity, string clientEmail) : 
             this(id, title, quantity, 0, new DateTime()) { }
 
         public BookOrder(JObject json)
@@ -61,7 +61,7 @@ namespace Common.model
                     OrderState = State.DISPATCHED;
                     break;
             }
-            StateDate = DateTime.Parse((string)json.GetValue("dispatchDate")); ;
+            DispatchDate = DateTime.Parse((string)json.GetValue("dispatchDate")); ;
         }
 
         private static DateTime DateFromLong(long value)

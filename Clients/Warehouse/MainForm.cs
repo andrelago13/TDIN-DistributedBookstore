@@ -55,10 +55,10 @@ namespace Warehouse
                 switch (order.OrderState)
                 {
                     case State.AWAITING_EXPEDITION:
-                        pending_grid.Rows.Add(order.OrderID, order.BookID, order.Quantity, order.StateDate.ToString("dd/MM/yyyy"));
+                        pending_grid.Rows.Add(order.OrderID, order.BookID, order.Quantity, order.DispatchDate.ToString("dd/MM/yyyy"));
                         break;
                     case State.DISPATCHED:
-                        completed_grid.Rows.Add(order.OrderID, order.BookID, order.Quantity, order.StateDate.ToString("dd/MM/yyyy"));
+                        completed_grid.Rows.Add(order.OrderID, order.BookID, order.Quantity, order.DispatchDate.ToString("dd/MM/yyyy"));
                         break;
                 }
             }

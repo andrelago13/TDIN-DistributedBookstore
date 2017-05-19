@@ -16,6 +16,7 @@ namespace Common.api
         public static readonly string BOOKSTORE_STOCK_INCOMING = BOOKSTORE_STOCK + "incoming/";
         public static readonly string BOOKSTORE_ORDERS = BOOKSTORE_PATH + "orders/";
         public static readonly string BOOKSTORE_ORDERS_PENDING = BOOKSTORE_ORDERS + "pending/";
+        public static readonly string BOOKSTORE_USERS = BOOKSTORE_PATH + "users/";
 
         public static readonly string WAREHOUSE_PATH = BASE_URL + "warehouse/";
         public static readonly string WAREHOUSE_ORDERS_PATH = WAREHOUSE_PATH + "orders/";
