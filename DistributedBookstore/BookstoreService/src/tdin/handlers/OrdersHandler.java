@@ -3,7 +3,6 @@ package tdin.handlers;
 import database.DatabaseAPI;
 import model.BookOrder;
 import model.StoreBookOrder;
-import model.StoreBookOrderList;
 import tdin.Core;
 
 import java.sql.ResultSet;
@@ -19,6 +18,10 @@ public class OrdersHandler {
 
     private static OrdersHandler instance;
 
+    private OrdersHandler() {
+
+    }
+
     public static OrdersHandler getInstance() {
         if (instance == null) {
             instance = new OrdersHandler();
@@ -26,18 +29,13 @@ public class OrdersHandler {
         return instance;
     }
 
-    private OrdersHandler() {
-
-    }
-
-
     public StoreBookOrder getBookOrder(UUID id) throws SQLException {
         ResultSet result = DatabaseAPI.executeQuery(
                 Core.getInstance().getDatabase(),
                 "store_orders",
                 Collections.singletonList("*"),
                 Collections.singletonList(StoreBookOrder.ORDER_ID_COLUMN),
-                Collections.<Object>singletonList(id.toString()));
+                Collections.singletonList(id.toString()));
 
         if (!result.next())
             return null;
@@ -125,7 +123,8 @@ public class OrdersHandler {
                     put(StoreBookOrder.ORDER_ID_COLUMN, bookOrder.getOrderID().toString());
                     put(StoreBookOrder.BOOK_ID_COLUMN, bookOrder.getBookID());
                     put(StoreBookOrder.QUANTITY_COLUMN, bookOrder.getQuantity());
-                    put(StoreBookOrder.USER_ID_COLUMN, bookOrder.getUserID());
+                    if (bookOrder.getUserID() > 0)
+                        put(StoreBookOrder.USER_ID_COLUMN, bookOrder.getUserID());
                     put(StoreBookOrder.ORDER_DATE_COLUMN, bookOrder.getOrderDate());
                     put(StoreBookOrder.TOTAL_PRICE_COLUMN, bookOrder.getTotalPrice());
                     put(StoreBookOrder.CLIENT_NAME_COLUMN, bookOrder.getClientName());
