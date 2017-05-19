@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="api\APIConstants.cs" />
+    <Compile Include="model\Book.cs" />
     <Compile Include="model\BookOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
