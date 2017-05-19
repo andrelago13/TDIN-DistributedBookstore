@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,34 +8,21 @@ using System.Threading.Tasks;
 
 namespace Common.model
 {
-    class Book
+    public class Book
     {
+        [JsonProperty("ID")]
         public int ID { get; set; }
 
+        [JsonProperty("ISBN")]
         public String ISBN { get; set; }
 
+        [JsonProperty("name")]
         public String Title { get; set; }
 
+        [JsonProperty("author")]
         public String Author { get; set; }
 
+        [JsonProperty("price")]
         public Double Price { get; set; }
-
-        public Book(int ID, String ISBN, String Title, String Author, Double Price)
-        {
-            this.ID = ID;
-            this.ISBN = ISBN;
-            this.Title = Title;
-            this.Author = Author;
-            this.Price = Price;
-        }
-
-        public Book(JObject json)
-        {
-            this.ID = (int)json.GetValue("ID");
-            this.ISBN = (string)json.GetValue("ISBN");
-            this.Title = (string)json.GetValue("title");
-            this.Author = (string)json.GetValue("author");
-            this.Price = (double)json.GetValue("price");
-        }
     }
 }

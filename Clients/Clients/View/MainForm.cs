@@ -1,4 +1,5 @@
-﻿using MaterialSkin;
+﻿using Clients.ModelView;
+using MaterialSkin;
 using MaterialSkin.Controls;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,9 @@ namespace Clients
         public MainForm()
         {
             InitializeComponent();
+            BooksViewModel.Instance.Controller = this;
+            BooksViewModel.Instance.RefreshBooks();
+            this.BooksViewModelBindingSource.Add(BooksViewModel.Instance);
 
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
