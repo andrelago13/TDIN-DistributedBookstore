@@ -28,13 +28,13 @@ namespace Clients.ModelView
 
         private OrdersViewModel()
         {
-            this._Orders = new List<StoreBookOrder>();
+            this._Orders = new SortableBindingList<StoreBookOrder>();
         }
         #endregion
 
         #region Accessors
-        private List<StoreBookOrder> _Orders;
-        public List<StoreBookOrder> Orders
+        private SortableBindingList<StoreBookOrder> _Orders;
+        public SortableBindingList<StoreBookOrder> Orders
         {
             get
             {

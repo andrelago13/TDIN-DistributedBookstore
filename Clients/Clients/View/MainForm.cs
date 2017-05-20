@@ -72,7 +72,7 @@ namespace Clients
             if (!(senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn))
                 return;
 
-            Guid id = (Guid)IncomingStockList.Rows[e.RowIndex].Cells[1].Value;
+            Guid id = (Guid)senderGrid.Rows[e.RowIndex].Cells[1].Value;
             if(ServiceEngine.Instance.AcceptIncomingStock(id))
             {
                 this.RefreshAll();

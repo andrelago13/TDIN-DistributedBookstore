@@ -28,13 +28,13 @@ namespace Clients.ModelView
 
         private BooksViewModel()
         {
-            this._Books = new List<Book>();
+            this._Books = new SortableBindingList<Book>();
         }
         #endregion
 
         #region Accessors
-        private List<Book> _Books;
-        public List<Book> Books
+        private SortableBindingList<Book> _Books;
+        public SortableBindingList<Book> Books
         {
             get
             {

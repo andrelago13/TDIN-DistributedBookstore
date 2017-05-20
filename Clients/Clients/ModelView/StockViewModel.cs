@@ -28,14 +28,14 @@ namespace Clients.ModelView
 
         private StockViewModel()
         {
-            this._Stock = new List<Stock>();
-            this._IncomingStock = new List<IncomingStock>();
+            this._Stock = new SortableBindingList<Stock>();
+            this._IncomingStock = new SortableBindingList<IncomingStock>();
         }
         #endregion
 
         #region Accessors
-        private List<Stock> _Stock;
-        public List<Stock> Stock
+        private SortableBindingList<Stock> _Stock;
+        public SortableBindingList<Stock> Stock
         {
             get
             {
@@ -54,8 +54,8 @@ namespace Clients.ModelView
             }
         }
 
-        private List<IncomingStock> _IncomingStock;
-        public List<IncomingStock> IncomingStock
+        private SortableBindingList<IncomingStock> _IncomingStock;
+        public SortableBindingList<IncomingStock> IncomingStock
         {
             get
             {

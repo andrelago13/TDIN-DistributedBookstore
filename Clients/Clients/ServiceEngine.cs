@@ -34,43 +34,43 @@ namespace Clients
         }
         #endregion
 
-        public List<Book> GetBooks()
+        public SortableBindingList<Book> GetBooks()
         {
             HttpResponseMessage response = httpClient.GetAsync(APIConstants.BOOKSTORE_BOOKS).Result;
             if (response.IsSuccessStatusCode)
             {
                 var jsonString = response.Content.ReadAsStringAsync().Result;
-                return JsonConvert.DeserializeObject<List<Book>>(jsonString);
+                return JsonConvert.DeserializeObject<SortableBindingList<Book>>(jsonString);
             }
             else
                 return null;
         }
 
-        public List<Stock> GetStock()
+        public SortableBindingList<Stock> GetStock()
         {
             HttpResponseMessage response = httpClient.GetAsync(APIConstants.BOOKSTORE_STOCK).Result;
             if (response.IsSuccessStatusCode)
             {
                 var jsonString = response.Content.ReadAsStringAsync().Result;
-                return JsonConvert.DeserializeObject<List<Stock>>(jsonString);
+                return JsonConvert.DeserializeObject<SortableBindingList<Stock>>(jsonString);
             }
             else
                 return null;
         }
 
-        public List<IncomingStock> GetIncomingStock()
+        public SortableBindingList<IncomingStock> GetIncomingStock()
         {
             HttpResponseMessage response = httpClient.GetAsync(APIConstants.BOOKSTORE_STOCK_INCOMING).Result;
             if (response.IsSuccessStatusCode)
             {
                 var jsonString = response.Content.ReadAsStringAsync().Result;
-                return JsonConvert.DeserializeObject<List<IncomingStock>>(jsonString);
+                return JsonConvert.DeserializeObject<SortableBindingList<IncomingStock>>(jsonString);
             }
             else
                 return null;
         }
 
-        public List<StoreBookOrder> GetOrders()
+        public SortableBindingList<StoreBookOrder> GetOrders()
         {
             HttpResponseMessage response = httpClient.GetAsync(APIConstants.BOOKSTORE_ORDERS).Result;
             if (response.IsSuccessStatusCode)
@@ -78,7 +78,7 @@ namespace Clients
                 var jsonString = response.Content.ReadAsStringAsync().Result;
                 var jsonObject = JsonConvert.DeserializeObject<JObject>(jsonString);
                 jsonObject.GetValue("orders").ToObject(typeof(List<StoreBookOrder>));
-                return JsonConvert.DeserializeObject<List<StoreBookOrder>>(jsonObject.GetValue("orders").ToString());
+                return JsonConvert.DeserializeObject<SortableBindingList<StoreBookOrder>>(jsonObject.GetValue("orders").ToString());
             }
             else
                 return null;

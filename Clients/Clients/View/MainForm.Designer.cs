@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.TabSelector = new MaterialSkin.Controls.MaterialTabSelector();
             this.TabControl = new MaterialSkin.Controls.MaterialTabControl();
             this.booksTab = new System.Windows.Forms.TabPage();
@@ -73,11 +73,6 @@
             this.BookLabel = new MaterialSkin.Controls.MaterialLabel();
             this.stockTab = new System.Windows.Forms.TabPage();
             this.IncomingStockList = new System.Windows.Forms.DataGridView();
-            this.iDDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.orderIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quantityDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dispatchDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AcceptColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.StockViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.IncomingStockLabel = new MaterialSkin.Controls.MaterialLabel();
             this.StockLabel = new MaterialSkin.Controls.MaterialLabel();
@@ -85,6 +80,11 @@
             this.iDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RefreshButton = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.iDDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.orderIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quantityDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dispatchDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AcceptColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.TabControl.SuspendLayout();
             this.booksTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BooksList)).BeginInit();
@@ -207,9 +207,9 @@
             // priceDataGridViewTextBoxColumn
             // 
             this.priceDataGridViewTextBoxColumn.DataPropertyName = "Price";
-            dataGridViewCellStyle32.Format = "C2";
-            dataGridViewCellStyle32.NullValue = null;
-            this.priceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle32;
+            dataGridViewCellStyle7.Format = "C2";
+            dataGridViewCellStyle7.NullValue = null;
+            this.priceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle7;
             this.priceDataGridViewTextBoxColumn.FillWeight = 80F;
             this.priceDataGridViewTextBoxColumn.HeaderText = "Price";
             this.priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
@@ -490,9 +490,9 @@
             // totalPriceDataGridViewTextBoxColumn
             // 
             this.totalPriceDataGridViewTextBoxColumn.DataPropertyName = "TotalPrice";
-            dataGridViewCellStyle33.Format = "C2";
-            dataGridViewCellStyle33.NullValue = null;
-            this.totalPriceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle33;
+            dataGridViewCellStyle8.Format = "C2";
+            dataGridViewCellStyle8.NullValue = null;
+            this.totalPriceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle8;
             this.totalPriceDataGridViewTextBoxColumn.FillWeight = 50F;
             this.totalPriceDataGridViewTextBoxColumn.HeaderText = "Total Price";
             this.totalPriceDataGridViewTextBoxColumn.Name = "totalPriceDataGridViewTextBoxColumn";
@@ -501,9 +501,9 @@
             // OrderDate
             // 
             this.OrderDate.DataPropertyName = "OrderDate";
-            dataGridViewCellStyle34.Format = "G";
-            dataGridViewCellStyle34.NullValue = null;
-            this.OrderDate.DefaultCellStyle = dataGridViewCellStyle34;
+            dataGridViewCellStyle9.Format = "G";
+            dataGridViewCellStyle9.NullValue = null;
+            this.OrderDate.DefaultCellStyle = dataGridViewCellStyle9;
             this.OrderDate.FillWeight = 90F;
             this.OrderDate.HeaderText = "Order Date";
             this.OrderDate.Name = "OrderDate";
@@ -542,9 +542,9 @@
             // dispatchDateDataGridViewTextBoxColumn1
             // 
             this.dispatchDateDataGridViewTextBoxColumn1.DataPropertyName = "DispatchDate";
-            dataGridViewCellStyle35.Format = "G";
-            dataGridViewCellStyle35.NullValue = "--------------------------------";
-            this.dispatchDateDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle35;
+            dataGridViewCellStyle10.Format = "G";
+            dataGridViewCellStyle10.NullValue = "--------------------------------";
+            this.dispatchDateDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle10;
             this.dispatchDateDataGridViewTextBoxColumn1.FillWeight = 90F;
             this.dispatchDateDataGridViewTextBoxColumn1.HeaderText = "Dispatch Date";
             this.dispatchDateDataGridViewTextBoxColumn1.Name = "dispatchDateDataGridViewTextBoxColumn1";
@@ -654,49 +654,6 @@
             this.IncomingStockList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.AcceptIncomingStock);
             this.IncomingStockList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.RemoveAcceptButton);
             // 
-            // iDDataGridViewTextBoxColumn2
-            // 
-            this.iDDataGridViewTextBoxColumn2.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn2.FillWeight = 50F;
-            this.iDDataGridViewTextBoxColumn2.HeaderText = "ID";
-            this.iDDataGridViewTextBoxColumn2.Name = "iDDataGridViewTextBoxColumn2";
-            this.iDDataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // orderIDDataGridViewTextBoxColumn
-            // 
-            this.orderIDDataGridViewTextBoxColumn.DataPropertyName = "OrderID";
-            this.orderIDDataGridViewTextBoxColumn.FillWeight = 150F;
-            this.orderIDDataGridViewTextBoxColumn.HeaderText = "Order ID";
-            this.orderIDDataGridViewTextBoxColumn.Name = "orderIDDataGridViewTextBoxColumn";
-            this.orderIDDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // quantityDataGridViewTextBoxColumn1
-            // 
-            this.quantityDataGridViewTextBoxColumn1.DataPropertyName = "Quantity";
-            this.quantityDataGridViewTextBoxColumn1.FillWeight = 50F;
-            this.quantityDataGridViewTextBoxColumn1.HeaderText = "Quantity";
-            this.quantityDataGridViewTextBoxColumn1.Name = "quantityDataGridViewTextBoxColumn1";
-            this.quantityDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // dispatchDateDataGridViewTextBoxColumn
-            // 
-            this.dispatchDateDataGridViewTextBoxColumn.DataPropertyName = "DispatchDate";
-            dataGridViewCellStyle31.Format = "G";
-            dataGridViewCellStyle31.NullValue = null;
-            this.dispatchDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle31;
-            this.dispatchDateDataGridViewTextBoxColumn.HeaderText = "Dispatch Date";
-            this.dispatchDateDataGridViewTextBoxColumn.Name = "dispatchDateDataGridViewTextBoxColumn";
-            this.dispatchDateDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // AcceptColumn
-            // 
-            this.AcceptColumn.FillWeight = 30F;
-            this.AcceptColumn.HeaderText = "Accept";
-            this.AcceptColumn.Name = "AcceptColumn";
-            this.AcceptColumn.ReadOnly = true;
-            this.AcceptColumn.Text = "Accept";
-            this.AcceptColumn.UseColumnTextForButtonValue = true;
-            // 
             // StockViewModelBindingSource
             // 
             this.StockViewModelBindingSource.DataSource = typeof(Clients.ModelView.StockViewModel);
@@ -788,6 +745,49 @@
             this.RefreshButton.UseVisualStyleBackColor = true;
             this.RefreshButton.MouseClick += new System.Windows.Forms.MouseEventHandler(this.RefreshButtonClick);
             // 
+            // iDDataGridViewTextBoxColumn2
+            // 
+            this.iDDataGridViewTextBoxColumn2.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn2.FillWeight = 50F;
+            this.iDDataGridViewTextBoxColumn2.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn2.Name = "iDDataGridViewTextBoxColumn2";
+            this.iDDataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // orderIDDataGridViewTextBoxColumn
+            // 
+            this.orderIDDataGridViewTextBoxColumn.DataPropertyName = "OrderID";
+            this.orderIDDataGridViewTextBoxColumn.FillWeight = 150F;
+            this.orderIDDataGridViewTextBoxColumn.HeaderText = "Order ID";
+            this.orderIDDataGridViewTextBoxColumn.Name = "orderIDDataGridViewTextBoxColumn";
+            this.orderIDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // quantityDataGridViewTextBoxColumn1
+            // 
+            this.quantityDataGridViewTextBoxColumn1.DataPropertyName = "Quantity";
+            this.quantityDataGridViewTextBoxColumn1.FillWeight = 50F;
+            this.quantityDataGridViewTextBoxColumn1.HeaderText = "Quantity";
+            this.quantityDataGridViewTextBoxColumn1.Name = "quantityDataGridViewTextBoxColumn1";
+            this.quantityDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dispatchDateDataGridViewTextBoxColumn
+            // 
+            this.dispatchDateDataGridViewTextBoxColumn.DataPropertyName = "DispatchDate";
+            dataGridViewCellStyle6.Format = "G";
+            dataGridViewCellStyle6.NullValue = null;
+            this.dispatchDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
+            this.dispatchDateDataGridViewTextBoxColumn.HeaderText = "Dispatch Date";
+            this.dispatchDateDataGridViewTextBoxColumn.Name = "dispatchDateDataGridViewTextBoxColumn";
+            this.dispatchDateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // AcceptColumn
+            // 
+            this.AcceptColumn.FillWeight = 30F;
+            this.AcceptColumn.HeaderText = "Accept";
+            this.AcceptColumn.Name = "AcceptColumn";
+            this.AcceptColumn.ReadOnly = true;
+            this.AcceptColumn.Text = "Accept";
+            this.AcceptColumn.UseColumnTextForButtonValue = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -858,16 +858,16 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clientEmailDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn orderStateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dispatchDateDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn orderIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn quantityDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dispatchDateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewButtonColumn AcceptColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn iSBNDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn titleDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn authorDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn orderIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn quantityDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dispatchDateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewButtonColumn AcceptColumn;
     }
 }
 
