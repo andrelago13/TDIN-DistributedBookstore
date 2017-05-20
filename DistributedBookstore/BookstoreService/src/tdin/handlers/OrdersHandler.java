@@ -4,7 +4,14 @@ import database.DatabaseAPI;
 import model.BookOrder;
 import model.StoreBookOrder;
 import tdin.Core;
+import utils.HTTPUtils;
 
+import javax.ws.rs.core.Response;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -105,15 +112,19 @@ public class OrdersHandler {
         return bookOrders;
     }
 
-    public boolean createOrder(final StoreBookOrder bookOrder) {
+    public boolean createOrder(final StoreBookOrder bookOrder) throws IOException {
         StockHandler stockHandler = StockHandler.getInstance();
         if (stockHandler.hasBookStock(bookOrder.getBookID(), bookOrder.getQuantity())) {
             stockHandler.removeBookStock(bookOrder.getBookID(), bookOrder.getQuantity());
             Timestamp timestamp = Timestamp.from(new Date().toInstant().plus(1, ChronoUnit.DAYS));
             bookOrder.dispatch(timestamp);
         } else {
+            UUID orderID = bookOrder.getOrderID();
+            int bookID = bookOrder.getBookID();
             int quantity = bookOrder.getQuantity() + 10;
-            // TODO: Create request for stock to the warehouse
+            if (!createWarehouseRequest(orderID, bookID, quantity)) {
+                return false;
+            }
         }
 
         return DatabaseAPI.executeInsertion(
@@ -123,7 +134,7 @@ public class OrdersHandler {
                     put(StoreBookOrder.ORDER_ID_COLUMN, bookOrder.getOrderID().toString());
                     put(StoreBookOrder.BOOK_ID_COLUMN, bookOrder.getBookID());
                     put(StoreBookOrder.QUANTITY_COLUMN, bookOrder.getQuantity());
-                    if(bookOrder.getUserID() > 0)
+                    if (bookOrder.getUserID() > 0)
                         put(StoreBookOrder.USER_ID_COLUMN, bookOrder.getUserID());
                     put(StoreBookOrder.ORDER_DATE_COLUMN, bookOrder.getOrderDate());
                     put(StoreBookOrder.TOTAL_PRICE_COLUMN, bookOrder.getTotalPrice());
@@ -134,6 +145,36 @@ public class OrdersHandler {
                     put(StoreBookOrder.DISPATCH_DATE_COLUMN, bookOrder.getDispatchDate());
                 }}
         );
+    }
+
+    private boolean createWarehouseRequest(UUID orderID, int bookID, int quantity) throws IOException {
+        // Create request
+        Map<String, String> urlParams = new HashMap<String, String>() {{
+            put("orderID", orderID.toString());
+            put("bookID", String.valueOf(bookID));
+            put("quantity", String.valueOf(quantity));
+        }};
+        String urlParameters = HTTPUtils.getDataString(urlParams);
+        byte[] postData = urlParameters.getBytes(StandardCharsets.UTF_8);
+        int postDataLength = postData.length;
+        String request = "http://localhost:8080/warehouse/orders";
+        URL url = new URL(request);
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setDoOutput(true);
+        conn.setInstanceFollowRedirects(false);
+        conn.setRequestMethod("POST");
+        conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+        conn.setRequestProperty("charset", "utf-8");
+        conn.setRequestProperty("Content-Length", Integer.toString(postDataLength));
+        conn.setUseCaches(false);
+        try (DataOutputStream wr = new DataOutputStream(conn.getOutputStream())) {
+            wr.write(postData);
+            wr.close();
+        }
+        conn.connect();
+
+        // Read response
+        return conn.getResponseCode() == Response.Status.CREATED.getStatusCode();
     }
 
     public boolean markAsShouldDispatchOrder(UUID id) {

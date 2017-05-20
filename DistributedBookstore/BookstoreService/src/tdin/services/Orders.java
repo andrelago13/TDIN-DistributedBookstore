@@ -3,12 +3,12 @@ package tdin.services;
 import model.BookOrder;
 import model.StoreBookOrder;
 import model.StoreBookOrderList;
-import org.json.JSONObject;
 import tdin.handlers.OrdersHandler;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.io.IOException;
 import java.net.URI;
 import java.sql.SQLException;
 import java.util.UUID;
@@ -49,7 +49,7 @@ public class Orders {
                                 @FormParam("totalPrice") double totalPrice,
                                 @FormParam("clientName") String clientName,
                                 @FormParam("clientAddress") String clientAddress,
-                                @FormParam("clientEmail") String clientEmail) {
+                                @FormParam("clientEmail") String clientEmail) throws IOException {
         StoreBookOrder bookOrder = new StoreBookOrder(bookID, quantity, totalPrice, clientName, clientAddress, clientEmail, userID);
         if (OrdersHandler.getInstance().createOrder(bookOrder)) {
             // TODO: Send an email to the user regarding his order
