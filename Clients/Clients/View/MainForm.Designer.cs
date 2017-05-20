@@ -142,7 +142,11 @@
             this.BooksList.AutoGenerateColumns = false;
             this.BooksList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.BooksList.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
-            this.BooksList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.BooksList.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.BooksList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.BooksList.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
+            this.BooksList.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.BooksList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.BooksList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.iDDataGridViewTextBoxColumn,
             this.iSBNDataGridViewTextBoxColumn,
@@ -151,12 +155,15 @@
             this.priceDataGridViewTextBoxColumn});
             this.BooksList.DataMember = "Books";
             this.BooksList.DataSource = this.BooksViewModelBindingSource;
+            this.BooksList.EnableHeadersVisualStyles = false;
             this.BooksList.Location = new System.Drawing.Point(6, 18);
+            this.BooksList.MultiSelect = false;
             this.BooksList.Name = "BooksList";
             this.BooksList.ReadOnly = true;
             this.BooksList.RowHeadersVisible = false;
             this.BooksList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.BooksList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.BooksList.ShowCellToolTips = false;
             this.BooksList.Size = new System.Drawing.Size(983, 597);
             this.BooksList.TabIndex = 4;
             // 
@@ -369,7 +376,11 @@
             this.OrdersList.AutoGenerateColumns = false;
             this.OrdersList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.OrdersList.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
-            this.OrdersList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.OrdersList.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.OrdersList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.OrdersList.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
+            this.OrdersList.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.OrdersList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.OrdersList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.orderIDDataGridViewTextBoxColumn1,
             this.bookIDDataGridViewTextBoxColumn,
@@ -384,12 +395,15 @@
             this.dispatchDateDataGridViewTextBoxColumn1});
             this.OrdersList.DataMember = "Orders";
             this.OrdersList.DataSource = this.OrdersViewModelBindingSource;
+            this.OrdersList.EnableHeadersVisualStyles = false;
             this.OrdersList.Location = new System.Drawing.Point(6, 231);
+            this.OrdersList.MultiSelect = false;
             this.OrdersList.Name = "OrdersList";
             this.OrdersList.ReadOnly = true;
             this.OrdersList.RowHeadersVisible = false;
             this.OrdersList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.OrdersList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.OrdersList.ShowCellToolTips = false;
             this.OrdersList.Size = new System.Drawing.Size(975, 384);
             this.OrdersList.TabIndex = 3;
             // 
@@ -466,7 +480,11 @@
             this.IncomingStockList.AutoGenerateColumns = false;
             this.IncomingStockList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.IncomingStockList.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
-            this.IncomingStockList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.IncomingStockList.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.IncomingStockList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.IncomingStockList.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
+            this.IncomingStockList.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.IncomingStockList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.IncomingStockList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.iDDataGridViewTextBoxColumn2,
             this.orderIDDataGridViewTextBoxColumn,
@@ -475,12 +493,15 @@
             this.AcceptColumn});
             this.IncomingStockList.DataMember = "IncomingStock";
             this.IncomingStockList.DataSource = this.StockViewModelBindingSource;
+            this.IncomingStockList.EnableHeadersVisualStyles = false;
             this.IncomingStockList.Location = new System.Drawing.Point(6, 343);
+            this.IncomingStockList.MultiSelect = false;
             this.IncomingStockList.Name = "IncomingStockList";
             this.IncomingStockList.ReadOnly = true;
             this.IncomingStockList.RowHeadersVisible = false;
             this.IncomingStockList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.IncomingStockList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.IncomingStockList.ShowCellToolTips = false;
             this.IncomingStockList.Size = new System.Drawing.Size(983, 272);
             this.IncomingStockList.TabIndex = 3;
             // 
@@ -514,24 +535,29 @@
             // 
             this.StockList.AllowUserToAddRows = false;
             this.StockList.AllowUserToDeleteRows = false;
-            this.StockList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.StockList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.StockList.AutoGenerateColumns = false;
             this.StockList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.StockList.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
-            this.StockList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.StockList.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.StockList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.StockList.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
+            this.StockList.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.StockList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.StockList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.iDDataGridViewTextBoxColumn1,
             this.quantityDataGridViewTextBoxColumn});
             this.StockList.DataMember = "Stock";
             this.StockList.DataSource = this.StockViewModelBindingSource;
+            this.StockList.EnableHeadersVisualStyles = false;
             this.StockList.Location = new System.Drawing.Point(6, 34);
             this.StockList.Name = "StockList";
             this.StockList.ReadOnly = true;
             this.StockList.RowHeadersVisible = false;
             this.StockList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.StockList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.StockList.ShowCellToolTips = false;
             this.StockList.Size = new System.Drawing.Size(983, 273);
             this.StockList.TabIndex = 0;
             // 
