@@ -1,4 +1,5 @@
 ﻿using Clients.ModelView;
+using Common.model;
 using MaterialSkin;
 using MaterialSkin.Controls;
 using System;
@@ -21,23 +22,47 @@ namespace Clients
 
             // Books View
             BooksViewModel.Instance.Controller = this;
-            BooksViewModel.Instance.Refresh();
             this.BooksViewModelBindingSource.Add(BooksViewModel.Instance);
 
             // Orders View
             OrdersViewModel.Instance.Controller = this;
-            OrdersViewModel.Instance.Refresh();
             this.OrdersViewModelBindingSource.Add(OrdersViewModel.Instance);
 
             // Stock View
             StockViewModel.Instance.Controller = this;
-            StockViewModel.Instance.Refresh();
             this.StockViewModelBindingSource.Add(StockViewModel.Instance);
 
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
+
+            this.RefreshAll();
+        }
+
+        private void RefreshAll()
+        {
+            BooksViewModel.Instance.Refresh();
+            OrdersViewModel.Instance.Refresh();
+            StockViewModel.Instance.Refresh();
+        }
+
+        private void RefreshButtonClick(object sender, MouseEventArgs e)
+        {
+            Task.Run(() => this.RefreshAll());
+        }
+
+        private void RemoveAcceptButton(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            DateTime currentDate = DateTime.Now.Date;
+            foreach (DataGridViewRow row in IncomingStockList.Rows) {
+                DataGridViewCell cell = row.Cells[3];
+                DateTime dispatchedDate = Convert.ToDateTime(cell.Value);
+                if (dispatchedDate != null && dispatchedDate.AddDays(2) <= currentDate)
+                    continue;
+
+                row.Cells[4] = new DataGridViewTextBoxCell();
+            }
         }
     }
 }

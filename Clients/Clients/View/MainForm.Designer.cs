@@ -29,10 +29,20 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
             this.TabSelector = new MaterialSkin.Controls.MaterialTabSelector();
             this.TabControl = new MaterialSkin.Controls.MaterialTabControl();
             this.booksTab = new System.Windows.Forms.TabPage();
             this.BooksList = new System.Windows.Forms.DataGridView();
+            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.iSBNDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.authorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BooksViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ordersTab = new System.Windows.Forms.TabPage();
             this.CreateOrderButton = new MaterialSkin.Controls.MaterialRaisedButton();
@@ -46,28 +56,6 @@
             this.TotalPriceLabel = new MaterialSkin.Controls.MaterialLabel();
             this.BookIDField = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.OrdersList = new System.Windows.Forms.DataGridView();
-            this.QuantityField = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.QuantityLabel = new MaterialSkin.Controls.MaterialLabel();
-            this.BookLabel = new MaterialSkin.Controls.MaterialLabel();
-            this.stockTab = new System.Windows.Forms.TabPage();
-            this.IncomingStockList = new System.Windows.Forms.DataGridView();
-            this.IncomingStockLabel = new MaterialSkin.Controls.MaterialLabel();
-            this.StockLabel = new MaterialSkin.Controls.MaterialLabel();
-            this.StockList = new System.Windows.Forms.DataGridView();
-            this.StockViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.iDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.iSBNDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.authorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OrdersViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.iDDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.orderIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quantityDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dispatchDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AcceptColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.orderIDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bookIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -79,17 +67,35 @@
             this.clientEmailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.orderStateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dispatchDateDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OrdersViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.QuantityField = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.QuantityLabel = new MaterialSkin.Controls.MaterialLabel();
+            this.BookLabel = new MaterialSkin.Controls.MaterialLabel();
+            this.stockTab = new System.Windows.Forms.TabPage();
+            this.IncomingStockList = new System.Windows.Forms.DataGridView();
+            this.iDDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.orderIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quantityDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dispatchDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AcceptColumn = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.StockViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.IncomingStockLabel = new MaterialSkin.Controls.MaterialLabel();
+            this.StockLabel = new MaterialSkin.Controls.MaterialLabel();
+            this.StockList = new System.Windows.Forms.DataGridView();
+            this.iDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RefreshButton = new MaterialSkin.Controls.MaterialRaisedButton();
             this.TabControl.SuspendLayout();
             this.booksTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BooksList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BooksViewModelBindingSource)).BeginInit();
             this.ordersTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.OrdersList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OrdersViewModelBindingSource)).BeginInit();
             this.stockTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IncomingStockList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.StockList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.StockViewModelBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.OrdersViewModelBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StockList)).BeginInit();
             this.SuspendLayout();
             // 
             // TabSelector
@@ -114,11 +120,11 @@
             this.TabControl.Controls.Add(this.ordersTab);
             this.TabControl.Controls.Add(this.stockTab);
             this.TabControl.Depth = 0;
-            this.TabControl.Location = new System.Drawing.Point(12, 117);
+            this.TabControl.Location = new System.Drawing.Point(12, 137);
             this.TabControl.MouseState = MaterialSkin.MouseState.HOVER;
             this.TabControl.Name = "TabControl";
             this.TabControl.SelectedIndex = 0;
-            this.TabControl.Size = new System.Drawing.Size(1003, 647);
+            this.TabControl.Size = new System.Drawing.Size(1003, 627);
             this.TabControl.TabIndex = 0;
             // 
             // booksTab
@@ -127,7 +133,7 @@
             this.booksTab.Location = new System.Drawing.Point(4, 22);
             this.booksTab.Name = "booksTab";
             this.booksTab.Padding = new System.Windows.Forms.Padding(3);
-            this.booksTab.Size = new System.Drawing.Size(995, 621);
+            this.booksTab.Size = new System.Drawing.Size(995, 601);
             this.booksTab.TabIndex = 2;
             this.booksTab.Text = "Books";
             this.booksTab.UseVisualStyleBackColor = true;
@@ -136,9 +142,6 @@
             // 
             this.BooksList.AllowUserToAddRows = false;
             this.BooksList.AllowUserToDeleteRows = false;
-            this.BooksList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.BooksList.AutoGenerateColumns = false;
             this.BooksList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.BooksList.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
@@ -155,8 +158,9 @@
             this.priceDataGridViewTextBoxColumn});
             this.BooksList.DataMember = "Books";
             this.BooksList.DataSource = this.BooksViewModelBindingSource;
+            this.BooksList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BooksList.EnableHeadersVisualStyles = false;
-            this.BooksList.Location = new System.Drawing.Point(6, 18);
+            this.BooksList.Location = new System.Drawing.Point(3, 3);
             this.BooksList.MultiSelect = false;
             this.BooksList.Name = "BooksList";
             this.BooksList.ReadOnly = true;
@@ -164,8 +168,52 @@
             this.BooksList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.BooksList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.BooksList.ShowCellToolTips = false;
-            this.BooksList.Size = new System.Drawing.Size(983, 597);
+            this.BooksList.Size = new System.Drawing.Size(989, 595);
             this.BooksList.TabIndex = 4;
+            // 
+            // iDDataGridViewTextBoxColumn
+            // 
+            this.iDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn.FillWeight = 50F;
+            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
+            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.iDDataGridViewTextBoxColumn.Width = 42;
+            // 
+            // iSBNDataGridViewTextBoxColumn
+            // 
+            this.iSBNDataGridViewTextBoxColumn.DataPropertyName = "ISBN";
+            this.iSBNDataGridViewTextBoxColumn.HeaderText = "ISBN";
+            this.iSBNDataGridViewTextBoxColumn.Name = "iSBNDataGridViewTextBoxColumn";
+            this.iSBNDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // titleDataGridViewTextBoxColumn
+            // 
+            this.titleDataGridViewTextBoxColumn.DataPropertyName = "Title";
+            this.titleDataGridViewTextBoxColumn.FillWeight = 150F;
+            this.titleDataGridViewTextBoxColumn.HeaderText = "Title";
+            this.titleDataGridViewTextBoxColumn.Name = "titleDataGridViewTextBoxColumn";
+            this.titleDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // authorDataGridViewTextBoxColumn
+            // 
+            this.authorDataGridViewTextBoxColumn.DataPropertyName = "Author";
+            this.authorDataGridViewTextBoxColumn.FillWeight = 150F;
+            this.authorDataGridViewTextBoxColumn.HeaderText = "Author";
+            this.authorDataGridViewTextBoxColumn.Name = "authorDataGridViewTextBoxColumn";
+            this.authorDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // priceDataGridViewTextBoxColumn
+            // 
+            this.priceDataGridViewTextBoxColumn.DataPropertyName = "Price";
+            dataGridViewCellStyle26.Format = "C2";
+            dataGridViewCellStyle26.NullValue = null;
+            this.priceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle26;
+            this.priceDataGridViewTextBoxColumn.FillWeight = 80F;
+            this.priceDataGridViewTextBoxColumn.HeaderText = "Price";
+            this.priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
+            this.priceDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // BooksViewModelBindingSource
             // 
@@ -191,7 +239,7 @@
             this.ordersTab.Location = new System.Drawing.Point(4, 22);
             this.ordersTab.Name = "ordersTab";
             this.ordersTab.Padding = new System.Windows.Forms.Padding(3);
-            this.ordersTab.Size = new System.Drawing.Size(995, 621);
+            this.ordersTab.Size = new System.Drawing.Size(995, 601);
             this.ordersTab.TabIndex = 0;
             this.ordersTab.Text = "Orders";
             // 
@@ -379,7 +427,7 @@
             this.OrdersList.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.OrdersList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.OrdersList.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
-            this.OrdersList.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.OrdersList.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.OrdersList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.OrdersList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.orderIDDataGridViewTextBoxColumn1,
@@ -396,7 +444,7 @@
             this.OrdersList.DataMember = "Orders";
             this.OrdersList.DataSource = this.OrdersViewModelBindingSource;
             this.OrdersList.EnableHeadersVisualStyles = false;
-            this.OrdersList.Location = new System.Drawing.Point(6, 231);
+            this.OrdersList.Location = new System.Drawing.Point(3, 214);
             this.OrdersList.MultiSelect = false;
             this.OrdersList.Name = "OrdersList";
             this.OrdersList.ReadOnly = true;
@@ -404,8 +452,107 @@
             this.OrdersList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.OrdersList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.OrdersList.ShowCellToolTips = false;
-            this.OrdersList.Size = new System.Drawing.Size(975, 384);
+            this.OrdersList.Size = new System.Drawing.Size(989, 384);
             this.OrdersList.TabIndex = 3;
+            // 
+            // orderIDDataGridViewTextBoxColumn1
+            // 
+            this.orderIDDataGridViewTextBoxColumn1.DataPropertyName = "OrderID";
+            this.orderIDDataGridViewTextBoxColumn1.FillWeight = 130F;
+            this.orderIDDataGridViewTextBoxColumn1.HeaderText = "ID";
+            this.orderIDDataGridViewTextBoxColumn1.Name = "orderIDDataGridViewTextBoxColumn1";
+            this.orderIDDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // bookIDDataGridViewTextBoxColumn
+            // 
+            this.bookIDDataGridViewTextBoxColumn.DataPropertyName = "BookID";
+            this.bookIDDataGridViewTextBoxColumn.FillWeight = 50F;
+            this.bookIDDataGridViewTextBoxColumn.HeaderText = "Book ID";
+            this.bookIDDataGridViewTextBoxColumn.Name = "bookIDDataGridViewTextBoxColumn";
+            this.bookIDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // userIDDataGridViewTextBoxColumn
+            // 
+            this.userIDDataGridViewTextBoxColumn.DataPropertyName = "UserID";
+            this.userIDDataGridViewTextBoxColumn.FillWeight = 50F;
+            this.userIDDataGridViewTextBoxColumn.HeaderText = "User ID";
+            this.userIDDataGridViewTextBoxColumn.Name = "userIDDataGridViewTextBoxColumn";
+            this.userIDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // quantityDataGridViewTextBoxColumn2
+            // 
+            this.quantityDataGridViewTextBoxColumn2.DataPropertyName = "Quantity";
+            this.quantityDataGridViewTextBoxColumn2.FillWeight = 30F;
+            this.quantityDataGridViewTextBoxColumn2.HeaderText = "Quantity";
+            this.quantityDataGridViewTextBoxColumn2.Name = "quantityDataGridViewTextBoxColumn2";
+            this.quantityDataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // totalPriceDataGridViewTextBoxColumn
+            // 
+            this.totalPriceDataGridViewTextBoxColumn.DataPropertyName = "TotalPrice";
+            dataGridViewCellStyle27.Format = "C2";
+            dataGridViewCellStyle27.NullValue = null;
+            this.totalPriceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle27;
+            this.totalPriceDataGridViewTextBoxColumn.FillWeight = 50F;
+            this.totalPriceDataGridViewTextBoxColumn.HeaderText = "Total Price";
+            this.totalPriceDataGridViewTextBoxColumn.Name = "totalPriceDataGridViewTextBoxColumn";
+            this.totalPriceDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // OrderDate
+            // 
+            this.OrderDate.DataPropertyName = "OrderDate";
+            dataGridViewCellStyle28.Format = "G";
+            dataGridViewCellStyle28.NullValue = null;
+            this.OrderDate.DefaultCellStyle = dataGridViewCellStyle28;
+            this.OrderDate.FillWeight = 90F;
+            this.OrderDate.HeaderText = "Order Date";
+            this.OrderDate.Name = "OrderDate";
+            this.OrderDate.ReadOnly = true;
+            // 
+            // clientNameDataGridViewTextBoxColumn
+            // 
+            this.clientNameDataGridViewTextBoxColumn.DataPropertyName = "ClientName";
+            this.clientNameDataGridViewTextBoxColumn.FillWeight = 150F;
+            this.clientNameDataGridViewTextBoxColumn.HeaderText = "Client Name";
+            this.clientNameDataGridViewTextBoxColumn.Name = "clientNameDataGridViewTextBoxColumn";
+            this.clientNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // clientAddressDataGridViewTextBoxColumn
+            // 
+            this.clientAddressDataGridViewTextBoxColumn.DataPropertyName = "ClientAddress";
+            this.clientAddressDataGridViewTextBoxColumn.FillWeight = 180F;
+            this.clientAddressDataGridViewTextBoxColumn.HeaderText = "Client Address";
+            this.clientAddressDataGridViewTextBoxColumn.Name = "clientAddressDataGridViewTextBoxColumn";
+            this.clientAddressDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // clientEmailDataGridViewTextBoxColumn
+            // 
+            this.clientEmailDataGridViewTextBoxColumn.DataPropertyName = "ClientEmail";
+            this.clientEmailDataGridViewTextBoxColumn.HeaderText = "Client Email";
+            this.clientEmailDataGridViewTextBoxColumn.Name = "clientEmailDataGridViewTextBoxColumn";
+            this.clientEmailDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // orderStateDataGridViewTextBoxColumn
+            // 
+            this.orderStateDataGridViewTextBoxColumn.DataPropertyName = "OrderState";
+            this.orderStateDataGridViewTextBoxColumn.HeaderText = "Order State";
+            this.orderStateDataGridViewTextBoxColumn.Name = "orderStateDataGridViewTextBoxColumn";
+            this.orderStateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dispatchDateDataGridViewTextBoxColumn1
+            // 
+            this.dispatchDateDataGridViewTextBoxColumn1.DataPropertyName = "DispatchDate";
+            dataGridViewCellStyle29.Format = "G";
+            dataGridViewCellStyle29.NullValue = "--------------------------------";
+            this.dispatchDateDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle29;
+            this.dispatchDateDataGridViewTextBoxColumn1.FillWeight = 90F;
+            this.dispatchDateDataGridViewTextBoxColumn1.HeaderText = "Dispatch Date";
+            this.dispatchDateDataGridViewTextBoxColumn1.Name = "dispatchDateDataGridViewTextBoxColumn1";
+            this.dispatchDateDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // OrdersViewModelBindingSource
+            // 
+            this.OrdersViewModelBindingSource.DataSource = typeof(Clients.ModelView.OrdersViewModel);
             // 
             // QuantityField
             // 
@@ -465,7 +612,7 @@
             this.stockTab.Location = new System.Drawing.Point(4, 22);
             this.stockTab.Name = "stockTab";
             this.stockTab.Padding = new System.Windows.Forms.Padding(3);
-            this.stockTab.Size = new System.Drawing.Size(995, 621);
+            this.stockTab.Size = new System.Drawing.Size(995, 601);
             this.stockTab.TabIndex = 1;
             this.stockTab.Text = "Stock";
             this.stockTab.UseVisualStyleBackColor = true;
@@ -494,7 +641,7 @@
             this.IncomingStockList.DataMember = "IncomingStock";
             this.IncomingStockList.DataSource = this.StockViewModelBindingSource;
             this.IncomingStockList.EnableHeadersVisualStyles = false;
-            this.IncomingStockList.Location = new System.Drawing.Point(6, 343);
+            this.IncomingStockList.Location = new System.Drawing.Point(0, 332);
             this.IncomingStockList.MultiSelect = false;
             this.IncomingStockList.Name = "IncomingStockList";
             this.IncomingStockList.ReadOnly = true;
@@ -502,8 +649,56 @@
             this.IncomingStockList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.IncomingStockList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.IncomingStockList.ShowCellToolTips = false;
-            this.IncomingStockList.Size = new System.Drawing.Size(983, 272);
+            this.IncomingStockList.Size = new System.Drawing.Size(995, 269);
             this.IncomingStockList.TabIndex = 3;
+            this.IncomingStockList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.RemoveAcceptButton);
+            // 
+            // iDDataGridViewTextBoxColumn2
+            // 
+            this.iDDataGridViewTextBoxColumn2.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn2.FillWeight = 50F;
+            this.iDDataGridViewTextBoxColumn2.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn2.Name = "iDDataGridViewTextBoxColumn2";
+            this.iDDataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // orderIDDataGridViewTextBoxColumn
+            // 
+            this.orderIDDataGridViewTextBoxColumn.DataPropertyName = "OrderID";
+            this.orderIDDataGridViewTextBoxColumn.FillWeight = 150F;
+            this.orderIDDataGridViewTextBoxColumn.HeaderText = "Order ID";
+            this.orderIDDataGridViewTextBoxColumn.Name = "orderIDDataGridViewTextBoxColumn";
+            this.orderIDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // quantityDataGridViewTextBoxColumn1
+            // 
+            this.quantityDataGridViewTextBoxColumn1.DataPropertyName = "Quantity";
+            this.quantityDataGridViewTextBoxColumn1.FillWeight = 50F;
+            this.quantityDataGridViewTextBoxColumn1.HeaderText = "Quantity";
+            this.quantityDataGridViewTextBoxColumn1.Name = "quantityDataGridViewTextBoxColumn1";
+            this.quantityDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dispatchDateDataGridViewTextBoxColumn
+            // 
+            this.dispatchDateDataGridViewTextBoxColumn.DataPropertyName = "DispatchDate";
+            dataGridViewCellStyle30.Format = "G";
+            dataGridViewCellStyle30.NullValue = null;
+            this.dispatchDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle30;
+            this.dispatchDateDataGridViewTextBoxColumn.HeaderText = "Dispatch Date";
+            this.dispatchDateDataGridViewTextBoxColumn.Name = "dispatchDateDataGridViewTextBoxColumn";
+            this.dispatchDateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // AcceptColumn
+            // 
+            this.AcceptColumn.FillWeight = 30F;
+            this.AcceptColumn.HeaderText = "Accept";
+            this.AcceptColumn.Name = "AcceptColumn";
+            this.AcceptColumn.ReadOnly = true;
+            this.AcceptColumn.Text = "Accept";
+            this.AcceptColumn.UseColumnTextForButtonValue = true;
+            // 
+            // StockViewModelBindingSource
+            // 
+            this.StockViewModelBindingSource.DataSource = typeof(Clients.ModelView.StockViewModel);
             // 
             // IncomingStockLabel
             // 
@@ -511,7 +706,7 @@
             this.IncomingStockLabel.Depth = 0;
             this.IncomingStockLabel.Font = new System.Drawing.Font("Roboto", 11F);
             this.IncomingStockLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.IncomingStockLabel.Location = new System.Drawing.Point(9, 320);
+            this.IncomingStockLabel.Location = new System.Drawing.Point(6, 310);
             this.IncomingStockLabel.MouseState = MaterialSkin.MouseState.HOVER;
             this.IncomingStockLabel.Name = "IncomingStockLabel";
             this.IncomingStockLabel.Size = new System.Drawing.Size(71, 19);
@@ -551,19 +746,15 @@
             this.StockList.DataMember = "Stock";
             this.StockList.DataSource = this.StockViewModelBindingSource;
             this.StockList.EnableHeadersVisualStyles = false;
-            this.StockList.Location = new System.Drawing.Point(6, 34);
+            this.StockList.Location = new System.Drawing.Point(0, 34);
             this.StockList.Name = "StockList";
             this.StockList.ReadOnly = true;
             this.StockList.RowHeadersVisible = false;
             this.StockList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.StockList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.StockList.ShowCellToolTips = false;
-            this.StockList.Size = new System.Drawing.Size(983, 273);
+            this.StockList.Size = new System.Drawing.Size(995, 273);
             this.StockList.TabIndex = 0;
-            // 
-            // StockViewModelBindingSource
-            // 
-            this.StockViewModelBindingSource.DataSource = typeof(Clients.ModelView.StockViewModel);
             // 
             // iDDataGridViewTextBoxColumn1
             // 
@@ -579,163 +770,29 @@
             this.quantityDataGridViewTextBoxColumn.Name = "quantityDataGridViewTextBoxColumn";
             this.quantityDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // iDDataGridViewTextBoxColumn
+            // RefreshButton
             // 
-            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
-            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // iSBNDataGridViewTextBoxColumn
-            // 
-            this.iSBNDataGridViewTextBoxColumn.DataPropertyName = "ISBN";
-            this.iSBNDataGridViewTextBoxColumn.HeaderText = "ISBN";
-            this.iSBNDataGridViewTextBoxColumn.Name = "iSBNDataGridViewTextBoxColumn";
-            this.iSBNDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // titleDataGridViewTextBoxColumn
-            // 
-            this.titleDataGridViewTextBoxColumn.DataPropertyName = "Title";
-            this.titleDataGridViewTextBoxColumn.HeaderText = "Title";
-            this.titleDataGridViewTextBoxColumn.Name = "titleDataGridViewTextBoxColumn";
-            this.titleDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // authorDataGridViewTextBoxColumn
-            // 
-            this.authorDataGridViewTextBoxColumn.DataPropertyName = "Author";
-            this.authorDataGridViewTextBoxColumn.HeaderText = "Author";
-            this.authorDataGridViewTextBoxColumn.Name = "authorDataGridViewTextBoxColumn";
-            this.authorDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // priceDataGridViewTextBoxColumn
-            // 
-            this.priceDataGridViewTextBoxColumn.DataPropertyName = "Price";
-            this.priceDataGridViewTextBoxColumn.HeaderText = "Price";
-            this.priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
-            this.priceDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // OrdersViewModelBindingSource
-            // 
-            this.OrdersViewModelBindingSource.DataSource = typeof(Clients.ModelView.OrdersViewModel);
-            // 
-            // iDDataGridViewTextBoxColumn2
-            // 
-            this.iDDataGridViewTextBoxColumn2.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn2.HeaderText = "ID";
-            this.iDDataGridViewTextBoxColumn2.Name = "iDDataGridViewTextBoxColumn2";
-            this.iDDataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // orderIDDataGridViewTextBoxColumn
-            // 
-            this.orderIDDataGridViewTextBoxColumn.DataPropertyName = "OrderID";
-            this.orderIDDataGridViewTextBoxColumn.HeaderText = "Order ID";
-            this.orderIDDataGridViewTextBoxColumn.Name = "orderIDDataGridViewTextBoxColumn";
-            this.orderIDDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // quantityDataGridViewTextBoxColumn1
-            // 
-            this.quantityDataGridViewTextBoxColumn1.DataPropertyName = "Quantity";
-            this.quantityDataGridViewTextBoxColumn1.HeaderText = "Quantity";
-            this.quantityDataGridViewTextBoxColumn1.Name = "quantityDataGridViewTextBoxColumn1";
-            this.quantityDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // dispatchDateDataGridViewTextBoxColumn
-            // 
-            this.dispatchDateDataGridViewTextBoxColumn.DataPropertyName = "DispatchDate";
-            this.dispatchDateDataGridViewTextBoxColumn.HeaderText = "Dispatch Date";
-            this.dispatchDateDataGridViewTextBoxColumn.Name = "dispatchDateDataGridViewTextBoxColumn";
-            this.dispatchDateDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // AcceptColumn
-            // 
-            this.AcceptColumn.HeaderText = "Accept";
-            this.AcceptColumn.Name = "AcceptColumn";
-            this.AcceptColumn.ReadOnly = true;
-            this.AcceptColumn.Text = "Accept";
-            this.AcceptColumn.UseColumnTextForButtonValue = true;
-            // 
-            // orderIDDataGridViewTextBoxColumn1
-            // 
-            this.orderIDDataGridViewTextBoxColumn1.DataPropertyName = "OrderID";
-            this.orderIDDataGridViewTextBoxColumn1.HeaderText = "ID";
-            this.orderIDDataGridViewTextBoxColumn1.Name = "orderIDDataGridViewTextBoxColumn1";
-            this.orderIDDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // bookIDDataGridViewTextBoxColumn
-            // 
-            this.bookIDDataGridViewTextBoxColumn.DataPropertyName = "BookID";
-            this.bookIDDataGridViewTextBoxColumn.HeaderText = "Book ID";
-            this.bookIDDataGridViewTextBoxColumn.Name = "bookIDDataGridViewTextBoxColumn";
-            this.bookIDDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // userIDDataGridViewTextBoxColumn
-            // 
-            this.userIDDataGridViewTextBoxColumn.DataPropertyName = "UserID";
-            this.userIDDataGridViewTextBoxColumn.HeaderText = "User ID";
-            this.userIDDataGridViewTextBoxColumn.Name = "userIDDataGridViewTextBoxColumn";
-            this.userIDDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // quantityDataGridViewTextBoxColumn2
-            // 
-            this.quantityDataGridViewTextBoxColumn2.DataPropertyName = "Quantity";
-            this.quantityDataGridViewTextBoxColumn2.HeaderText = "Quantity";
-            this.quantityDataGridViewTextBoxColumn2.Name = "quantityDataGridViewTextBoxColumn2";
-            this.quantityDataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // totalPriceDataGridViewTextBoxColumn
-            // 
-            this.totalPriceDataGridViewTextBoxColumn.DataPropertyName = "TotalPrice";
-            this.totalPriceDataGridViewTextBoxColumn.HeaderText = "Total Price";
-            this.totalPriceDataGridViewTextBoxColumn.Name = "totalPriceDataGridViewTextBoxColumn";
-            this.totalPriceDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // OrderDate
-            // 
-            this.OrderDate.DataPropertyName = "OrderDate";
-            this.OrderDate.HeaderText = "Order Date";
-            this.OrderDate.Name = "OrderDate";
-            this.OrderDate.ReadOnly = true;
-            // 
-            // clientNameDataGridViewTextBoxColumn
-            // 
-            this.clientNameDataGridViewTextBoxColumn.DataPropertyName = "ClientName";
-            this.clientNameDataGridViewTextBoxColumn.HeaderText = "Client Name";
-            this.clientNameDataGridViewTextBoxColumn.Name = "clientNameDataGridViewTextBoxColumn";
-            this.clientNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // clientAddressDataGridViewTextBoxColumn
-            // 
-            this.clientAddressDataGridViewTextBoxColumn.DataPropertyName = "ClientAddress";
-            this.clientAddressDataGridViewTextBoxColumn.HeaderText = "Client Address";
-            this.clientAddressDataGridViewTextBoxColumn.Name = "clientAddressDataGridViewTextBoxColumn";
-            this.clientAddressDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // clientEmailDataGridViewTextBoxColumn
-            // 
-            this.clientEmailDataGridViewTextBoxColumn.DataPropertyName = "ClientEmail";
-            this.clientEmailDataGridViewTextBoxColumn.HeaderText = "Client Email";
-            this.clientEmailDataGridViewTextBoxColumn.Name = "clientEmailDataGridViewTextBoxColumn";
-            this.clientEmailDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // orderStateDataGridViewTextBoxColumn
-            // 
-            this.orderStateDataGridViewTextBoxColumn.DataPropertyName = "OrderState";
-            this.orderStateDataGridViewTextBoxColumn.HeaderText = "Order State";
-            this.orderStateDataGridViewTextBoxColumn.Name = "orderStateDataGridViewTextBoxColumn";
-            this.orderStateDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // dispatchDateDataGridViewTextBoxColumn1
-            // 
-            this.dispatchDateDataGridViewTextBoxColumn1.DataPropertyName = "DispatchDate";
-            this.dispatchDateDataGridViewTextBoxColumn1.HeaderText = "Dispatch Date";
-            this.dispatchDateDataGridViewTextBoxColumn1.Name = "dispatchDateDataGridViewTextBoxColumn1";
-            this.dispatchDateDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.RefreshButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.RefreshButton.AutoSize = true;
+            this.RefreshButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.RefreshButton.Depth = 0;
+            this.RefreshButton.Icon = null;
+            this.RefreshButton.Location = new System.Drawing.Point(893, 64);
+            this.RefreshButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.RefreshButton.Name = "RefreshButton";
+            this.RefreshButton.Primary = true;
+            this.RefreshButton.Size = new System.Drawing.Size(118, 36);
+            this.RefreshButton.TabIndex = 6;
+            this.RefreshButton.Text = "Refresh Data";
+            this.RefreshButton.UseVisualStyleBackColor = true;
+            this.RefreshButton.MouseClick += new System.Windows.Forms.MouseEventHandler(this.RefreshButtonClick);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1027, 776);
+            this.Controls.Add(this.RefreshButton);
             this.Controls.Add(this.TabSelector);
             this.Controls.Add(this.TabControl);
             this.Name = "MainForm";
@@ -747,13 +804,14 @@
             this.ordersTab.ResumeLayout(false);
             this.ordersTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.OrdersList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OrdersViewModelBindingSource)).EndInit();
             this.stockTab.ResumeLayout(false);
             this.stockTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IncomingStockList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.StockList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.StockViewModelBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.OrdersViewModelBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StockList)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -784,19 +842,10 @@
         private MaterialSkin.Controls.MaterialRaisedButton CreateOrderButton;
         private System.Windows.Forms.BindingSource BooksViewModelBindingSource;
         private System.Windows.Forms.BindingSource StockViewModelBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn iSBNDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn titleDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn authorDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn quantityDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource OrdersViewModelBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn orderIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn quantityDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dispatchDateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewButtonColumn AcceptColumn;
+        private MaterialSkin.Controls.MaterialRaisedButton RefreshButton;
         private System.Windows.Forms.DataGridViewTextBoxColumn orderIDDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn bookIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn userIDDataGridViewTextBoxColumn;
@@ -808,6 +857,16 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clientEmailDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn orderStateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dispatchDateDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn orderIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn quantityDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dispatchDateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewButtonColumn AcceptColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iSBNDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn titleDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn authorDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
     }
 }
 
