@@ -125,9 +125,11 @@ public class Stocks {
 
         // TODO: Send an email telling that the order is going to be dispatched
         StoreBookOrder order = OrdersHandler.getInstance().getBookOrder(id);
-        remainingQuantity -= order.getQuantity();
-        if (!OrdersHandler.getInstance().markAsDispatchedOrder(id)) {
-            return Response.serverError().build();
+        if(order != null) {
+            remainingQuantity -= order.getQuantity();
+            if (!OrdersHandler.getInstance().markAsDispatchedOrder(id)) {
+                return Response.serverError().build();
+            }
         }
 
         // Fulfil all pending orders that can be satisfied

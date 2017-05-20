@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
             this.TabSelector = new MaterialSkin.Controls.MaterialTabSelector();
             this.TabControl = new MaterialSkin.Controls.MaterialTabControl();
             this.booksTab = new System.Windows.Forms.TabPage();
@@ -207,9 +207,9 @@
             // priceDataGridViewTextBoxColumn
             // 
             this.priceDataGridViewTextBoxColumn.DataPropertyName = "Price";
-            dataGridViewCellStyle26.Format = "C2";
-            dataGridViewCellStyle26.NullValue = null;
-            this.priceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle26;
+            dataGridViewCellStyle32.Format = "C2";
+            dataGridViewCellStyle32.NullValue = null;
+            this.priceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle32;
             this.priceDataGridViewTextBoxColumn.FillWeight = 80F;
             this.priceDataGridViewTextBoxColumn.HeaderText = "Price";
             this.priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
@@ -490,9 +490,9 @@
             // totalPriceDataGridViewTextBoxColumn
             // 
             this.totalPriceDataGridViewTextBoxColumn.DataPropertyName = "TotalPrice";
-            dataGridViewCellStyle27.Format = "C2";
-            dataGridViewCellStyle27.NullValue = null;
-            this.totalPriceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle27;
+            dataGridViewCellStyle33.Format = "C2";
+            dataGridViewCellStyle33.NullValue = null;
+            this.totalPriceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle33;
             this.totalPriceDataGridViewTextBoxColumn.FillWeight = 50F;
             this.totalPriceDataGridViewTextBoxColumn.HeaderText = "Total Price";
             this.totalPriceDataGridViewTextBoxColumn.Name = "totalPriceDataGridViewTextBoxColumn";
@@ -501,9 +501,9 @@
             // OrderDate
             // 
             this.OrderDate.DataPropertyName = "OrderDate";
-            dataGridViewCellStyle28.Format = "G";
-            dataGridViewCellStyle28.NullValue = null;
-            this.OrderDate.DefaultCellStyle = dataGridViewCellStyle28;
+            dataGridViewCellStyle34.Format = "G";
+            dataGridViewCellStyle34.NullValue = null;
+            this.OrderDate.DefaultCellStyle = dataGridViewCellStyle34;
             this.OrderDate.FillWeight = 90F;
             this.OrderDate.HeaderText = "Order Date";
             this.OrderDate.Name = "OrderDate";
@@ -542,9 +542,9 @@
             // dispatchDateDataGridViewTextBoxColumn1
             // 
             this.dispatchDateDataGridViewTextBoxColumn1.DataPropertyName = "DispatchDate";
-            dataGridViewCellStyle29.Format = "G";
-            dataGridViewCellStyle29.NullValue = "--------------------------------";
-            this.dispatchDateDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle29;
+            dataGridViewCellStyle35.Format = "G";
+            dataGridViewCellStyle35.NullValue = "--------------------------------";
+            this.dispatchDateDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle35;
             this.dispatchDateDataGridViewTextBoxColumn1.FillWeight = 90F;
             this.dispatchDateDataGridViewTextBoxColumn1.HeaderText = "Dispatch Date";
             this.dispatchDateDataGridViewTextBoxColumn1.Name = "dispatchDateDataGridViewTextBoxColumn1";
@@ -651,6 +651,7 @@
             this.IncomingStockList.ShowCellToolTips = false;
             this.IncomingStockList.Size = new System.Drawing.Size(995, 269);
             this.IncomingStockList.TabIndex = 3;
+            this.IncomingStockList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.AcceptIncomingStock);
             this.IncomingStockList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.RemoveAcceptButton);
             // 
             // iDDataGridViewTextBoxColumn2
@@ -680,9 +681,9 @@
             // dispatchDateDataGridViewTextBoxColumn
             // 
             this.dispatchDateDataGridViewTextBoxColumn.DataPropertyName = "DispatchDate";
-            dataGridViewCellStyle30.Format = "G";
-            dataGridViewCellStyle30.NullValue = null;
-            this.dispatchDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle30;
+            dataGridViewCellStyle31.Format = "G";
+            dataGridViewCellStyle31.NullValue = null;
+            this.dispatchDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle31;
             this.dispatchDateDataGridViewTextBoxColumn.HeaderText = "Dispatch Date";
             this.dispatchDateDataGridViewTextBoxColumn.Name = "dispatchDateDataGridViewTextBoxColumn";
             this.dispatchDateDataGridViewTextBoxColumn.ReadOnly = true;

@@ -83,5 +83,18 @@ namespace Clients
             else
                 return null;
         }
+
+        public bool AcceptIncomingStock(Guid id)
+        {
+            HttpResponseMessage response = httpClient.PostAsync(APIConstants.BOOKSTORE_STOCK_INCOMING + id + "/accept", null).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

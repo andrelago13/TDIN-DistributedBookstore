@@ -16,7 +16,7 @@ INSERT INTO store_orders (id, book_id, quantity, total_price, user_id, order_dat
 VALUES ('64fc0d5b-45f4-4be2-bdbc-ff46bdbd9572', 48, 11, 229.72, NULL, '2016-12-11 09:49:48', 'Ivett Turpin',
                                                 '63 Tennyson Avenue', 'iturpin0@cdc.gov', 1, '2017-06-14 14:57:05');
 INSERT INTO store_orders (id, book_id, quantity, total_price, user_id, order_date, client_name, client_address, client_email, state, dispatch_date)
-VALUES ('e4832f06-17a1-4c43-ae4f-1dd8ca433e90', 9, 15, 132.89, NULL, '2016-07-21 21:10:37', 'Craig Pickhaver',
+VALUES ('3275a32e-1e2b-4934-b6a4-fce2c1deea73', 3, 15, 132.89, NULL, '2016-07-21 21:10:37', 'Craig Pickhaver',
                                                 '0 Florence Road', 'cpickhaver1@google.com.hk', 2,
                                                 '2017-06-10 21:19:26');
 INSERT INTO store_orders (id, book_id, quantity, total_price, user_id, order_date, client_name, client_address, client_email, state, dispatch_date)

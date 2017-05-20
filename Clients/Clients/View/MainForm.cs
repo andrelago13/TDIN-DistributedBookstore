@@ -64,5 +64,19 @@ namespace Clients
                 row.Cells[4] = new DataGridViewTextBoxCell();
             }
         }
+
+        private void AcceptIncomingStock(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+
+            if (!(senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn))
+                return;
+
+            Guid id = (Guid)IncomingStockList.Rows[e.RowIndex].Cells[1].Value;
+            if(ServiceEngine.Instance.AcceptIncomingStock(id))
+            {
+                this.RefreshAll();
+            }
+        }
     }
 }

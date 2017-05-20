@@ -123,7 +123,7 @@ public class OrdersHandler {
                     put(StoreBookOrder.ORDER_ID_COLUMN, bookOrder.getOrderID().toString());
                     put(StoreBookOrder.BOOK_ID_COLUMN, bookOrder.getBookID());
                     put(StoreBookOrder.QUANTITY_COLUMN, bookOrder.getQuantity());
-                    if (bookOrder.getUserID() > 0)
+                    if(bookOrder.getUserID() > 0)
                         put(StoreBookOrder.USER_ID_COLUMN, bookOrder.getUserID());
                     put(StoreBookOrder.ORDER_DATE_COLUMN, bookOrder.getOrderDate());
                     put(StoreBookOrder.TOTAL_PRICE_COLUMN, bookOrder.getTotalPrice());
