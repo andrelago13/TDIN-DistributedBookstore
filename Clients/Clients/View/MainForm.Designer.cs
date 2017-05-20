@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.TabSelector = new MaterialSkin.Controls.MaterialTabSelector();
             this.TabControl = new MaterialSkin.Controls.MaterialTabControl();
             this.booksTab = new System.Windows.Forms.TabPage();
@@ -46,10 +46,10 @@
             this.BooksViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ordersTab = new System.Windows.Forms.TabPage();
             this.CreateOrderButton = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.materialSingleLineTextField1 = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.ClientEmailField = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.ClientEmailLabel = new MaterialSkin.Controls.MaterialLabel();
-            this.materialSingleLineTextField2 = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.materialSingleLineTextField3 = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.ClientNameField = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.ClientAddressField = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.ClientAddressLabel = new MaterialSkin.Controls.MaterialLabel();
             this.ClientNameLabel = new MaterialSkin.Controls.MaterialLabel();
             this.TotalPriceField = new MaterialSkin.Controls.MaterialSingleLineTextField();
@@ -73,6 +73,11 @@
             this.BookLabel = new MaterialSkin.Controls.MaterialLabel();
             this.stockTab = new System.Windows.Forms.TabPage();
             this.IncomingStockList = new System.Windows.Forms.DataGridView();
+            this.iDDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.orderIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quantityDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dispatchDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AcceptColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.StockViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.IncomingStockLabel = new MaterialSkin.Controls.MaterialLabel();
             this.StockLabel = new MaterialSkin.Controls.MaterialLabel();
@@ -80,11 +85,6 @@
             this.iDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RefreshButton = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.iDDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.orderIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quantityDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dispatchDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AcceptColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.TabControl.SuspendLayout();
             this.booksTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BooksList)).BeginInit();
@@ -207,9 +207,9 @@
             // priceDataGridViewTextBoxColumn
             // 
             this.priceDataGridViewTextBoxColumn.DataPropertyName = "Price";
-            dataGridViewCellStyle7.Format = "C2";
-            dataGridViewCellStyle7.NullValue = null;
-            this.priceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Format = "C2";
+            dataGridViewCellStyle1.NullValue = null;
+            this.priceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
             this.priceDataGridViewTextBoxColumn.FillWeight = 80F;
             this.priceDataGridViewTextBoxColumn.HeaderText = "Price";
             this.priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
@@ -223,10 +223,10 @@
             // 
             this.ordersTab.BackColor = System.Drawing.Color.White;
             this.ordersTab.Controls.Add(this.CreateOrderButton);
-            this.ordersTab.Controls.Add(this.materialSingleLineTextField1);
+            this.ordersTab.Controls.Add(this.ClientEmailField);
             this.ordersTab.Controls.Add(this.ClientEmailLabel);
-            this.ordersTab.Controls.Add(this.materialSingleLineTextField2);
-            this.ordersTab.Controls.Add(this.materialSingleLineTextField3);
+            this.ordersTab.Controls.Add(this.ClientNameField);
+            this.ordersTab.Controls.Add(this.ClientAddressField);
             this.ordersTab.Controls.Add(this.ClientAddressLabel);
             this.ordersTab.Controls.Add(this.ClientNameLabel);
             this.ordersTab.Controls.Add(this.TotalPriceField);
@@ -258,25 +258,26 @@
             this.CreateOrderButton.TabIndex = 14;
             this.CreateOrderButton.Text = "Create Order";
             this.CreateOrderButton.UseVisualStyleBackColor = true;
+            this.CreateOrderButton.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CreateOrderClick);
             // 
-            // materialSingleLineTextField1
+            // ClientEmailField
             // 
-            this.materialSingleLineTextField1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ClientEmailField.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.materialSingleLineTextField1.Depth = 0;
-            this.materialSingleLineTextField1.Hint = "";
-            this.materialSingleLineTextField1.Location = new System.Drawing.Point(128, 122);
-            this.materialSingleLineTextField1.MaxLength = 32767;
-            this.materialSingleLineTextField1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialSingleLineTextField1.Name = "materialSingleLineTextField1";
-            this.materialSingleLineTextField1.PasswordChar = '\0';
-            this.materialSingleLineTextField1.SelectedText = "";
-            this.materialSingleLineTextField1.SelectionLength = 0;
-            this.materialSingleLineTextField1.SelectionStart = 0;
-            this.materialSingleLineTextField1.Size = new System.Drawing.Size(587, 23);
-            this.materialSingleLineTextField1.TabIndex = 12;
-            this.materialSingleLineTextField1.TabStop = false;
-            this.materialSingleLineTextField1.UseSystemPasswordChar = false;
+            this.ClientEmailField.Depth = 0;
+            this.ClientEmailField.Hint = "";
+            this.ClientEmailField.Location = new System.Drawing.Point(128, 122);
+            this.ClientEmailField.MaxLength = 32767;
+            this.ClientEmailField.MouseState = MaterialSkin.MouseState.HOVER;
+            this.ClientEmailField.Name = "ClientEmailField";
+            this.ClientEmailField.PasswordChar = '\0';
+            this.ClientEmailField.SelectedText = "";
+            this.ClientEmailField.SelectionLength = 0;
+            this.ClientEmailField.SelectionStart = 0;
+            this.ClientEmailField.Size = new System.Drawing.Size(587, 23);
+            this.ClientEmailField.TabIndex = 12;
+            this.ClientEmailField.TabStop = false;
+            this.ClientEmailField.UseSystemPasswordChar = false;
             // 
             // ClientEmailLabel
             // 
@@ -293,43 +294,43 @@
             this.ClientEmailLabel.TabIndex = 11;
             this.ClientEmailLabel.Text = "Client Email";
             // 
-            // materialSingleLineTextField2
+            // ClientNameField
             // 
-            this.materialSingleLineTextField2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ClientNameField.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.materialSingleLineTextField2.Depth = 0;
-            this.materialSingleLineTextField2.Hint = "";
-            this.materialSingleLineTextField2.Location = new System.Drawing.Point(128, 22);
-            this.materialSingleLineTextField2.MaxLength = 32767;
-            this.materialSingleLineTextField2.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialSingleLineTextField2.Name = "materialSingleLineTextField2";
-            this.materialSingleLineTextField2.PasswordChar = '\0';
-            this.materialSingleLineTextField2.SelectedText = "";
-            this.materialSingleLineTextField2.SelectionLength = 0;
-            this.materialSingleLineTextField2.SelectionStart = 0;
-            this.materialSingleLineTextField2.Size = new System.Drawing.Size(587, 23);
-            this.materialSingleLineTextField2.TabIndex = 10;
-            this.materialSingleLineTextField2.TabStop = false;
-            this.materialSingleLineTextField2.UseSystemPasswordChar = false;
+            this.ClientNameField.Depth = 0;
+            this.ClientNameField.Hint = "";
+            this.ClientNameField.Location = new System.Drawing.Point(128, 22);
+            this.ClientNameField.MaxLength = 32767;
+            this.ClientNameField.MouseState = MaterialSkin.MouseState.HOVER;
+            this.ClientNameField.Name = "ClientNameField";
+            this.ClientNameField.PasswordChar = '\0';
+            this.ClientNameField.SelectedText = "";
+            this.ClientNameField.SelectionLength = 0;
+            this.ClientNameField.SelectionStart = 0;
+            this.ClientNameField.Size = new System.Drawing.Size(587, 23);
+            this.ClientNameField.TabIndex = 10;
+            this.ClientNameField.TabStop = false;
+            this.ClientNameField.UseSystemPasswordChar = false;
             // 
-            // materialSingleLineTextField3
+            // ClientAddressField
             // 
-            this.materialSingleLineTextField3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ClientAddressField.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.materialSingleLineTextField3.Depth = 0;
-            this.materialSingleLineTextField3.Hint = "";
-            this.materialSingleLineTextField3.Location = new System.Drawing.Point(128, 73);
-            this.materialSingleLineTextField3.MaxLength = 32767;
-            this.materialSingleLineTextField3.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialSingleLineTextField3.Name = "materialSingleLineTextField3";
-            this.materialSingleLineTextField3.PasswordChar = '\0';
-            this.materialSingleLineTextField3.SelectedText = "";
-            this.materialSingleLineTextField3.SelectionLength = 0;
-            this.materialSingleLineTextField3.SelectionStart = 0;
-            this.materialSingleLineTextField3.Size = new System.Drawing.Size(587, 23);
-            this.materialSingleLineTextField3.TabIndex = 9;
-            this.materialSingleLineTextField3.TabStop = false;
-            this.materialSingleLineTextField3.UseSystemPasswordChar = false;
+            this.ClientAddressField.Depth = 0;
+            this.ClientAddressField.Hint = "";
+            this.ClientAddressField.Location = new System.Drawing.Point(128, 73);
+            this.ClientAddressField.MaxLength = 32767;
+            this.ClientAddressField.MouseState = MaterialSkin.MouseState.HOVER;
+            this.ClientAddressField.Name = "ClientAddressField";
+            this.ClientAddressField.PasswordChar = '\0';
+            this.ClientAddressField.SelectedText = "";
+            this.ClientAddressField.SelectionLength = 0;
+            this.ClientAddressField.SelectionStart = 0;
+            this.ClientAddressField.Size = new System.Drawing.Size(587, 23);
+            this.ClientAddressField.TabIndex = 9;
+            this.ClientAddressField.TabStop = false;
+            this.ClientAddressField.UseSystemPasswordChar = false;
             // 
             // ClientAddressLabel
             // 
@@ -490,9 +491,9 @@
             // totalPriceDataGridViewTextBoxColumn
             // 
             this.totalPriceDataGridViewTextBoxColumn.DataPropertyName = "TotalPrice";
-            dataGridViewCellStyle8.Format = "C2";
-            dataGridViewCellStyle8.NullValue = null;
-            this.totalPriceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Format = "C2";
+            dataGridViewCellStyle2.NullValue = null;
+            this.totalPriceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.totalPriceDataGridViewTextBoxColumn.FillWeight = 50F;
             this.totalPriceDataGridViewTextBoxColumn.HeaderText = "Total Price";
             this.totalPriceDataGridViewTextBoxColumn.Name = "totalPriceDataGridViewTextBoxColumn";
@@ -501,9 +502,9 @@
             // OrderDate
             // 
             this.OrderDate.DataPropertyName = "OrderDate";
-            dataGridViewCellStyle9.Format = "G";
-            dataGridViewCellStyle9.NullValue = null;
-            this.OrderDate.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Format = "G";
+            dataGridViewCellStyle3.NullValue = null;
+            this.OrderDate.DefaultCellStyle = dataGridViewCellStyle3;
             this.OrderDate.FillWeight = 90F;
             this.OrderDate.HeaderText = "Order Date";
             this.OrderDate.Name = "OrderDate";
@@ -542,9 +543,9 @@
             // dispatchDateDataGridViewTextBoxColumn1
             // 
             this.dispatchDateDataGridViewTextBoxColumn1.DataPropertyName = "DispatchDate";
-            dataGridViewCellStyle10.Format = "G";
-            dataGridViewCellStyle10.NullValue = "--------------------------------";
-            this.dispatchDateDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle4.Format = "G";
+            dataGridViewCellStyle4.NullValue = "--------------------------------";
+            this.dispatchDateDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle4;
             this.dispatchDateDataGridViewTextBoxColumn1.FillWeight = 90F;
             this.dispatchDateDataGridViewTextBoxColumn1.HeaderText = "Dispatch Date";
             this.dispatchDateDataGridViewTextBoxColumn1.Name = "dispatchDateDataGridViewTextBoxColumn1";
@@ -654,6 +655,49 @@
             this.IncomingStockList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.AcceptIncomingStock);
             this.IncomingStockList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.RemoveAcceptButton);
             // 
+            // iDDataGridViewTextBoxColumn2
+            // 
+            this.iDDataGridViewTextBoxColumn2.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn2.FillWeight = 50F;
+            this.iDDataGridViewTextBoxColumn2.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn2.Name = "iDDataGridViewTextBoxColumn2";
+            this.iDDataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // orderIDDataGridViewTextBoxColumn
+            // 
+            this.orderIDDataGridViewTextBoxColumn.DataPropertyName = "OrderID";
+            this.orderIDDataGridViewTextBoxColumn.FillWeight = 150F;
+            this.orderIDDataGridViewTextBoxColumn.HeaderText = "Order ID";
+            this.orderIDDataGridViewTextBoxColumn.Name = "orderIDDataGridViewTextBoxColumn";
+            this.orderIDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // quantityDataGridViewTextBoxColumn1
+            // 
+            this.quantityDataGridViewTextBoxColumn1.DataPropertyName = "Quantity";
+            this.quantityDataGridViewTextBoxColumn1.FillWeight = 50F;
+            this.quantityDataGridViewTextBoxColumn1.HeaderText = "Quantity";
+            this.quantityDataGridViewTextBoxColumn1.Name = "quantityDataGridViewTextBoxColumn1";
+            this.quantityDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dispatchDateDataGridViewTextBoxColumn
+            // 
+            this.dispatchDateDataGridViewTextBoxColumn.DataPropertyName = "DispatchDate";
+            dataGridViewCellStyle5.Format = "G";
+            dataGridViewCellStyle5.NullValue = null;
+            this.dispatchDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            this.dispatchDateDataGridViewTextBoxColumn.HeaderText = "Dispatch Date";
+            this.dispatchDateDataGridViewTextBoxColumn.Name = "dispatchDateDataGridViewTextBoxColumn";
+            this.dispatchDateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // AcceptColumn
+            // 
+            this.AcceptColumn.FillWeight = 30F;
+            this.AcceptColumn.HeaderText = "Accept";
+            this.AcceptColumn.Name = "AcceptColumn";
+            this.AcceptColumn.ReadOnly = true;
+            this.AcceptColumn.Text = "Accept";
+            this.AcceptColumn.UseColumnTextForButtonValue = true;
+            // 
             // StockViewModelBindingSource
             // 
             this.StockViewModelBindingSource.DataSource = typeof(Clients.ModelView.StockViewModel);
@@ -745,49 +789,6 @@
             this.RefreshButton.UseVisualStyleBackColor = true;
             this.RefreshButton.MouseClick += new System.Windows.Forms.MouseEventHandler(this.RefreshButtonClick);
             // 
-            // iDDataGridViewTextBoxColumn2
-            // 
-            this.iDDataGridViewTextBoxColumn2.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn2.FillWeight = 50F;
-            this.iDDataGridViewTextBoxColumn2.HeaderText = "ID";
-            this.iDDataGridViewTextBoxColumn2.Name = "iDDataGridViewTextBoxColumn2";
-            this.iDDataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // orderIDDataGridViewTextBoxColumn
-            // 
-            this.orderIDDataGridViewTextBoxColumn.DataPropertyName = "OrderID";
-            this.orderIDDataGridViewTextBoxColumn.FillWeight = 150F;
-            this.orderIDDataGridViewTextBoxColumn.HeaderText = "Order ID";
-            this.orderIDDataGridViewTextBoxColumn.Name = "orderIDDataGridViewTextBoxColumn";
-            this.orderIDDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // quantityDataGridViewTextBoxColumn1
-            // 
-            this.quantityDataGridViewTextBoxColumn1.DataPropertyName = "Quantity";
-            this.quantityDataGridViewTextBoxColumn1.FillWeight = 50F;
-            this.quantityDataGridViewTextBoxColumn1.HeaderText = "Quantity";
-            this.quantityDataGridViewTextBoxColumn1.Name = "quantityDataGridViewTextBoxColumn1";
-            this.quantityDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // dispatchDateDataGridViewTextBoxColumn
-            // 
-            this.dispatchDateDataGridViewTextBoxColumn.DataPropertyName = "DispatchDate";
-            dataGridViewCellStyle6.Format = "G";
-            dataGridViewCellStyle6.NullValue = null;
-            this.dispatchDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
-            this.dispatchDateDataGridViewTextBoxColumn.HeaderText = "Dispatch Date";
-            this.dispatchDateDataGridViewTextBoxColumn.Name = "dispatchDateDataGridViewTextBoxColumn";
-            this.dispatchDateDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // AcceptColumn
-            // 
-            this.AcceptColumn.FillWeight = 30F;
-            this.AcceptColumn.HeaderText = "Accept";
-            this.AcceptColumn.Name = "AcceptColumn";
-            this.AcceptColumn.ReadOnly = true;
-            this.AcceptColumn.Text = "Accept";
-            this.AcceptColumn.UseColumnTextForButtonValue = true;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -834,10 +835,10 @@
         private MaterialSkin.Controls.MaterialSingleLineTextField BookIDField;
         private MaterialSkin.Controls.MaterialSingleLineTextField TotalPriceField;
         private MaterialSkin.Controls.MaterialLabel TotalPriceLabel;
-        private MaterialSkin.Controls.MaterialSingleLineTextField materialSingleLineTextField1;
+        private MaterialSkin.Controls.MaterialSingleLineTextField ClientEmailField;
         private MaterialSkin.Controls.MaterialLabel ClientEmailLabel;
-        private MaterialSkin.Controls.MaterialSingleLineTextField materialSingleLineTextField2;
-        private MaterialSkin.Controls.MaterialSingleLineTextField materialSingleLineTextField3;
+        private MaterialSkin.Controls.MaterialSingleLineTextField ClientNameField;
+        private MaterialSkin.Controls.MaterialSingleLineTextField ClientAddressField;
         private MaterialSkin.Controls.MaterialLabel ClientAddressLabel;
         private MaterialSkin.Controls.MaterialLabel ClientNameLabel;
         private MaterialSkin.Controls.MaterialRaisedButton CreateOrderButton;

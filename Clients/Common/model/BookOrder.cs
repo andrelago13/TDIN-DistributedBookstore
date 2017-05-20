@@ -31,10 +31,10 @@ namespace Common.model
 
         public BookOrder() { }
 
-        public BookOrder(string id, string title, int quantity, int state, DateTime dispatchDate)
+        public BookOrder(string id, string bookID, int quantity, int state, DateTime dispatchDate)
         {
             OrderID = id;
-            BookID = title;
+            BookID = bookID;
             Quantity = quantity;
             switch (state)
             {
@@ -51,8 +51,8 @@ namespace Common.model
             DispatchDate = dispatchDate;
         }
 
-        public BookOrder(string id, string title, int quantity, string clientEmail) : 
-            this(id, title, quantity, 0, new DateTime()) { }
+        public BookOrder(string id, string bookID, int quantity, string clientEmail) : 
+            this(id, bookID, quantity, 0, new DateTime()) { }
 
         public BookOrder(JObject json)
         {

@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -82,6 +83,29 @@ namespace Clients
             }
             else
                 return null;
+        }
+
+        public bool CreateOrder(StoreBookOrder order)
+        {
+            var keyValues = new List<KeyValuePair<string, string>>();
+            keyValues.Add(new KeyValuePair<string, string>("bookID", order.BookID));
+            keyValues.Add(new KeyValuePair<string, string>("userID", order.UserID.ToString()));
+            keyValues.Add(new KeyValuePair<string, string>("quantity", order.Quantity.ToString()));
+            keyValues.Add(new KeyValuePair<string, string>("totalPrice", order.TotalPrice.ToString(CultureInfo.InvariantCulture)));
+            keyValues.Add(new KeyValuePair<string, string>("clientName", order.ClientName));
+            keyValues.Add(new KeyValuePair<string, string>("clientAddress", order.ClientAddress));
+            keyValues.Add(new KeyValuePair<string, string>("clientEmail", order.ClientEmail));
+
+
+            HttpResponseMessage response = httpClient.PostAsync(APIConstants.BOOKSTORE_ORDERS, new FormUrlEncodedContent(keyValues)).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public bool AcceptIncomingStock(Guid id)

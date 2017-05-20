@@ -1,4 +1,5 @@
 ﻿using Clients.ModelView;
+using Common;
 using Common.model;
 using MaterialSkin;
 using MaterialSkin.Controls;
@@ -50,6 +51,32 @@ namespace Clients
         private void RefreshButtonClick(object sender, MouseEventArgs e)
         {
             Task.Run(() => this.RefreshAll());
+        }
+
+        private void CreateOrderClick(object sender, MouseEventArgs e)
+        {
+            StoreBookOrder order = new StoreBookOrder();
+            order.UserID = 0;
+            order.BookID = BookIDField.Text;
+            order.Quantity = int.Parse(QuantityField.Text);
+            order.TotalPrice = double.Parse(TotalPriceField.Text);
+            order.ClientName = ClientNameField.Text;
+            order.ClientAddress = ClientAddressField.Text;
+            order.ClientEmail = ClientEmailField.Text;
+
+            if(ServiceEngine.Instance.CreateOrder(order))
+            {
+                BookIDField.Text = "";
+                QuantityField.Text = "";
+                TotalPriceField.Text = "";
+                ClientNameField.Text = "";
+                ClientAddressField.Text = "";
+                ClientEmailField.Text = "";
+                this.RefreshAll();
+            } else
+            {
+                ClientNameField.Text = "Error creating the order...";
+            }
         }
 
         private void RemoveAcceptButton(object sender, DataGridViewBindingCompleteEventArgs e)
