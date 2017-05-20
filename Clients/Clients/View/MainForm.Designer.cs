@@ -46,16 +46,6 @@
             this.TotalPriceLabel = new MaterialSkin.Controls.MaterialLabel();
             this.BookIDField = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.OrdersList = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OrderBookIDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OrderDateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OrderStateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OrderDispatchDateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OrderTotalPriceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OrderClientName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OrderClientAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OrderUserID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.QuantityField = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.QuantityLabel = new MaterialSkin.Controls.MaterialLabel();
             this.BookLabel = new MaterialSkin.Controls.MaterialLabel();
@@ -72,11 +62,23 @@
             this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.authorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OrdersViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iDDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.orderIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantityDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dispatchDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AcceptColumn = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.orderIDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bookIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quantityDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OrderDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clientNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clientAddressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clientEmailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.orderStateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dispatchDateDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TabControl.SuspendLayout();
             this.booksTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BooksList)).BeginInit();
@@ -87,10 +89,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.IncomingStockList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.StockList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.StockViewModelBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OrdersViewModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // TabSelector
             // 
+            this.TabSelector.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TabSelector.BaseTabControl = this.TabControl;
             this.TabSelector.Depth = 0;
             this.TabSelector.Location = new System.Drawing.Point(0, 64);
@@ -102,6 +107,9 @@
             // 
             // TabControl
             // 
+            this.TabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TabControl.Controls.Add(this.booksTab);
             this.TabControl.Controls.Add(this.ordersTab);
             this.TabControl.Controls.Add(this.stockTab);
@@ -128,8 +136,12 @@
             // 
             this.BooksList.AllowUserToAddRows = false;
             this.BooksList.AllowUserToDeleteRows = false;
+            this.BooksList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.BooksList.AutoGenerateColumns = false;
             this.BooksList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.BooksList.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.BooksList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.BooksList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.iDDataGridViewTextBoxColumn,
@@ -142,6 +154,8 @@
             this.BooksList.Location = new System.Drawing.Point(6, 18);
             this.BooksList.Name = "BooksList";
             this.BooksList.ReadOnly = true;
+            this.BooksList.RowHeadersVisible = false;
+            this.BooksList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.BooksList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.BooksList.Size = new System.Drawing.Size(983, 597);
             this.BooksList.TabIndex = 4;
@@ -176,6 +190,7 @@
             // 
             // CreateOrderButton
             // 
+            this.CreateOrderButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CreateOrderButton.AutoSize = true;
             this.CreateOrderButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CreateOrderButton.Depth = 0;
@@ -191,6 +206,8 @@
             // 
             // materialSingleLineTextField1
             // 
+            this.materialSingleLineTextField1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.materialSingleLineTextField1.Depth = 0;
             this.materialSingleLineTextField1.Hint = "";
             this.materialSingleLineTextField1.Location = new System.Drawing.Point(128, 122);
@@ -208,6 +225,8 @@
             // 
             // ClientEmailLabel
             // 
+            this.ClientEmailLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ClientEmailLabel.AutoSize = true;
             this.ClientEmailLabel.Depth = 0;
             this.ClientEmailLabel.Font = new System.Drawing.Font("Roboto", 11F);
@@ -221,6 +240,8 @@
             // 
             // materialSingleLineTextField2
             // 
+            this.materialSingleLineTextField2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.materialSingleLineTextField2.Depth = 0;
             this.materialSingleLineTextField2.Hint = "";
             this.materialSingleLineTextField2.Location = new System.Drawing.Point(128, 22);
@@ -238,6 +259,8 @@
             // 
             // materialSingleLineTextField3
             // 
+            this.materialSingleLineTextField3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.materialSingleLineTextField3.Depth = 0;
             this.materialSingleLineTextField3.Hint = "";
             this.materialSingleLineTextField3.Location = new System.Drawing.Point(128, 73);
@@ -255,6 +278,8 @@
             // 
             // ClientAddressLabel
             // 
+            this.ClientAddressLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ClientAddressLabel.AutoSize = true;
             this.ClientAddressLabel.Depth = 0;
             this.ClientAddressLabel.Font = new System.Drawing.Font("Roboto", 11F);
@@ -268,6 +293,8 @@
             // 
             // ClientNameLabel
             // 
+            this.ClientNameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ClientNameLabel.AutoSize = true;
             this.ClientNameLabel.Depth = 0;
             this.ClientNameLabel.Font = new System.Drawing.Font("Roboto", 11F);
@@ -281,6 +308,8 @@
             // 
             // TotalPriceField
             // 
+            this.TotalPriceField.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TotalPriceField.Depth = 0;
             this.TotalPriceField.Hint = "";
             this.TotalPriceField.Location = new System.Drawing.Point(873, 122);
@@ -298,6 +327,8 @@
             // 
             // TotalPriceLabel
             // 
+            this.TotalPriceLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TotalPriceLabel.AutoSize = true;
             this.TotalPriceLabel.Depth = 0;
             this.TotalPriceLabel.Font = new System.Drawing.Font("Roboto", 11F);
@@ -311,6 +342,8 @@
             // 
             // BookIDField
             // 
+            this.BookIDField.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.BookIDField.Depth = 0;
             this.BookIDField.Hint = "";
             this.BookIDField.Location = new System.Drawing.Point(873, 26);
@@ -330,87 +363,40 @@
             // 
             this.OrdersList.AllowUserToAddRows = false;
             this.OrdersList.AllowUserToDeleteRows = false;
-            this.OrdersList.AllowUserToResizeColumns = false;
+            this.OrdersList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.OrdersList.AutoGenerateColumns = false;
             this.OrdersList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.OrdersList.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.OrdersList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.OrdersList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn2,
-            this.OrderBookIDColumn,
-            this.dataGridViewTextBoxColumn4,
-            this.OrderDateColumn,
-            this.OrderStateColumn,
-            this.OrderDispatchDateColumn,
-            this.OrderTotalPriceColumn,
-            this.OrderClientName,
-            this.OrderClientAddress,
-            this.OrderUserID});
+            this.orderIDDataGridViewTextBoxColumn1,
+            this.bookIDDataGridViewTextBoxColumn,
+            this.userIDDataGridViewTextBoxColumn,
+            this.quantityDataGridViewTextBoxColumn2,
+            this.totalPriceDataGridViewTextBoxColumn,
+            this.OrderDate,
+            this.clientNameDataGridViewTextBoxColumn,
+            this.clientAddressDataGridViewTextBoxColumn,
+            this.clientEmailDataGridViewTextBoxColumn,
+            this.orderStateDataGridViewTextBoxColumn,
+            this.dispatchDateDataGridViewTextBoxColumn1});
+            this.OrdersList.DataMember = "Orders";
+            this.OrdersList.DataSource = this.OrdersViewModelBindingSource;
             this.OrdersList.Location = new System.Drawing.Point(6, 231);
             this.OrdersList.Name = "OrdersList";
+            this.OrdersList.ReadOnly = true;
+            this.OrdersList.RowHeadersVisible = false;
+            this.OrdersList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.OrdersList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.OrdersList.Size = new System.Drawing.Size(975, 384);
             this.OrdersList.TabIndex = 3;
             // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "ID";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // OrderBookIDColumn
-            // 
-            this.OrderBookIDColumn.HeaderText = "Book ID";
-            this.OrderBookIDColumn.Name = "OrderBookIDColumn";
-            this.OrderBookIDColumn.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Quantity";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            // 
-            // OrderDateColumn
-            // 
-            this.OrderDateColumn.HeaderText = "Order Date";
-            this.OrderDateColumn.Name = "OrderDateColumn";
-            this.OrderDateColumn.ReadOnly = true;
-            // 
-            // OrderStateColumn
-            // 
-            this.OrderStateColumn.HeaderText = "State";
-            this.OrderStateColumn.Name = "OrderStateColumn";
-            this.OrderStateColumn.ReadOnly = true;
-            // 
-            // OrderDispatchDateColumn
-            // 
-            this.OrderDispatchDateColumn.HeaderText = "Dispatch Date";
-            this.OrderDispatchDateColumn.Name = "OrderDispatchDateColumn";
-            this.OrderDispatchDateColumn.ReadOnly = true;
-            // 
-            // OrderTotalPriceColumn
-            // 
-            this.OrderTotalPriceColumn.HeaderText = "Total Price";
-            this.OrderTotalPriceColumn.Name = "OrderTotalPriceColumn";
-            this.OrderTotalPriceColumn.ReadOnly = true;
-            // 
-            // OrderClientName
-            // 
-            this.OrderClientName.HeaderText = "Client Name";
-            this.OrderClientName.Name = "OrderClientName";
-            this.OrderClientName.ReadOnly = true;
-            // 
-            // OrderClientAddress
-            // 
-            this.OrderClientAddress.HeaderText = "Client Address";
-            this.OrderClientAddress.Name = "OrderClientAddress";
-            this.OrderClientAddress.ReadOnly = true;
-            // 
-            // OrderUserID
-            // 
-            this.OrderUserID.HeaderText = "User ID";
-            this.OrderUserID.Name = "OrderUserID";
-            this.OrderUserID.ReadOnly = true;
-            // 
             // QuantityField
             // 
+            this.QuantityField.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.QuantityField.Depth = 0;
             this.QuantityField.Hint = "";
             this.QuantityField.Location = new System.Drawing.Point(873, 73);
@@ -428,6 +414,8 @@
             // 
             // QuantityLabel
             // 
+            this.QuantityLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.QuantityLabel.AutoSize = true;
             this.QuantityLabel.Depth = 0;
             this.QuantityLabel.Font = new System.Drawing.Font("Roboto", 11F);
@@ -441,6 +429,8 @@
             // 
             // BookLabel
             // 
+            this.BookLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.BookLabel.AutoSize = true;
             this.BookLabel.Depth = 0;
             this.BookLabel.Font = new System.Drawing.Font("Roboto", 11F);
@@ -470,8 +460,12 @@
             // 
             this.IncomingStockList.AllowUserToAddRows = false;
             this.IncomingStockList.AllowUserToDeleteRows = false;
+            this.IncomingStockList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.IncomingStockList.AutoGenerateColumns = false;
             this.IncomingStockList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.IncomingStockList.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.IncomingStockList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.IncomingStockList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.iDDataGridViewTextBoxColumn2,
@@ -483,6 +477,9 @@
             this.IncomingStockList.DataSource = this.StockViewModelBindingSource;
             this.IncomingStockList.Location = new System.Drawing.Point(6, 343);
             this.IncomingStockList.Name = "IncomingStockList";
+            this.IncomingStockList.ReadOnly = true;
+            this.IncomingStockList.RowHeadersVisible = false;
+            this.IncomingStockList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.IncomingStockList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.IncomingStockList.Size = new System.Drawing.Size(983, 272);
             this.IncomingStockList.TabIndex = 3;
@@ -517,8 +514,12 @@
             // 
             this.StockList.AllowUserToAddRows = false;
             this.StockList.AllowUserToDeleteRows = false;
+            this.StockList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.StockList.AutoGenerateColumns = false;
             this.StockList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.StockList.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.StockList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.StockList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.iDDataGridViewTextBoxColumn1,
@@ -528,6 +529,8 @@
             this.StockList.Location = new System.Drawing.Point(6, 34);
             this.StockList.Name = "StockList";
             this.StockList.ReadOnly = true;
+            this.StockList.RowHeadersVisible = false;
+            this.StockList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.StockList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.StockList.Size = new System.Drawing.Size(983, 273);
             this.StockList.TabIndex = 0;
@@ -585,6 +588,10 @@
             this.priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
             this.priceDataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // OrdersViewModelBindingSource
+            // 
+            this.OrdersViewModelBindingSource.DataSource = typeof(Clients.ModelView.OrdersViewModel);
+            // 
             // iDDataGridViewTextBoxColumn2
             // 
             this.iDDataGridViewTextBoxColumn2.DataPropertyName = "ID";
@@ -595,7 +602,7 @@
             // orderIDDataGridViewTextBoxColumn
             // 
             this.orderIDDataGridViewTextBoxColumn.DataPropertyName = "OrderID";
-            this.orderIDDataGridViewTextBoxColumn.HeaderText = "OrderID";
+            this.orderIDDataGridViewTextBoxColumn.HeaderText = "Order ID";
             this.orderIDDataGridViewTextBoxColumn.Name = "orderIDDataGridViewTextBoxColumn";
             this.orderIDDataGridViewTextBoxColumn.ReadOnly = true;
             // 
@@ -609,7 +616,7 @@
             // dispatchDateDataGridViewTextBoxColumn
             // 
             this.dispatchDateDataGridViewTextBoxColumn.DataPropertyName = "DispatchDate";
-            this.dispatchDateDataGridViewTextBoxColumn.HeaderText = "DispatchDate";
+            this.dispatchDateDataGridViewTextBoxColumn.HeaderText = "Dispatch Date";
             this.dispatchDateDataGridViewTextBoxColumn.Name = "dispatchDateDataGridViewTextBoxColumn";
             this.dispatchDateDataGridViewTextBoxColumn.ReadOnly = true;
             // 
@@ -620,6 +627,83 @@
             this.AcceptColumn.ReadOnly = true;
             this.AcceptColumn.Text = "Accept";
             this.AcceptColumn.UseColumnTextForButtonValue = true;
+            // 
+            // orderIDDataGridViewTextBoxColumn1
+            // 
+            this.orderIDDataGridViewTextBoxColumn1.DataPropertyName = "OrderID";
+            this.orderIDDataGridViewTextBoxColumn1.HeaderText = "ID";
+            this.orderIDDataGridViewTextBoxColumn1.Name = "orderIDDataGridViewTextBoxColumn1";
+            this.orderIDDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // bookIDDataGridViewTextBoxColumn
+            // 
+            this.bookIDDataGridViewTextBoxColumn.DataPropertyName = "BookID";
+            this.bookIDDataGridViewTextBoxColumn.HeaderText = "Book ID";
+            this.bookIDDataGridViewTextBoxColumn.Name = "bookIDDataGridViewTextBoxColumn";
+            this.bookIDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // userIDDataGridViewTextBoxColumn
+            // 
+            this.userIDDataGridViewTextBoxColumn.DataPropertyName = "UserID";
+            this.userIDDataGridViewTextBoxColumn.HeaderText = "User ID";
+            this.userIDDataGridViewTextBoxColumn.Name = "userIDDataGridViewTextBoxColumn";
+            this.userIDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // quantityDataGridViewTextBoxColumn2
+            // 
+            this.quantityDataGridViewTextBoxColumn2.DataPropertyName = "Quantity";
+            this.quantityDataGridViewTextBoxColumn2.HeaderText = "Quantity";
+            this.quantityDataGridViewTextBoxColumn2.Name = "quantityDataGridViewTextBoxColumn2";
+            this.quantityDataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // totalPriceDataGridViewTextBoxColumn
+            // 
+            this.totalPriceDataGridViewTextBoxColumn.DataPropertyName = "TotalPrice";
+            this.totalPriceDataGridViewTextBoxColumn.HeaderText = "Total Price";
+            this.totalPriceDataGridViewTextBoxColumn.Name = "totalPriceDataGridViewTextBoxColumn";
+            this.totalPriceDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // OrderDate
+            // 
+            this.OrderDate.DataPropertyName = "OrderDate";
+            this.OrderDate.HeaderText = "Order Date";
+            this.OrderDate.Name = "OrderDate";
+            this.OrderDate.ReadOnly = true;
+            // 
+            // clientNameDataGridViewTextBoxColumn
+            // 
+            this.clientNameDataGridViewTextBoxColumn.DataPropertyName = "ClientName";
+            this.clientNameDataGridViewTextBoxColumn.HeaderText = "Client Name";
+            this.clientNameDataGridViewTextBoxColumn.Name = "clientNameDataGridViewTextBoxColumn";
+            this.clientNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // clientAddressDataGridViewTextBoxColumn
+            // 
+            this.clientAddressDataGridViewTextBoxColumn.DataPropertyName = "ClientAddress";
+            this.clientAddressDataGridViewTextBoxColumn.HeaderText = "Client Address";
+            this.clientAddressDataGridViewTextBoxColumn.Name = "clientAddressDataGridViewTextBoxColumn";
+            this.clientAddressDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // clientEmailDataGridViewTextBoxColumn
+            // 
+            this.clientEmailDataGridViewTextBoxColumn.DataPropertyName = "ClientEmail";
+            this.clientEmailDataGridViewTextBoxColumn.HeaderText = "Client Email";
+            this.clientEmailDataGridViewTextBoxColumn.Name = "clientEmailDataGridViewTextBoxColumn";
+            this.clientEmailDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // orderStateDataGridViewTextBoxColumn
+            // 
+            this.orderStateDataGridViewTextBoxColumn.DataPropertyName = "OrderState";
+            this.orderStateDataGridViewTextBoxColumn.HeaderText = "Order State";
+            this.orderStateDataGridViewTextBoxColumn.Name = "orderStateDataGridViewTextBoxColumn";
+            this.orderStateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dispatchDateDataGridViewTextBoxColumn1
+            // 
+            this.dispatchDateDataGridViewTextBoxColumn1.DataPropertyName = "DispatchDate";
+            this.dispatchDateDataGridViewTextBoxColumn1.HeaderText = "Dispatch Date";
+            this.dispatchDateDataGridViewTextBoxColumn1.Name = "dispatchDateDataGridViewTextBoxColumn1";
+            this.dispatchDateDataGridViewTextBoxColumn1.ReadOnly = true;
             // 
             // MainForm
             // 
@@ -642,6 +726,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.IncomingStockList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.StockList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.StockViewModelBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OrdersViewModelBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -661,16 +746,6 @@
         private MaterialSkin.Controls.MaterialLabel IncomingStockLabel;
         private System.Windows.Forms.DataGridView IncomingStockList;
         private System.Windows.Forms.DataGridView OrdersList;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OrderBookIDColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OrderDateColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OrderStateColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OrderDispatchDateColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OrderTotalPriceColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OrderClientName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OrderClientAddress;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OrderUserID;
         private MaterialSkin.Controls.MaterialSingleLineTextField BookIDField;
         private MaterialSkin.Controls.MaterialSingleLineTextField TotalPriceField;
         private MaterialSkin.Controls.MaterialLabel TotalPriceLabel;
@@ -690,11 +765,23 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn quantityDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource OrdersViewModelBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn orderIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn quantityDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dispatchDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewButtonColumn AcceptColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn orderIDDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn bookIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn userIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn quantityDataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn totalPriceDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OrderDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clientNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clientAddressDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clientEmailDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn orderStateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dispatchDateDataGridViewTextBoxColumn1;
     }
 }
 

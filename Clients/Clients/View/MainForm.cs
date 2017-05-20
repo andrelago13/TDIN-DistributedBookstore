@@ -21,12 +21,17 @@ namespace Clients
 
             // Books View
             BooksViewModel.Instance.Controller = this;
-            BooksViewModel.Instance.RefreshBooks();
+            BooksViewModel.Instance.Refresh();
             this.BooksViewModelBindingSource.Add(BooksViewModel.Instance);
+
+            // Orders View
+            OrdersViewModel.Instance.Controller = this;
+            OrdersViewModel.Instance.Refresh();
+            this.OrdersViewModelBindingSource.Add(OrdersViewModel.Instance);
 
             // Stock View
             StockViewModel.Instance.Controller = this;
-            StockViewModel.Instance.RefreshStocks();
+            StockViewModel.Instance.Refresh();
             this.StockViewModelBindingSource.Add(StockViewModel.Instance);
 
             var materialSkinManager = MaterialSkinManager.Instance;

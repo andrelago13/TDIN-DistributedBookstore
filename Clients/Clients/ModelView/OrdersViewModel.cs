@@ -10,46 +10,46 @@ using Common;
 
 namespace Clients.ModelView
 {
-    class BooksViewModel : INotifyPropertyChanged
+    class OrdersViewModel : INotifyPropertyChanged
     {
         #region Singleton
-        private static BooksViewModel instance;
+        private static OrdersViewModel instance;
         public Control Controller { get; set; }
 
-        public static BooksViewModel Instance
+        public static OrdersViewModel Instance
         {
             get
             {
                 if (instance == null)
-                    instance = new BooksViewModel();
+                    instance = new OrdersViewModel();
                 return instance;
             }
         }
 
-        private BooksViewModel()
+        private OrdersViewModel()
         {
-            this._Books = new List<Book>();
+            this._Orders = new List<StoreBookOrder>();
         }
         #endregion
 
         #region Accessors
-        private List<Book> _Books;
-        public List<Book> Books
+        private List<StoreBookOrder> _Orders;
+        public List<StoreBookOrder> Orders
         {
             get
             {
-                return this._Books;
+                return this._Orders;
             }
 
             set
             {
-                if(this._Books == value)
+                if(this._Orders == value)
                 {
                     return;
                 }
 
-                this._Books = value;
-                Utils.ControlInvoke(this.Controller, () => this.NotifyPropertyChanged(nameof(Books)));
+                this._Orders = value;
+                Utils.ControlInvoke(this.Controller, () => this.NotifyPropertyChanged(nameof(Orders)));
             }
         }
         #endregion
@@ -57,7 +57,7 @@ namespace Clients.ModelView
         #region Methods
         public void Refresh()
         {
-            this.Books = ServiceEngine.Instance.GetBooks();
+            this.Orders = ServiceEngine.Instance.GetOrders();
         }
         #endregion
 

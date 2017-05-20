@@ -76,7 +76,7 @@ namespace Clients.ModelView
         #endregion
 
         #region Methods
-        public void RefreshStocks()
+        public void Refresh()
         {
             this.Stock = ServiceEngine.Instance.GetStock();
             this.IncomingStock = ServiceEngine.Instance.GetIncomingStock(); // TODO: Hide accept button

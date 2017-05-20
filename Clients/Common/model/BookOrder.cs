@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,15 +10,23 @@ namespace Common.model
 {
     public class BookOrder
     {
+        [JsonProperty("orderID")]
         public string OrderID { get; set; }
 
+        [JsonProperty("bookID")]
         public string BookID { get; set; }
 
+        [JsonProperty("quantity")]
         public int Quantity { get; set; }
-        
+
+        [JsonProperty("orderDate")]
+        public DateTime OrderDate { get; set; }
+
+        [JsonProperty("state")]
         public State OrderState { get; set; }
 
-        public DateTime DispatchDate { get; set; }
+        [JsonProperty("dispatchDate")]
+        public DateTime? DispatchDate { get; set; }
 
         public BookOrder() { }
 

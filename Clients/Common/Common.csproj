@@ -50,6 +50,7 @@
     <Compile Include="model\IncomingStock.cs" />
     <Compile Include="model\Stock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="model\StoreBookOrder.cs" />
     <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>

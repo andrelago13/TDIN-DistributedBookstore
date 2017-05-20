@@ -1,6 +1,8 @@
-﻿using Common.api;
+﻿using Common;
+using Common.api;
 using Common.model;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,6 +65,20 @@ namespace Clients
             {
                 var jsonString = response.Content.ReadAsStringAsync().Result;
                 return JsonConvert.DeserializeObject<List<IncomingStock>>(jsonString);
+            }
+            else
+                return null;
+        }
+
+        public List<StoreBookOrder> GetOrders()
+        {
+            HttpResponseMessage response = httpClient.GetAsync(APIConstants.BOOKSTORE_ORDERS).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonString = response.Content.ReadAsStringAsync().Result;
+                var jsonObject = JsonConvert.DeserializeObject<JObject>(jsonString);
+                jsonObject.GetValue("orders").ToObject(typeof(List<StoreBookOrder>));
+                return JsonConvert.DeserializeObject<List<StoreBookOrder>>(jsonObject.GetValue("orders").ToString());
             }
             else
                 return null;
