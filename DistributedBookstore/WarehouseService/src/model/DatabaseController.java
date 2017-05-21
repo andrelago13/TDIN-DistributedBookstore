@@ -66,6 +66,20 @@ public class DatabaseController {
         return list;
     }
 
+    public BookOrder getOrder(String id) {
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet results = statement.executeQuery("SELECT * FROM warehouse_orders WHERE id = " + id);
+            if (results.next()) {
+                return BookOrder.getOrderFromSQL(results);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     public boolean postOrder(BookOrder order) {
         try {
             String query = "INSERT INTO warehouse_orders (id, quantity, book_id, state, dispatch_date)" +
