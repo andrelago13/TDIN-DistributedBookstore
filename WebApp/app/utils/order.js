@@ -43,7 +43,7 @@ function getOrders(callback) {
 
         for (var i = 0; i < orders_json.length; ++i) {
             var order_json = orders_json[i];
-            var order = new Order(order_json.orderID, order_json.bookID, order_json.quantity, 20, order_json.state, order_json.orderDate);
+            var order = new Order(order_json.orderID, order_json.bookID, order_json.quantity, order_json.totalPrice, order_json.state, order_json.orderDate);
             if (order.status === 2) {
                 completed_orders.push(order);
             } else {

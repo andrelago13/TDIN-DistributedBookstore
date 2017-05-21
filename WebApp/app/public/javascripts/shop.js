@@ -9,13 +9,15 @@ $(document).ready(function () {
         selected_book_id = book_row.find(".book-item-id").text();
         $("#order-modal-title").text(book_row.find(".book-item-title").text());
         $("#order-modal-author").text(book_row.find(".book-item-author").text());
-        $("#order-modal-price").text("30€");
+        $("#order-modal-price").text(book_row.find(".book-item-price").text());
     });
 
     $('#modal-order-confirm').click(function (e) {
         $("#order-form-book_id").val(selected_book_id);
         $("#order-form-quantity").val($("#order-input-form-quantity").val());
-        
+        $("#order-form-total-price").val(parseFloat($("#order-modal-price").text().replace('€', '')) * 
+            parseInt($("#order-form-quantity").val()));
+
         $("#order-form").submit();
     });
 });
