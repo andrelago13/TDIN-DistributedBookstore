@@ -29,18 +29,19 @@
         private void InitializeComponent()
         {
             this.pending_grid = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.completed_grid = new System.Windows.Forms.DataGridView();
-            this.label3 = new System.Windows.Forms.Label();
             this.order_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.book_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.created_at = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.completed_grid = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idBook = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sent_date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label3 = new System.Windows.Forms.Label();
+            this.refreshButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pending_grid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.completed_grid)).BeginInit();
             this.SuspendLayout();
@@ -63,6 +64,30 @@
             this.pending_grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.pending_grid.Size = new System.Drawing.Size(1203, 301);
             this.pending_grid.TabIndex = 0;
+            // 
+            // order_id
+            // 
+            this.order_id.HeaderText = "OrderID";
+            this.order_id.Name = "order_id";
+            this.order_id.ReadOnly = true;
+            // 
+            // book_id
+            // 
+            this.book_id.HeaderText = "Book ID";
+            this.book_id.Name = "book_id";
+            this.book_id.ReadOnly = true;
+            // 
+            // quantity
+            // 
+            this.quantity.HeaderText = "Quantity";
+            this.quantity.Name = "quantity";
+            this.quantity.ReadOnly = true;
+            // 
+            // created_at
+            // 
+            this.created_at.HeaderText = "Created At";
+            this.created_at.Name = "created_at";
+            this.created_at.ReadOnly = true;
             // 
             // button1
             // 
@@ -103,40 +128,6 @@
             this.completed_grid.Size = new System.Drawing.Size(1203, 190);
             this.completed_grid.TabIndex = 7;
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(12, 503);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(275, 24);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Completed orders (dispatched):";
-            // 
-            // order_id
-            // 
-            this.order_id.HeaderText = "OrderID";
-            this.order_id.Name = "order_id";
-            this.order_id.ReadOnly = true;
-            // 
-            // book_id
-            // 
-            this.book_id.HeaderText = "Book ID";
-            this.book_id.Name = "book_id";
-            this.book_id.ReadOnly = true;
-            // 
-            // quantity
-            // 
-            this.quantity.HeaderText = "Quantity";
-            this.quantity.Name = "quantity";
-            this.quantity.ReadOnly = true;
-            // 
-            // created_at
-            // 
-            this.created_at.HeaderText = "Created At";
-            this.created_at.Name = "created_at";
-            this.created_at.ReadOnly = true;
-            // 
             // dataGridViewTextBoxColumn7
             // 
             this.dataGridViewTextBoxColumn7.HeaderText = "OrderID";
@@ -161,11 +152,32 @@
             this.sent_date.Name = "sent_date";
             this.sent_date.ReadOnly = true;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(12, 503);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(275, 24);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Completed orders (dispatched):";
+            // 
+            // refreshButton
+            // 
+            this.refreshButton.Location = new System.Drawing.Point(1140, 72);
+            this.refreshButton.Name = "refreshButton";
+            this.refreshButton.Size = new System.Drawing.Size(75, 23);
+            this.refreshButton.TabIndex = 8;
+            this.refreshButton.Text = "Refresh";
+            this.refreshButton.UseVisualStyleBackColor = true;
+            this.refreshButton.Click += new System.EventHandler(this.refreshButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1227, 734);
+            this.Controls.Add(this.refreshButton);
             this.Controls.Add(this.completed_grid);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
@@ -195,6 +207,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn idBook;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
         private System.Windows.Forms.DataGridViewTextBoxColumn sent_date;
+        private System.Windows.Forms.Button refreshButton;
     }
 }
 
