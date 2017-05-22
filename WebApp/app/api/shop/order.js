@@ -17,9 +17,13 @@ router.route('/order').post((req, res) => {
     request.post({
         url: config.bookstore_orders_address,
         form: {
-            username: session.username,
-            book_id: req.body.book_id,
-            quantity: req.body.quantity
+            userID: session.user_id,
+            bookID: req.body.book_id,
+            quantity: req.body.quantity,
+            totalPrice: req.body.total_price,
+            clientName: session.username,
+            clientAddress: session.user_address,
+            clientEmail: session.user_email
         }
     }, function (err, httpResponse, body) {
         if (httpResponse.statusCode == 200) {
