@@ -57,6 +57,7 @@ namespace Clients
         {
             StoreBookOrder order = new StoreBookOrder();
             order.UserID = 0;
+            order.OrderDate = DateTime.Now;
             order.BookID = BookIDField.Text;
             order.Quantity = int.Parse(QuantityField.Text);
             order.TotalPrice = double.Parse(TotalPriceField.Text);

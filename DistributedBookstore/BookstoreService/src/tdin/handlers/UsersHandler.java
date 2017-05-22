@@ -34,6 +34,9 @@ public class UsersHandler {
                 Collections.singletonList("*"));
 
         List<User> users = new ArrayList<>();
+        if (result == null) {
+            return users;
+        }
         while (result.next()) {
             users.add(User.getOrderFromSQL(result));
         }
@@ -49,7 +52,7 @@ public class UsersHandler {
                 Collections.singletonList(User.ID_COLUMN),
                 Collections.singletonList(userID));
 
-        if (!result.next())
+        if (result == null || !result.next())
             return null;
 
         return User.getOrderFromSQL(result);
@@ -63,7 +66,7 @@ public class UsersHandler {
                 Collections.singletonList(User.USERNAME_COLUMN),
                 Collections.singletonList(username));
 
-        if (!result.next())
+        if (result == null || !result.next())
             return null;
 
         return User.getOrderFromSQL(result);
@@ -76,7 +79,7 @@ public class UsersHandler {
                 Collections.singletonList("username"),
                 Arrays.asList("username", "password"),
                 Arrays.asList(username, password));
-        return result.next();
+        return result != null && result.next();
     }
 
     public boolean registerCredentials(String username, String password, String name, String email, String address) throws SQLException {
