@@ -1,4 +1,5 @@
-﻿using Common;
+﻿using Clients.Engine;
+using Common;
 using Common.api;
 using Common.model;
 using Newtonsoft.Json;
@@ -100,7 +101,8 @@ namespace Clients
             HttpResponseMessage response = httpClient.PostAsync(APIConstants.BOOKSTORE_ORDERS, new FormUrlEncodedContent(keyValues)).Result;
             if (response.IsSuccessStatusCode)
             {
-                return true;
+                order.OrderID = response.Headers.Location.Segments.Last();
+                return PDFEngine.Instance.CreateOrderPDF(order);
             }
             else
             {

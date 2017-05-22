@@ -749,6 +749,7 @@
             this.StockList.DataSource = this.StockViewModelBindingSource;
             this.StockList.EnableHeadersVisualStyles = false;
             this.StockList.Location = new System.Drawing.Point(0, 34);
+            this.StockList.MultiSelect = false;
             this.StockList.Name = "StockList";
             this.StockList.ReadOnly = true;
             this.StockList.RowHeadersVisible = false;
