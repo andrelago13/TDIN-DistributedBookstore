@@ -2,14 +2,12 @@ package tdin.services;
 
 import model.BookOrder;
 import model.DatabaseController;
-import sun.net.www.http.HttpClient;
 
 import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
-import javax.xml.crypto.Data;
 import java.io.DataOutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -24,8 +22,8 @@ public class OrderUpdater {
 
     @POST
     @Produces("application/json")
-    public Response postMessage(@FormParam("id") String id) {
-        DatabaseController.getInstance().updateOrderState(UUID.fromString(id));
+    public Response postMessage(@FormParam("id") UUID id) {
+        DatabaseController.getInstance().updateOrderState(id);
         updateStoreStock(DatabaseController.getInstance().getOrder(id));
 
         return Response.ok().build();
@@ -49,12 +47,15 @@ public class OrderUpdater {
             conn.setUseCaches( false );
             try( DataOutputStream wr = new DataOutputStream( conn.getOutputStream())) {
                 wr.write( postData );
+                wr.close();
             }
+            conn.connect();
+
+            // Read response
+            return conn.getResponseCode() == Response.Status.CREATED.getStatusCode();
         } catch (Exception e) {
             return false;
         }
-
-        return true;
     }
 
 }

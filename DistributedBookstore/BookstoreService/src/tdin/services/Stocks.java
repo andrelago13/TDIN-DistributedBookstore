@@ -81,13 +81,12 @@ public class Stocks {
 
     @POST
     @Path("incoming")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response createIncomingBookStock(String jsonRequest) throws SQLException {
-        JSONObject incomingStock = new JSONObject(jsonRequest);
-        UUID id = incomingStock.has("id") ? UUID.fromString(incomingStock.getString("id")) : null;
-        int bookID = incomingStock.has("bookID") ? incomingStock.getInt("bookID") : -1;
-        int quantity = incomingStock.has("quantity") ? incomingStock.getInt("quantity") : -1;
-        Timestamp dispatchDate = incomingStock.has("dispatchDate") ? Timestamp.valueOf(incomingStock.getString("dispatchDate")) : null;
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public Response createIncomingBookStock(
+            @FormParam("id") UUID id,
+            @FormParam("bookID") int bookID,
+            @FormParam("quantity") int quantity,
+            @FormParam("dispatchDate") Timestamp dispatchDate) throws SQLException {
 
         if (id == null || bookID == -1 || quantity == -1 || dispatchDate == null) {
             return Response.status(Response.Status.BAD_REQUEST).build();

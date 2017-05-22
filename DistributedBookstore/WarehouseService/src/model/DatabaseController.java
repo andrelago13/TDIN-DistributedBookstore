@@ -9,23 +9,13 @@ import java.util.UUID;
  */
 public class DatabaseController {
 
-    private static DatabaseController instance;
-
-    public static DatabaseController getInstance() {
-        if (instance == null) {
-            instance = new DatabaseController();
-        }
-
-        return instance;
-    }
-
-    ///////////////////////////////////
-
     private static final String DB_DRIVER_CLASS = "com.mysql.jdbc.Driver";
     private static final String DB_URL = "jdbc:mysql://localhost:3306/tdin";
+
+    ///////////////////////////////////
     private static final String DB_USERNAME = "user";
     private static final String DB_PASSWORD = "123456";
-
+    private static DatabaseController instance;
     private Connection connection;
 
     private DatabaseController() {
@@ -44,6 +34,14 @@ public class DatabaseController {
             e.printStackTrace();
             return;
         }
+    }
+
+    public static DatabaseController getInstance() {
+        if (instance == null) {
+            instance = new DatabaseController();
+        }
+
+        return instance;
     }
 
     ///////////////////////////////////////////////
@@ -66,10 +64,10 @@ public class DatabaseController {
         return list;
     }
 
-    public BookOrder getOrder(String id) {
+    public BookOrder getOrder(UUID id) {
         try {
             Statement statement = connection.createStatement();
-            ResultSet results = statement.executeQuery("SELECT * FROM warehouse_orders WHERE id = " + id);
+            ResultSet results = statement.executeQuery("SELECT * FROM warehouse_orders WHERE id = '" + id.toString() + "'");
             if (results.next()) {
                 return BookOrder.getOrderFromSQL(results);
             }
