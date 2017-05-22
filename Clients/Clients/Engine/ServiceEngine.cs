@@ -102,7 +102,9 @@ namespace Clients
             if (response.IsSuccessStatusCode)
             {
                 order.OrderID = response.Headers.Location.Segments.Last();
-                return PDFEngine.Instance.CreateOrderPDF(order);
+                string filePath = PDFEngine.Instance.CreateOrderPDF(order);
+                System.Diagnostics.Process.Start(@filePath);
+                return true;
             }
             else
             {

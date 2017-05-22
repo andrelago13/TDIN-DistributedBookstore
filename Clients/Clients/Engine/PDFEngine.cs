@@ -30,13 +30,14 @@ namespace Clients.Engine
         }
         #endregion
 
-        public bool CreateOrderPDF(StoreBookOrder order)
+        public string CreateOrderPDF(StoreBookOrder order)
         {
             // Create a Document object
             Document document = new Document(PageSize.A4, 70, 70, 70, 70);
 
-            //MemoryStream
-            PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(AppDomain.CurrentDomain.BaseDirectory + order.OrderID + ".pdf", FileMode.Create));
+            // File
+            string filePath = AppDomain.CurrentDomain.BaseDirectory + order.OrderID + ".pdf";
+            PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(filePath, FileMode.Create));
 
             // First, create our fonts
             var titleFont = FontFactory.GetFont("Arial", 14, Font.BOLD);
@@ -153,7 +154,7 @@ namespace Clients.Engine
             cb.EndText();
 
             document.Close();
-            return true;
+            return filePath;
         }
     }
 }
