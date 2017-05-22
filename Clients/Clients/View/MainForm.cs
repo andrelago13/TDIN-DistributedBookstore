@@ -43,14 +43,14 @@ namespace Clients
 
         private void RefreshAll()
         {
-            BooksViewModel.Instance.Refresh();
-            OrdersViewModel.Instance.Refresh();
-            StockViewModel.Instance.Refresh();
+            Task.Run(() => BooksViewModel.Instance.Refresh());
+            Task.Run(() => OrdersViewModel.Instance.Refresh());
+            Task.Run(() => StockViewModel.Instance.Refresh());
         }
 
         private void RefreshButtonClick(object sender, MouseEventArgs e)
         {
-            Task.Run(() => this.RefreshAll());
+            this.RefreshAll();
         }
 
         private void CreateOrderClick(object sender, MouseEventArgs e)

@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -38,7 +39,15 @@ namespace Clients
 
         public SortableBindingList<Book> GetBooks()
         {
-            HttpResponseMessage response = httpClient.GetAsync(APIConstants.BOOKSTORE_BOOKS).Result;
+            HttpResponseMessage response = null;
+            try
+            {
+                response = httpClient.GetAsync(APIConstants.BOOKSTORE_BOOKS)?.Result;
+            } catch (Exception)
+            {
+                return null;
+            }
+            
             if (response.IsSuccessStatusCode)
             {
                 var jsonString = response.Content.ReadAsStringAsync().Result;
@@ -50,7 +59,16 @@ namespace Clients
 
         public SortableBindingList<Stock> GetStock()
         {
-            HttpResponseMessage response = httpClient.GetAsync(APIConstants.BOOKSTORE_STOCK).Result;
+            HttpResponseMessage response = null;
+            try
+            {
+                response = httpClient.GetAsync(APIConstants.BOOKSTORE_STOCK)?.Result;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
             if (response.IsSuccessStatusCode)
             {
                 var jsonString = response.Content.ReadAsStringAsync().Result;
@@ -62,7 +80,16 @@ namespace Clients
 
         public SortableBindingList<IncomingStock> GetIncomingStock()
         {
-            HttpResponseMessage response = httpClient.GetAsync(APIConstants.BOOKSTORE_STOCK_INCOMING).Result;
+            HttpResponseMessage response = null;
+            try
+            {
+                response = httpClient.GetAsync(APIConstants.BOOKSTORE_STOCK_INCOMING)?.Result;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
             if (response.IsSuccessStatusCode)
             {
                 var jsonString = response.Content.ReadAsStringAsync().Result;
@@ -74,7 +101,16 @@ namespace Clients
 
         public SortableBindingList<StoreBookOrder> GetOrders()
         {
-            HttpResponseMessage response = httpClient.GetAsync(APIConstants.BOOKSTORE_ORDERS).Result;
+            HttpResponseMessage response = null;
+            try
+            {
+                response = httpClient.GetAsync(APIConstants.BOOKSTORE_ORDERS)?.Result;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
             if (response.IsSuccessStatusCode)
             {
                 var jsonString = response.Content.ReadAsStringAsync().Result;
@@ -98,7 +134,16 @@ namespace Clients
             keyValues.Add(new KeyValuePair<string, string>("clientEmail", order.ClientEmail));
 
 
-            HttpResponseMessage response = httpClient.PostAsync(APIConstants.BOOKSTORE_ORDERS, new FormUrlEncodedContent(keyValues)).Result;
+            HttpResponseMessage response = null;
+            try
+            {
+                response = httpClient.PostAsync(APIConstants.BOOKSTORE_ORDERS, new FormUrlEncodedContent(keyValues))?.Result;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
             if (response.IsSuccessStatusCode)
             {
                 order.OrderID = response.Headers.Location.Segments.Last();
@@ -114,7 +159,16 @@ namespace Clients
 
         public bool AcceptIncomingStock(Guid id)
         {
-            HttpResponseMessage response = httpClient.PostAsync(APIConstants.BOOKSTORE_STOCK_INCOMING + id + "/accept", null).Result;
+            HttpResponseMessage response = null;
+            try
+            {
+                response = httpClient.PostAsync(APIConstants.BOOKSTORE_STOCK_INCOMING + id + "/accept", null)?.Result;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
             if (response.IsSuccessStatusCode)
             {
                 return true;
