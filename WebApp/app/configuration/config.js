@@ -7,7 +7,7 @@ var bookstore_address = api_host + ":" + api_port + "/bookstore";
 var bookstore_books_address = bookstore_address + "/books";
 var bookstore_users_address = bookstore_address + "/users";
 var bookstore_users_login_address = bookstore_users_address + "/login";
-var bookstore_users_register_address = bookstore_users_address + "/register";
+var bookstore_users_register_address = bookstore_users_address;
 var bookstore_orders_address = bookstore_address + "/orders";
 
 var bookstore_user_orders_partial = "/orders";
