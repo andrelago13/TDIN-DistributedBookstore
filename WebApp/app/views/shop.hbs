@@ -37,19 +37,27 @@
                 <div class="modal-body">
                     <p>Please confirm the book order:</p>
 
-                    <table>
+                    <table class="form-table">
                         <tbody>
                             <tr>
-                                <td class="modal-table-element"><b>Title: <b/></td>
+                                <td class="modal-table-element first-col"><b>Title: <b/></td>
                                 <td id="order-modal-title"> Title</td>
                             </tr>
                             <tr>
-                                <td class="modal-table-element"><b>Author: <b/></td>
+                                <td class="modal-table-element first-col"><b>Author: <b/></td>
                                 <td id="order-modal-author"> Author</td>
                             </tr>
                             <tr>
-                                <td class="modal-table-element"><b>Price: <b/></td>
+                                <td class="modal-table-element first-col"><b>Price: <b/></td>
                                 <td id="order-modal-price"> 50€</td>
+                            </tr>
+                            <tr>
+                                <td class="modal-table-element first-col"><b>Address: <b/></td>
+                                <td><input type="text" class="form-control" id="order-modal-address" value="{{user_address}}"></td>
+                            </tr>
+                            <tr>
+                                <td class="modal-table-element first-col"><b>Email: <b/></td>
+                                <td><input type="text" class="form-control" id="order-modal-email" value="{{user_email}}"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -78,6 +86,8 @@
                     <input type="text" name="book_id" id="order-form-book_id"/>
                     <input type="text" name="quantity" id="order-form-quantity"/>
                     <input type="text" name="total_price" id="order-form-total-price"/>
+                    <input type="text" name="user_address" id="order-form-user-address"/>
+                    <input type="text" name="user_email" id="order-form-user-email"/>
                 </form>
             </div>
 

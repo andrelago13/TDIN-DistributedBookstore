@@ -15,8 +15,10 @@ $(document).ready(function () {
     $('#modal-order-confirm').click(function (e) {
         $("#order-form-book_id").val(selected_book_id);
         $("#order-form-quantity").val($("#order-input-form-quantity").val());
-        $("#order-form-total-price").val(parseFloat($("#order-modal-price").text().replace('€', '')) * 
+        $("#order-form-total-price").val(parseFloat($("#order-modal-price").text().replace('€', '')) *
             parseInt($("#order-form-quantity").val()));
+        $("#order-form-user-address").val($("#order-modal-address").val());
+        $("#order-form-user-email").val($("#order-modal-email").val());
 
         $("#order-form").submit();
     });
