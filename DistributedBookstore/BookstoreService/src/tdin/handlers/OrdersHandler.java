@@ -44,7 +44,7 @@ public class OrdersHandler {
                 Collections.singletonList(StoreBookOrder.ORDER_ID_COLUMN),
                 Collections.singletonList(id.toString()));
 
-        if (!result.next())
+        if (result == null || !result.next())
             return null;
 
         return StoreBookOrder.getOrderFromSQL(result);
@@ -57,6 +57,9 @@ public class OrdersHandler {
                 Collections.singletonList("*"));
 
         List<StoreBookOrder> bookOrders = new ArrayList<>();
+        if (result == null) {
+            return bookOrders;
+        }
         while (result.next()) {
             bookOrders.add(StoreBookOrder.getOrderFromSQL(result));
         }
@@ -73,6 +76,9 @@ public class OrdersHandler {
                 Collections.singletonList(StoreBookOrder.State.WAITING_EXPEDITION.ordinal()));
 
         List<StoreBookOrder> bookOrders = new ArrayList<>();
+        if (result == null) {
+            return bookOrders;
+        }
         while (result.next()) {
             bookOrders.add(StoreBookOrder.getOrderFromSQL(result));
         }
@@ -89,6 +95,9 @@ public class OrdersHandler {
                 Arrays.asList(StoreBookOrder.State.WAITING_EXPEDITION.ordinal(), bookID));
 
         List<StoreBookOrder> bookOrders = new ArrayList<>();
+        if (result == null) {
+            return bookOrders;
+        }
         while (result.next()) {
             bookOrders.add(StoreBookOrder.getOrderFromSQL(result));
         }
@@ -105,6 +114,9 @@ public class OrdersHandler {
                 Collections.singletonList(userID));
 
         List<StoreBookOrder> bookOrders = new ArrayList<>();
+        if (result == null) {
+            return bookOrders;
+        }
         while (result.next()) {
             bookOrders.add(StoreBookOrder.getOrderFromSQL(result));
         }

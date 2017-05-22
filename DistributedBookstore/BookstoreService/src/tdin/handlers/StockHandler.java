@@ -1,33 +1,29 @@
 package tdin.handlers;
 
 import database.DatabaseAPI;
-import model.BookOrder;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import tdin.Core;
 
-import javax.ws.rs.core.Response;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 public class StockHandler {
 
     private static StockHandler instance;
 
+    private StockHandler() {
+
+    }
+
     public static StockHandler getInstance() {
         if (instance == null) {
             instance = new StockHandler();
         }
         return instance;
-    }
-
-    private StockHandler() {
-
     }
 
     /////////////////
@@ -41,6 +37,9 @@ public class StockHandler {
                 Collections.singletonList("*"));
 
         Map<Integer, Integer> booksStock = new HashMap<>();
+        if (result == null) {
+            return booksStock;
+        }
         int bookID, quantity;
         while (result.next()) {
             bookID = result.getInt("book_id");
@@ -59,7 +58,7 @@ public class StockHandler {
                 Collections.singletonList("book_id"),
                 Collections.singletonList(bookID));
 
-        if (!result.next()) {
+        if (result == null || !result.next()) {
             return -1;
         }
 
@@ -70,7 +69,6 @@ public class StockHandler {
         try {
             return getBookStock(bookID) >= quantity;
         } catch (SQLException e) {
-            e.printStackTrace();
             return false;
         }
     }
@@ -80,7 +78,6 @@ public class StockHandler {
         try {
             currentStock = getBookStock(bookID);
         } catch (SQLException e) {
-            e.printStackTrace();
             return false;
         }
 
@@ -111,7 +108,6 @@ public class StockHandler {
         try {
             currentStock = getBookStock(bookID);
         } catch (SQLException e) {
-            e.printStackTrace();
             return;
         }
 
@@ -162,6 +158,9 @@ public class StockHandler {
                 Collections.singletonList("*"));
 
         JSONArray incomingStocks = new JSONArray();
+        if (result == null) {
+            return incomingStocks;
+        }
         while (result.next()) {
             incomingStocks.put(parseIncomingBookStockFromSQL(result));
         }
@@ -177,7 +176,7 @@ public class StockHandler {
                 Collections.singletonList("id"),
                 Collections.singletonList(id.toString()));
 
-        if (!result.next()) {
+        if (result == null || !result.next()) {
             return null;
         }
 
@@ -206,7 +205,7 @@ public class StockHandler {
                 Collections.singletonList("id"),
                 Collections.singletonList(id.toString()));
 
-        if (!result.next()) {
+        if (result == null || !result.next()) {
             return false;
         }
 
