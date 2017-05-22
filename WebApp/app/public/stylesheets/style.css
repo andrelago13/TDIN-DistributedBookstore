@@ -9,6 +9,14 @@ a {
 
 /* CUSTOM STYLE */
 
+.form-table {
+	width: 100%;
+}
+
+.first-col {
+	width: 1%;
+}
+
 .login_title {
 	margin: auto;
   	text-align: center;

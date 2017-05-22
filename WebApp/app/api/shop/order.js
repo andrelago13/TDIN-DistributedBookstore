@@ -8,7 +8,7 @@ var config = require('./../../configuration/config');
 var session = require('express-session');
 
 router.route('/order').post((req, res) => {
-    if(typeof session.username == undefined || session.username == null) {
+    if (typeof session.username == undefined || session.username == null) {
         res.status(404);
         res.redirect("/");
         return;
@@ -22,8 +22,8 @@ router.route('/order').post((req, res) => {
             quantity: req.body.quantity,
             totalPrice: req.body.total_price,
             clientName: session.username,
-            clientAddress: session.user_address,
-            clientEmail: session.user_email
+            clientAddress: req.body.user_address,
+            clientEmail: req.body.user_email
         }
     }, function (err, httpResponse, body) {
         if (httpResponse.statusCode == 200) {
