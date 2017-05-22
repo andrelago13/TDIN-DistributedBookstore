@@ -1,57 +1,57 @@
 DROP TABLE IF EXISTS incoming_stock;
 CREATE TABLE incoming_stock (
-  id           VARCHAR(40),
-  book_id      VARCHAR(50),
-  quantity     INT,
+  id            VARCHAR(40),
+  book_id       VARCHAR(50),
+  quantity      INT,
   dispatch_date DATETIME
 );
 INSERT INTO incoming_stock (id, book_id, quantity, dispatch_date)
-VALUES ('41b9bd6e-a6a0-4c1b-95aa-fa9bdd6578b9', 1, 23, '2017-05-22 20:45:29');
+VALUES ('74ac3a88-6a38-4130-a702-ebcfed9f0eca', 1, 21, '2017-05-22 20:10:12');
 INSERT INTO incoming_stock (id, book_id, quantity, dispatch_date)
-VALUES ('38bfa719-7617-48ef-b3e1-160f78cc99a1', 2, 22, '2017-06-12 09:31:33');
+VALUES ('4fd205cf-a41b-4ba1-9915-192bd86c7b0c', 2, 20, '2017-05-23 06:50:28');
 INSERT INTO incoming_stock (id, book_id, quantity, dispatch_date)
-VALUES ('3275a32e-1e2b-4934-b6a4-fce2c1deea73', 3, 19, '2017-05-17 17:10:37');
+VALUES ('6fe2b6d6-b96d-455d-856c-9850e55066c0', 3, 15, '2017-05-22 17:02:43');
 INSERT INTO incoming_stock (id, book_id, quantity, dispatch_date)
-VALUES ('c1ed811e-e622-4b97-a22d-7deb530a8485', 4, 21, '2017-09-04 14:24:50');
+VALUES ('341404e9-102f-44b2-938e-53c876a6dbf6', 4, 19, '2017-05-23 23:51:21');
 INSERT INTO incoming_stock (id, book_id, quantity, dispatch_date)
-VALUES ('2a89b0e1-b550-4a8c-8138-661957c59f36', 5, 17, '2018-05-09 15:31:10');
+VALUES ('db757d5a-704b-4455-9bd6-20b4c593912a', 5, 15, '2017-05-24 23:48:01');
 INSERT INTO incoming_stock (id, book_id, quantity, dispatch_date)
-VALUES ('27c09557-7fc4-4a41-84a4-fe520a8fb02e', 6, 23, '2018-02-21 20:33:10');
+VALUES ('38098721-9669-4366-8d7d-cb4aa176697f', 6, 20, '2017-05-16 14:47:22');
 INSERT INTO incoming_stock (id, book_id, quantity, dispatch_date)
-VALUES ('c8bbfe2e-3b9c-4602-bb3f-7ee75d68f4cd', 7, 11, '2018-05-10 20:24:39');
+VALUES ('80288de7-cd2f-441e-a715-ac9d33a6d968', 7, 20, '2017-05-25 10:26:48');
 INSERT INTO incoming_stock (id, book_id, quantity, dispatch_date)
-VALUES ('7796fe36-614e-4ce1-aa1f-e81bdc5b24b7', 8, 22, '2016-10-31 13:32:16');
+VALUES ('9f7d2efc-26e0-4fdf-9add-177fd424b1f7', 8, 11, '2017-05-22 07:46:07');
 INSERT INTO incoming_stock (id, book_id, quantity, dispatch_date)
-VALUES ('da2a0772-636d-4818-8147-3e5d6c944e17', 9, 21, '2017-11-03 11:56:50');
+VALUES ('0b4de856-66d2-45e6-a921-6b2891f68166', 9, 24, '2017-05-23 10:11:08');
 INSERT INTO incoming_stock (id, book_id, quantity, dispatch_date)
-VALUES ('a2171f5f-778d-4472-9f1c-7fd57f86ee7f', 10, 15, '2018-01-12 05:02:18');
+VALUES ('1741bb22-fabc-493b-b9d0-5cc5458b0eea', 10, 22, '2017-05-26 10:43:36');
 INSERT INTO incoming_stock (id, book_id, quantity, dispatch_date)
-VALUES ('dacd7d18-a28f-4c5b-9885-51420122013f', 11, 10, '2018-04-21 22:21:15');
+VALUES ('de552c12-6d1c-443e-9378-f73447253058', 11, 24, '2017-05-28 17:41:45');
 INSERT INTO incoming_stock (id, book_id, quantity, dispatch_date)
-VALUES ('bc692b41-53a7-414c-8eb8-9cb18ebf124a', 12, 12, '2018-04-19 03:54:14');
+VALUES ('6806ef64-e081-4952-b5fe-b774d7bc1ec8', 12, 20, '2017-05-14 17:05:16');
 INSERT INTO incoming_stock (id, book_id, quantity, dispatch_date)
-VALUES ('9ac8f746-ba7c-4b2c-81ef-de17a1e402b7', 13, 19, '2018-01-11 10:35:38');
+VALUES ('da872924-991d-4e65-b1a1-e534357662e9', 13, 17, '2017-05-21 22:21:26');
 INSERT INTO incoming_stock (id, book_id, quantity, dispatch_date)
-VALUES ('5115f1f3-753a-459a-a36b-744a5623c988', 14, 18, '2018-05-02 21:05:52');
+VALUES ('a35af504-d1aa-4671-83a0-7a05cfbf6fc3', 14, 25, '2017-05-22 08:30:02');
 INSERT INTO incoming_stock (id, book_id, quantity, dispatch_date)
-VALUES ('b3143da4-38b0-4ed9-9553-7c877d07e6f0', 15, 11, '2018-01-27 22:59:47');
+VALUES ('ed03f8cf-5fa0-4a8d-9b9b-5c57ffdfb175', 15, 18, '2017-05-28 19:11:11');
 INSERT INTO incoming_stock (id, book_id, quantity, dispatch_date)
-VALUES ('a3696fa7-800f-464d-9c99-6361a92707fa', 16, 21, '2017-11-02 20:03:54');
+VALUES ('b9e3aa3e-128c-47cc-8888-2bf534549406', 16, 20, '2017-05-13 05:13:47');
 INSERT INTO incoming_stock (id, book_id, quantity, dispatch_date)
-VALUES ('c6b27ebc-1a99-46fa-8b3f-45bc21a50759', 17, 24, '2018-05-06 13:20:32');
+VALUES ('2aa06810-76b2-48e3-b31b-faed0befbf93', 17, 15, '2017-05-27 21:42:59');
 INSERT INTO incoming_stock (id, book_id, quantity, dispatch_date)
-VALUES ('1e37c393-dd8a-4a3d-8a15-356290d5eb80', 18, 15, '2017-06-19 03:35:31');
+VALUES ('32bacce5-e901-454e-8e08-443d34fde8da', 18, 25, '2017-05-30 06:36:28');
 INSERT INTO incoming_stock (id, book_id, quantity, dispatch_date)
-VALUES ('71c70dda-1c9f-49d0-a2f5-caae2ccfa7a1', 19, 25, '2018-02-18 07:08:05');
+VALUES ('cb236c2a-45e4-42a7-9155-997568270c8c', 19, 24, '2017-05-24 07:24:12');
 INSERT INTO incoming_stock (id, book_id, quantity, dispatch_date)
-VALUES ('0cd022c3-1f61-4a02-8079-748e1a422b17', 20, 12, '2017-08-20 07:49:34');
+VALUES ('63f452a0-02b2-40fc-8fc2-149be5f59705', 20, 25, '2017-05-25 07:37:34');
 INSERT INTO incoming_stock (id, book_id, quantity, dispatch_date)
-VALUES ('9ae673ff-6b9e-4438-8868-eb07ed8278e1', 21, 16, '2017-11-28 19:21:39');
+VALUES ('2b972094-c2cd-4e1e-95bc-f022da648157', 21, 15, '2017-05-27 16:48:39');
 INSERT INTO incoming_stock (id, book_id, quantity, dispatch_date)
-VALUES ('a48654e4-11cf-4f4b-9336-4a642ece0dca', 22, 19, '2017-11-29 22:13:08');
+VALUES ('a2484ccd-8d17-4c94-89c2-353c51fd375c', 22, 24, '2017-05-29 17:25:09');
 INSERT INTO incoming_stock (id, book_id, quantity, dispatch_date)
-VALUES ('b349aae7-705e-43ab-8248-5faa9f909a8b', 23, 11, '2017-12-15 15:40:00');
+VALUES ('de2b9e61-34f1-42fe-b0c2-b18ddf7ff84a', 23, 14, '2017-05-31 15:31:21');
 INSERT INTO incoming_stock (id, book_id, quantity, dispatch_date)
-VALUES ('af2d2809-a679-43ce-82dd-65a640fe211f', 24, 11, '2017-11-12 02:32:01');
+VALUES ('e3cacf10-95ae-497c-ba90-9b0bb9aed6da', 24, 24, '2017-05-24 18:15:17');
 INSERT INTO incoming_stock (id, book_id, quantity, dispatch_date)
-VALUES ('7f8757ea-1497-47fa-863b-beda81bd8662', 25, 12, '2017-12-21 23:08:21');
+VALUES ('f92132e2-77f1-476d-80eb-4e69a11e9366', 25, 15, '2017-05-23 04:42:17');
