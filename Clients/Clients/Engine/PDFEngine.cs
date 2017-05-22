@@ -47,16 +47,14 @@ namespace Clients.Engine
 
             // Open the Document for writing
             document.Open();
-            //Add elements to the document here
 
             #region Top table
             // Create the header table 
             PdfPTable headertable = new PdfPTable(3);
             headertable.HorizontalAlignment = 0;
             headertable.WidthPercentage = 100;
-            headertable.SetWidths(new float[] { 4, 2, 4 });  // then set the column's __relative__ widths
+            headertable.SetWidths(new float[] { 4, 2, 4 });
             headertable.DefaultCell.Border = Rectangle.NO_BORDER;
-            //headertable.DefaultCell.Border = Rectangle.BOX; //for testing
             headertable.SpacingAfter = 30;
             PdfPTable nested = new PdfPTable(1);
             nested.DefaultCell.Border = Rectangle.BOX;
@@ -99,7 +97,7 @@ namespace Clients.Engine
             PdfPTable itemTable = new PdfPTable(2);
             itemTable.HorizontalAlignment = 0;
             itemTable.WidthPercentage = 100;
-            itemTable.SetWidths(new float[] { 10, 20 });  // then set the column's __relative__ widths
+            itemTable.SetWidths(new float[] { 10, 20 });
             itemTable.SpacingAfter = 40;
             itemTable.DefaultCell.Border = Rectangle.BOX;
             PdfPCell cell1 = new PdfPCell(new Phrase("ID", boldTableFont));
